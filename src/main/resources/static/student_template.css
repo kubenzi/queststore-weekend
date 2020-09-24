@@ -1,0 +1,216 @@
+body
+{
+	background-color: #404040;
+	font-family: 'Lato', sans-serif;
+}
+
+#container
+{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo
+{
+    color: white;
+    margin-top: 20px;
+}
+
+#bar
+{
+    background-color: #303030;
+    color: white;
+    padding: 10px;
+}
+
+#topbar
+{
+    background-color: #128870;
+    color: white;
+    height: 170px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+#topbarL
+{
+    float: left;
+    width: 138px;
+    border-right: 2px dotted #cccccc;
+    padding: 20px;
+    text-align: center;
+}
+
+#topbarR
+{
+    float: left;
+    color: white;
+    width: 760px;
+    padding: 20px;
+    font-size: 16px;
+    text-align: justify;
+}
+
+#sidebar
+{
+    float: left;
+    width: 148px;
+    min-height: 620px;
+    background-color: lightgrey;
+    padding: 20px;
+    font-size: 18px;
+    border-right: 2px dotted #666666;
+}
+
+#content
+{
+    flex:1;
+    float: left;
+    width: 730px;
+    background-color: #dedede;
+    min-height: 580px;
+    padding: 40px;
+    text-align: justify;
+}
+
+#footer
+{
+	clear: both;
+	color: white;
+	text-align: center;
+	padding: 20px;
+    font-size: 18px;
+}
+
+.option
+{
+	float: left;
+	min-width: 50px;
+	height: 25px;
+	font-size: 18px;
+	padding: 10px;
+	border-right: 2px dotted #444444;
+    opacity: 0.8;
+}
+
+.option:hover
+{
+	background-color: #000000;
+	cursor: pointer;
+}
+
+.optionL
+{
+	font-size:18px;
+	height:25px;
+	padding: 10px;
+	border-bottom: 2px dotted #444444;
+}
+
+.optionL:hover
+{
+	background-color: #f36742;
+	color: white;
+	cursor: pointer;
+}
+
+.bigtitle
+{
+	font-size: 32px;
+	font-weight: 900;
+	letter-spacing: 2px;
+}
+
+.dottedline
+{
+	height: 5px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-bottom: 2px dotted #444444;
+}
+
+#mainBar
+{
+	font-size: 32px;
+	font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logoL
+{
+    float: left;
+    width: 450px;
+    text-align: right;
+      
+}
+.logoC
+{
+    float: left;
+    width: 45px;
+    text-align: center;
+      
+}
+.logoR
+{
+    float: left;
+    width: 485px;
+      
+}
+
+#lowMenu
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+label:hover{
+    background: #26C281;
+  }
+  
+label.last{
+    border-bottom: 1px solid #fff;
+  }
+  
+ul ul li{
+    padding: 10px;
+    background: #59ABE3;
+  }
+  
+  
+input[type="checkbox"]{
+    position: absolute;
+    left: -9999px;
+  }
+  
+input[type="checkbox"] ~ ul{
+    height: 0;
+    transform: scaleY(0);
+  }
+  
+input[type="checkbox"]:checked ~ ul{
+    height: 100%;
+    transform-origin: top;
+    transition: transform .2s ease-out;
+    transform: scaleY(1); 
+  }
+  
+input[type="checkbox"]:checked + label{
+    background: #26C281;
+    border-bottom: 1px solid #fff;
+  }
+
+#main_content {
+  display: flex;
+
+}
