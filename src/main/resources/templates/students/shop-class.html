@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>Student_main_view </title>
+	
+	<meta name="keywords" content="student, codecool, quest, coolcoins" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<link th:href="@{/student_template.css}" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+	
+	<div id="container">
+		
+		<div id="bar">
+
+			<div th:insert="fragments/student-fragments :: mainBar"></div>
+
+
+			<div th:insert="fragments/student-fragments :: lowMenu"></div>
+
+			<div style="clear:both;"></div>	
+
+
+
+		</div>
+		
+		<div id="topbar">
+			<div id="topbarL">
+				<i class="icon-graduation-cap"></i>
+			</div>
+			<div id="topbarR">
+				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
+				<div style="height: 15px;"></div>
+                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
+                You can choose action. Enjoy our app!
+            </div>
+			<div style="clear:both;"></div>
+		</div>
+
+		<div id="main_content">
+
+			<div th:insert="fragments/student-fragments :: sidebar"></div>
+
+
+		<div id="content">
+			<span class="bigtitle">Class items</span>
+			<br>
+			<br>
+			<div class="content">You can use listed items only with class members</div>
+			<div class="dottedline"></div>
+			<br>
+			<table id = "class_items_table">
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price &copy;</th>
+					<th>Purchase</th>
+				</tr>
+				<tr>
+					<td>WANT MORE</td>
+					<td>Extra material for the current topic</td>
+					<td>500</td>
+					<td><div class="optionTable">BUY</div></td>
+				</tr>
+				<tr>
+					<td>WORKSHOP</td>
+					<td>60 min workshop by a mentor of the chosen topic</td>
+					<td>1000</td>
+					<td><div class="optionTable">BUY</div></td>
+				</tr>
+				<tr>
+					<td>HALLOWEEN</td>
+					<td>All mentors should dress up funny for the day</td>
+					<td>5000</td>
+					<td><div class="optionTable">BUY</div></td>
+				</tr>
+				<tr>
+					<td>ACCELERATION</td>
+					<td>The whole course goes to an off-school program instead for a day</td>
+					<td>30000</td>
+					<td><div class="optionTable">BUY</div></td>
+				</tr>
+			</table>
+			<br/>
+			<br/>
+
+			</div>
+		</div>
+
+		<div th:insert="fragments/student-fragments :: footer"></div>
+
+	</div>
+	
+</body>
+</html>

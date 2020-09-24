@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
 	<title>Student_main_view </title>
@@ -69,11 +69,14 @@
 		</div>
 		<div id="main_content">
 		<div th:fragment="sidebar" id="sidebar">
-			<div class="optionL">Your Profile</div>
-			<div class="optionL">Group</div>
-			<div class="optionL">Class</div>
-			<div class="optionL">Achivments</div>
-			
+
+			<div class="optionL"><a th:href="@{/student}"> Your Profile </a></div>
+
+			<div class="optionL"><a th:href="@{/group}"> Group </a></div>
+
+			<div class="optionL"><a th:href="@{/class}"> Class </a></div>
+			<div class="optionL"><a th:href="@{/achievements}"> Achievements </a></div>
+
 			<ul>
 				<li>
 				  <input type="checkbox" id="list-item-1">
@@ -81,15 +84,15 @@
 				  	<div class="optionL">Shop</div>
 				  </label>
 				  <ul>	
-					<li>Individual</li>
-					<li>Group</li>
-					<li>Class</li>
+					<li><a th:href="@{/shop-individual}"> Individual </a></li>
+					<li><a th:href="@{/shop-group}"> Group </a></li>
+					<li><a th:href="@{/shop-class}"> Class </a></li>
 				  </ul>
 			</ul>
 
-            <div class="optionL">Transaction</div>
-            <div class="optionL">Quests</div>
-            <div class="optionL" title="level of experience" >L.O.E</div>
+            <div class="optionL"><a th:href="@{/transactions}"> Transactions </a></div>
+			<div class="optionL"><a th:href="@{/quests}"> Quests </a></div>
+			<div class="optionL" title="level of experience" ><a th:href="@{/experience}"> L.O.E</a></div>
 
 		</div>
 		
