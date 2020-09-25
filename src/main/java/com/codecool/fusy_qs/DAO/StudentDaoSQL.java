@@ -2,13 +2,14 @@ package com.codecool.fusy_qs.DAO;
 
 import com.codecool.fusy_qs.Model.Student;
 import com.codecool.fusy_qs.PSQLconnection;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class StudentDaoSQL extends PSQLconnection implements StudentDao {
-
 
     @Override
     public Student getStudentByID(String id) {
