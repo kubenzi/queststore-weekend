@@ -1,3 +1,5 @@
+--usuwanie danych po usunięciu z tabeli nadrzędnej
+
 DROP TABLE IF EXISTS account_type CASCADE;
 DROP TABLE IF EXISTS user_data CASCADE;
 DROP TABLE IF EXISTS student CASCADE;
