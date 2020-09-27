@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<title>Student_main_view </title>
+	
+	<meta name="keywords" content="student, codecool, quest, coolcoins" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<link th:href="@{/student_template.css}" rel="stylesheet" />
+	
+	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+	
+	<div id="container">
+		
+		<div id="bar">
+
+
+			<div th:insert="fragments/student-fragments :: mainBar"></div>
+
+
+			<div th:insert="fragments/student-fragments :: lowMenu"></div>
+
+			<div style="clear:both;"></div>	
+
+
+
+		</div>
+		
+		<div id="topbar">
+			<div id="topbarL">
+				<i class="icon-graduation-cap"></i>
+			</div>
+			<div id="topbarR">
+				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
+				<div style="height: 15px;"></div>
+                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
+                You can choose action. Enjoy our app!
+            </div>
+			<div style="clear:both;"></div>
+		</div>
+
+		<div id="main_content">
+
+			<div th:insert="fragments/student-fragments :: sidebar"></div>
+
+
+			<div id="content">
+				<span class="bigtitle">Basic Quests</span>
+
+				<div class="dottedline"></div>
+				<div class="questList">1. Finishing two-week assignment - 100 cc per person for the team and they decide on how to share it</div>
+				</br>
+				<div class="questList">2. Passing a Checkpoint - 500 cc</div>
+				</br>
+
+
+				<span class="bigtitle">Extra Quests</span>
+
+				<div class="dottedline"></div>
+
+				<div class="questList">1. Spot a major mistake in the assignment - 50 cc</div>
+				</br>
+				<div class="questList">2. Doing a demo for the class (side project, new technology, ...) - 100 cc</div>
+				</br>
+				<div class="questList">3. Taking part in the student screening process - 100 cc</div>
+				</br>
+				<div class="questList">4. Organizing a workshop for other students - 400 ccc</div>
+				</br>
+				<div class="questList">5. Attend 1 months without being late - 300 cc</div>
+				</br>
+				<div class="questList">6. Set up a SMART goal accepted by a mentor, then achieve it - 500 - 1000 cc</div>
+				</br>
+				<div class="questList">7. Students choose the best project of the week. Selected team scores - 500 cc</div>
+				</br>
+				<div class="questList">8. Do a presentation on a meet-up - 500 cc</div>
+
+			</div>
+		</div>
+
+			<div th:insert="fragments/student-fragments :: footer"></div>
+
+	</div>
+	
+</body>
+</html>
