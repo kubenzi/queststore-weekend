@@ -1,6 +1,6 @@
-package com.codecool.fusy_qs.DAO;
+package com.codecool.fusy_qs.Student.DAO;
 
-import com.codecool.fusy_qs.Model.Student;
+import com.codecool.fusy_qs.Student.Model.Student;
 import com.codecool.fusy_qs.PSQLconnection;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,12 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
 
     @Override
     public Student getStudentByID(String id) {
-        String query = "SELECT * FROM user_data WHERE  user_id = ? ;";
+//        String query = "SELECT * FROM user_data WHERE  user_id = ? ;";
+        String query = "SELECT * FROM user_data " +
+                "RIGHT JOIN student ON" +
+                " user_data.user_id=student.user_id" +
+                " WHERE student.user_id= ?;";
+
 
         Student student = null;
 
@@ -29,6 +34,10 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
                 String lastName = rs.getString("last_name");
                 Integer accountType = rs.getInt("account_type_id");
                 String email = rs.getString("email");
+
+                String groupId = rs.getNString("group_id");
+
+
                 student = new Student(id, accountType, firstName, lastName, email);
             }
 
@@ -38,4 +47,10 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
         }
         return student;
     }
+
+//    select * from user_data FULL OUTER JOIN student ON user_data.user_id=student.user_id FULL OUTER JOIN groups ON student.group_id=groups.group_id
+
+
+
+
 }

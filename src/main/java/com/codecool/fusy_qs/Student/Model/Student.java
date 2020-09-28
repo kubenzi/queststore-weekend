@@ -1,4 +1,4 @@
-package com.codecool.fusy_qs.Model;
+package com.codecool.fusy_qs.Student.Model;
 
 public class Student {
     private String id;

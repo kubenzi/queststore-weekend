@@ -1,9 +1,7 @@
 package com.codecool.fusy_qs;
 
-import com.codecool.fusy_qs.DAO.StudentDao;
-import com.codecool.fusy_qs.Model.Student;
-import com.codecool.fusy_qs.Service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.codecool.fusy_qs.Student.Model.Student;
+import com.codecool.fusy_qs.Student.Service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -19,15 +17,15 @@ public class UserController {
 
     @GetMapping("/student")
     String showStudentPage(Model model) {
-        Student student = studentService.getStudentById("JgsMz0d1");
-
-//        System.out.println(student.toString());
+        Student student = studentService.getStudentById("x>[>j!X#");
         model.addAttribute(student);
         return "students/student";
     }
 
     @GetMapping("achievements")
-    String showStudentsAchievements( ) {
+    String showStudentsAchievements(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/achievements";
     }
 
