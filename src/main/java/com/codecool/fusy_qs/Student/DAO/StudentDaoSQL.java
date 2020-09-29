@@ -1,5 +1,9 @@
 package com.codecool.fusy_qs.Student.DAO;
 
+import com.codecool.fusy_qs.Group.Group;
+import com.codecool.fusy_qs.Group.GroupDao;
+import com.codecool.fusy_qs.Group.GroupDaoSQL;
+import com.codecool.fusy_qs.Group.GroupService;
 import com.codecool.fusy_qs.Student.Model.Student;
 import com.codecool.fusy_qs.PSQLconnection;
 import org.springframework.stereotype.Repository;
@@ -35,10 +39,15 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
                 Integer accountType = rs.getInt("account_type_id");
                 String email = rs.getString("email");
 
-                String groupId = rs.getNString("group_id");
+                String groupId = rs.getString("group_id");
+
+                GroupDao groupDao = new GroupDaoSQL();
+                GroupService groupService = new GroupService(groupDao);
+
+                Group group = groupService.getGroupById(groupId);
 
 
-                student = new Student(id, accountType, firstName, lastName, email);
+                student = new Student(id, accountType, firstName, lastName, email, group);
             }
 
         } catch (SQLException ex) {
@@ -49,8 +58,6 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
     }
 
 //    select * from user_data FULL OUTER JOIN student ON user_data.user_id=student.user_id FULL OUTER JOIN groups ON student.group_id=groups.group_id
-
-
 
 
 }

@@ -55,4 +55,15 @@ public class Group {
     public void setMentorId(String mentorId) {
         this.mentorId = mentorId;
     }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupId='" + groupId + '\'' +
+                ", classId='" + classId + '\'' +
+                ", groupName='" + groupName + '\'' +
+                ", groupWallet=" + groupWallet +
+                ", mentorId='" + mentorId + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.codecool.fusy_qs;
 
+import com.codecool.fusy_qs.Group.Group;
 import com.codecool.fusy_qs.Student.Model.Student;
 import com.codecool.fusy_qs.Student.Service.StudentService;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,11 @@ public class UserController {
 
     @GetMapping("/student")
     String showStudentPage(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
+        Student student = studentService.getStudentById(")+e)CWq!");
+        Group group = student.getGroup();
+        model.addAttribute("student", student);
+//        model.addAttribute("group", group);
+//        System.out.println(group.getGroupName());
         return "students/student";
     }
 
@@ -30,44 +34,59 @@ public class UserController {
     }
 
     @GetMapping("quests")
-    String showStudentsQuests( ) {
+    String showStudentsQuests(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/quests";
     }
 
     @GetMapping("shop-class")
-    String showStudentsShopClass( ) {
+    String showStudentsShopClass(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/shop-class";
     }
 
     @GetMapping("shop-group")
-    String showStudentsShopGroup( ) {
+    String showStudentsShopGroup(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/shop-group";
     }
 
     @GetMapping("shop-individual")
-    String showStudentsShopIndividual( ) {
+    String showStudentsShopIndividual(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/shop-individual";
     }
 
     @GetMapping("class")
-    String showClass( ) {
+    String showClass(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/class";
     }
 
     @GetMapping("group")
-    String showGroup( ) {
+    String showGroup(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/group";
     }
 
     @GetMapping("experience")
-    String showExperience( ) {
+    String showExperience(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/experience";
     }
 
     @GetMapping("transactions")
-    String showTransaction( ) {
+    String showTransaction(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
         return "students/transactions";
 
     }
-
 }

@@ -3,17 +3,19 @@ package com.codecool.fusy_qs.Group;
 import com.codecool.fusy_qs.PSQLconnection;
 import com.codecool.fusy_qs.Student.DAO.StudentDaoSQL;
 import com.codecool.fusy_qs.Student.Model.Student;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class GroupDaoSQL extends PSQLconnection implements GroupDao {
     @Override
     public Group getGroupById(String groupId) {
 
         String query = "SELECT * FROM groups" +
-                "WHERE group_id = ? ";
+                "WHERE group_id= ?;";
 
         Group group = null;
 
