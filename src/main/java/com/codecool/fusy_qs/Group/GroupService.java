@@ -1,5 +1,8 @@
 package com.codecool.fusy_qs.Group;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class GroupService {
     GroupDao groupDao;
 

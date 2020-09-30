@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs;
 
 import com.codecool.fusy_qs.Group.Group;
+import com.codecool.fusy_qs.Group.GroupService;
 import com.codecool.fusy_qs.Student.Model.Student;
 import com.codecool.fusy_qs.Student.Service.StudentService;
 import org.springframework.stereotype.Controller;
@@ -11,18 +12,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
     private StudentService studentService;
+    private GroupService groupService;
 
-    public UserController(StudentService studentService) {
+    public UserController(StudentService studentService, GroupService groupService) {
         this.studentService = studentService;
+        this.groupService = groupService;
     }
 
-    @GetMapping("/student")
+    @GetMapping("student")
     String showStudentPage(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        Group group = student.getGroup();
+//        Group group = student.getGroup();
         model.addAttribute("student", student);
-//        model.addAttribute("group", group);
-//        System.out.println(group.getGroupName());
+
+//        Group group = groupService.getGroupById(student.getGroupId());
+//        group.toString();
+
         return "students/student";
     }
 
@@ -30,6 +35,7 @@ public class UserController {
     String showStudentsAchievements(Model model) {
         Student student = studentService.getStudentById("x>[>j!X#");
         model.addAttribute(student);
+
         return "students/achievements";
     }
 

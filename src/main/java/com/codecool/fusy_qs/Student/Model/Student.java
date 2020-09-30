@@ -8,15 +8,23 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
-    private Group group;
+    private String groupId;
 
-    public Student(String id, Integer accountType, String firstName, String lastName, String email, Group group) {
+    public Student(String id, Integer accountType, String firstName, String lastName, String email, String groupId) {
         this.id = id;
         this.accountType = accountType;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.group = group;
+        this.groupId = groupId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getId() {
@@ -57,14 +65,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
     }
 
     @Override

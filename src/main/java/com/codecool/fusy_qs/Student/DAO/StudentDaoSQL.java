@@ -41,21 +41,21 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
 
                 String groupId = rs.getString("group_id");
 
-                GroupDao groupDao = new GroupDaoSQL();
-                GroupService groupService = new GroupService(groupDao);
-
-                Group group = groupService.getGroupById(groupId);
 
 
-                student = new Student(id, accountType, firstName, lastName, email, group);
+
+                student = new Student(id, accountType, firstName, lastName, email, groupId);
             }
 
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(StudentDaoSQL.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
+
+
         return student;
     }
+
 
 //    select * from user_data FULL OUTER JOIN student ON user_data.user_id=student.user_id FULL OUTER JOIN groups ON student.group_id=groups.group_id
 

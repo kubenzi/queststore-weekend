@@ -14,16 +14,16 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
     @Override
     public Group getGroupById(String groupId) {
 
-        String query = "SELECT * FROM groups" +
-                "WHERE group_id= ?;";
+        String query = "SELECT * FROM groups " +
+                "WHERE group_id = ?;";
 
         Group group = null;
 
         try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
-             PreparedStatement pst = con.prepareStatement(query)) {
+             PreparedStatement pst1 = con.prepareStatement(query)) {
 
-            pst.setString(1, groupId);
-            ResultSet rs = pst.executeQuery();
+            pst1.setString(1, groupId);
+            ResultSet rs = pst1.executeQuery();
 
             while (rs.next()) {
 
