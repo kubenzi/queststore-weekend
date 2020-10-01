@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
 	<title>Student_main_view </title>
@@ -8,8 +8,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<link th:href="@{/student_template.css}" rel="stylesheet" />
-	
-	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
+
+	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
 	
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -50,9 +50,6 @@
 
 
 		<div id="content">
-			<span class="bigtitle">Title?</span>
-
-			<div class="dottedline"></div>
 
 			<span class="bigtitle">Levels of Experience</span>
 
@@ -60,40 +57,49 @@
 			<br/>
 			<table id = "group_members_table">
 
+<!--				<tr>-->
+<!--					<td>Level 1</td>-->
+<!--					<td>Beginner</td>-->
+<!--					<td><i class="icon-paper-plane-empty"></i></td>-->
+<!--					<td>100</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Level 2</td>-->
+<!--					<td>Amateur</td>-->
+<!--					<td><i class="icon-paper-plane"></i></td>-->
+<!--					<td>300</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Level 3</td>-->
+<!--					<td>Semi-Pro</td>-->
+<!--					<td><i class="icon-space-shuttle"></i></td>-->
+<!--					<td>500</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Level 4</td>-->
+<!--					<td>Professional</td>-->
+<!--					<td><i class="icon-fighter-jet"></i></td>-->
+<!--					<td>700</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Level 5</td>-->
+<!--					<td>World-class</td>-->
+<!--					<td><i class="icon-rocket"></i></td>-->
+<!--					<td>1000</td>-->
+<!--				</tr>-->
 				<tr>
-					<td>Level 1</td>
-					<td>Beginner</td>
-					<td><i class="icon-paper-plane-empty"></i></td>
-					<td>Needed arn coins</td>
-					<td>100</td>
+					<td class="tableTitle">Level no.</td>
+					<td class="tableTitle">Level name</td>
+					<td class="tableTitle">Coolcoins Required</td>
 				</tr>
-				<tr>
-					<td>Level 2</td>
-					<td>Amateur</td>
-					<td><i class="icon-paper-plane"></i></td>
-					<td>Needed arn coins</td>
-					<td>300</td>
-				</tr>
-				<tr>
-					<td>Level 3</td>
-					<td>Semi-Pro</td>
-					<td><i class="icon-space-shuttle"></i></td>
-					<td>Needed arn coins</td>
-					<td>500</td>
-				</tr>
-				<tr>
-					<td>Level 4</td>
-					<td>Profesional</td>
-					<td><i class="icon-fighter-jet"></i></td>
-					<td>Needed arn coins</td>
-					<td>700</td>
-				</tr>
-				<tr>
-					<td>Level 5</td>
-					<td>Wordl-class</td>
-					<td><i class="icon-rocket"></i></td>
-					<td>Needed arn coins</td>
-					<td>1000</td>
+				<tr th:each="level : ${levelslist}">
+
+					<td><span th:text="${level.levelId}"> </span></td>
+					<td ><span th:text="${level.levelName}"> </span></td>
+					<td><span th:text="${level.ccolcoinsRequired}"> </span></td>
+
+					<td><a th:href="@{edit-level/{levelId}(levelId=${level.levelId})}" class="btn">Edit</a></td>
+<!--					<td><a href="#" th:href="@{/edit/{levelId}${level.levelId})}" class="btn"> Edit User </a></td>-->
 				</tr>
 
 			</table>

@@ -9,6 +9,10 @@ import com.codecool.fusy_qs.Student.Service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -22,7 +26,7 @@ public class UserController {
         this.levelService = levelService;
     }
 
-    @GetMapping("student")
+    @GetMapping("/student")
     String showStudentPage(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
 
@@ -33,70 +37,161 @@ public class UserController {
         model.addAttribute("group", group);
         model.addAttribute("level", level);
 
+
         return "students/student";
     }
 
-    @GetMapping("achievements")
+    @GetMapping("/achievements")
     String showStudentsAchievements(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
 
         return "students/achievements";
     }
 
-    @GetMapping("quests")
+    @GetMapping("/quests")
     String showStudentsQuests(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/quests";
     }
 
-    @GetMapping("shop-class")
+    @GetMapping("/shop-class")
     String showStudentsShopClass(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/shop-class";
     }
 
-    @GetMapping("shop-group")
+    @GetMapping("/shop-group")
     String showStudentsShopGroup(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/shop-group";
     }
 
-    @GetMapping("shop-individual")
+    @GetMapping("/shop-individual")
     String showStudentsShopIndividual(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/shop-individual";
     }
 
-    @GetMapping("class")
+    @GetMapping("/class")
     String showClass(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/class";
     }
 
-    @GetMapping("group")
+    @GetMapping("/group")
     String showGroup(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/group";
     }
 
-    @GetMapping("experience")
+    @GetMapping("/experience")
     String showExperience(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        List<Level> levelList = levelService.getAllLevels();
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+        model.addAttribute("levelslist", levelList);
+
+
         return "students/experience";
     }
 
-    @GetMapping("transactions")
+    @GetMapping("/edit-level/{id}")
+    String showUpdateForm(@PathVariable("id") Integer levelId, Model model) {
+
+        Student student = studentService.getStudentById(")+e)CWq!");
+
+        Group group = groupService.getGroupById(student.getGroupId());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+
+
+        Level level = levelService.getLevelById(levelId);
+        model.addAttribute("level", level);
+        return "students/experience-update";
+    }
+
+    @PostMapping("/update-level/{id}")
+    String updateUser (@PathVariable("id") Integer levelId, Level level,  Model model) {
+        System.out.println(level.toString());
+
+
+        return "redirect:/experience";
+    }
+
+    @GetMapping("/transactions")
     String showTransaction(Model model) {
         Student student = studentService.getStudentById(")+e)CWq!");
-        model.addAttribute(student);
+
+        Group group = groupService.getGroupById(student.getGroupId());
+        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+
+        model.addAttribute("student", student);
+        model.addAttribute("group", group);
+        model.addAttribute("level", level);
+
         return "students/transactions";
 
     }

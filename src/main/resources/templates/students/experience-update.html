@@ -23,7 +23,6 @@
 
 			<div th:insert="fragments/student-fragments :: mainBar"></div>
 
-
 			<div th:insert="fragments/student-fragments :: lowMenu"></div>
 
 			<div style="clear:both;"></div>	
@@ -51,43 +50,31 @@
 
 
 		<div id="content">
-			<span class="bigtitle">Class items</span>
-			<br>
-			<br>
-			<div class="content">You can use listed items only with class members</div>
+
+			<span class="bigtitle">Levels of Experience</span>
+
 			<div class="dottedline"></div>
-			<br>
-			<table id = "class_items_table">
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price &copy;</th>
-					<th>Purchase</th>
-				</tr>
-				<tr>
-					<td>WANT MORE</td>
-					<td>Extra material for the current topic</td>
-					<td>500</td>
-					<td><div class="optionTable">BUY</div></td>
-				</tr>
-				<tr>
-					<td>WORKSHOP</td>
-					<td>60 min workshop by a mentor of the chosen topic</td>
-					<td>1000</td>
-					<td><div class="optionTable">BUY</div></td>
-				</tr>
-				<tr>
-					<td>HALLOWEEN</td>
-					<td>All mentors should dress up funny for the day</td>
-					<td>5000</td>
-					<td><div class="optionTable">BUY</div></td>
-				</tr>
-				<tr>
-					<td>ACCELERATION</td>
-					<td>The whole course goes to an off-school program instead for a day</td>
-					<td>30000</td>
-					<td><div class="optionTable">BUY</div></td>
-				</tr>
+			<br/>
+			<table id = "group_members_table">
+
+
+
+				<form action="#" th:action="@{/update-level/{id}(id=${level.levelId})}" th:object="${level}" method="post">
+
+					<label for="name">Level </label>
+					<input type="text" th:field="*{levelId}" id="levelId" placeholder="Level">
+					</br>
+					<label for="name">Level name </label>
+					<input type="text" th:field="*{levelName}" id="levelName" placeholder="Level name">
+					</br>
+					</br>
+					<label for="name">CC Reauired </label>
+					<input type="text" th:field="*{ccolcoinsRequired}" id="ccolcoinsRequired" placeholder="CC Required">
+					</br>
+					</br>
+					<input type="submit" value="Update Level">
+				</form>
+
 			</table>
 			<br/>
 			<br/>

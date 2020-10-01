@@ -1,22 +1,36 @@
 package com.codecool.fusy_qs;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+@Component
 public class PSQLconnection {
 
-    private final String URL;
-    private final String USER;
-    private final String PASSWORD;
+    @Value("${db.URL}")
+    private String URL;
+    @Value("${db.USER}")
+    private String USER;
+    @Value("${db.PASSWORD}")
+    private String PASSWORD;
 
     public PSQLconnection() {
-        String properties_file = "database.properties";
-        Properties props = readPropertiesFile("./src/main/resources/" + properties_file);
-        this.URL = props.getProperty("db.URL");
-        this.USER = props.getProperty("db.USER");
-        this.PASSWORD = props.getProperty("db.PASSWORD");
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public void setUSER(String USER) {
+        this.USER = USER;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
     }
 
     public String getUrl() {
@@ -31,24 +45,24 @@ public class PSQLconnection {
         return PASSWORD;
     }
 
-    private Properties readPropertiesFile(String fileName) {
-        FileInputStream fis = null;
-        Properties prop = null;
-        try {
-            fis = new FileInputStream(fileName);
-            prop = new Properties();
-            prop.load(fis);
-        } catch (FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return prop;
-    }
+//    private Properties readPropertiesFile(String fileName) {
+//        FileInputStream fis = null;
+//        Properties prop = null;
+//        try {
+//            fis = new FileInputStream(fileName);
+//            prop = new Properties();
+//            prop.load(fis);
+//        } catch (FileNotFoundException fnfe) {
+//            fnfe.printStackTrace();
+//        } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        } finally {
+//            try {
+//                fis.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return prop;
+//    }
 }

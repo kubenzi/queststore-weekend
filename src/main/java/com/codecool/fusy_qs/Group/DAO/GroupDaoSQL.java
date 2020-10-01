@@ -11,7 +11,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class GroupDaoSQL extends PSQLconnection implements GroupDao {
+public class GroupDaoSQL implements GroupDao {
+
+    PSQLconnection psqLconnection;
+
+    public GroupDaoSQL(PSQLconnection psqLconnection) {
+        this.psqLconnection = psqLconnection;
+    }
+
     @Override
     public Group getGroupById(String groupId) {
 
@@ -20,7 +27,7 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
 
         Group group = null;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst1 = con.prepareStatement(query)) {
 
             pst1.setString(Order.FIRST_ATTRIBUTE.getValue(), groupId);

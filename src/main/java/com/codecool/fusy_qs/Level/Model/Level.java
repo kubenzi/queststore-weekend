@@ -5,8 +5,16 @@ public class Level {
     private String levelName;
     private Integer ccolcoinsRequired;
 
+    public Level() {
+    }
+
     public Level(Integer levelId, String levelName, Integer ccolcoinsRequired) {
         this.levelId = levelId;
+        this.levelName = levelName;
+        this.ccolcoinsRequired = ccolcoinsRequired;
+    }
+
+    public Level(String levelName, Integer ccolcoinsRequired) {
         this.levelName = levelName;
         this.ccolcoinsRequired = ccolcoinsRequired;
     }

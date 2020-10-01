@@ -10,7 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class StudentDaoSQL extends PSQLconnection implements StudentDao {
+public class StudentDaoSQL implements StudentDao {
+
+    private PSQLconnection psqLconnection;
+
+    public StudentDaoSQL(PSQLconnection psqLconnection) {
+        this.psqLconnection = psqLconnection;
+    }
 
     @Override
     public Student getStudentByID(String id) {
@@ -21,7 +27,7 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
 
         Student student = null;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
             pst.setString(Order.FIRST_ATTRIBUTE.getValue(), id);
