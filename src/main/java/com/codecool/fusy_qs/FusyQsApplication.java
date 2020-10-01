@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FusyQsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FusyQsApplication.class, args); }
+    public static void main(String[] args) {
+        SpringApplication.run(FusyQsApplication.class, args);
+    }
 
 
 }

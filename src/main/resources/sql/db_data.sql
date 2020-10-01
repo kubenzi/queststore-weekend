@@ -224,11 +224,11 @@ INSERT INTO admin VALUES
     ('mQh5G+8#', 'x%[>j!X#');
 
 INSERT INTO level_of_experience VALUES
-    (1, 'paper plane', 500),
-    (2, 'plane', 1000),
-    (3, 'jet', 1500),
-    (4, 'satellite', 3000),
-    (5, 'space shuttle', 5000);
+    (1, 'paper plane', 0),
+    (2, 'plane', 500),
+    (3, 'jet', 1000),
+    (4, 'satellite', 2000),
+    (5, 'space shuttle', 3000);
 
 INSERT INTO class VALUES
     ('sUm2F/9<', 'krk weekend 02/2020');

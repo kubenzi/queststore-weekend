@@ -1,8 +1,9 @@
-package com.codecool.fusy_qs.Group;
+package com.codecool.fusy_qs.Group.DAO;
 
+import com.codecool.fusy_qs.Group.Model.Group;
+import com.codecool.fusy_qs.Order;
 import com.codecool.fusy_qs.PSQLconnection;
 import com.codecool.fusy_qs.Student.DAO.StudentDaoSQL;
-import com.codecool.fusy_qs.Student.Model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -22,18 +23,16 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
         try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
              PreparedStatement pst1 = con.prepareStatement(query)) {
 
-            pst1.setString(1, groupId);
+            pst1.setString(Order.FIRST_ATTRIBUTE.getValue(), groupId);
             ResultSet rs = pst1.executeQuery();
 
             while (rs.next()) {
 
                 String classId = rs.getString("class_id");
                 String groupName = rs.getString("group_name");
-                Integer groupWallet = rs.getInt("group_wallet");
                 String mentorId = rs.getString("mentor_id");
 
-
-                group = new Group(groupId, classId, groupName, groupWallet, mentorId);
+                group = new Group(groupId, classId, groupName, mentorId);
             }
 
         } catch (SQLException ex) {
@@ -42,5 +41,5 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
         }
         return group;
     }
-    
+
 }

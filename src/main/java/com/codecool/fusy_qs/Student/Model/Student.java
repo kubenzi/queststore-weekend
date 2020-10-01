@@ -1,7 +1,5 @@
 package com.codecool.fusy_qs.Student.Model;
 
-import com.codecool.fusy_qs.Group.Group;
-
 public class Student {
     private String id;
     private Integer accountType;
@@ -9,14 +7,34 @@ public class Student {
     private String lastName;
     private String email;
     private String groupId;
+    private Integer wallet;
+    private Integer totalCoinsEarned;
 
-    public Student(String id, Integer accountType, String firstName, String lastName, String email, String groupId) {
+    public Student(String id, Integer accountType, String firstName, String lastName, String email, String groupId, Integer wallet, Integer totalCoinsEarned) {
         this.id = id;
         this.accountType = accountType;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.groupId = groupId;
+        this.wallet = wallet;
+        this.totalCoinsEarned = totalCoinsEarned;
+    }
+
+    public Integer getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Integer wallet) {
+        this.wallet = wallet;
+    }
+
+    public Integer getTotalCoinsEarned() {
+        return totalCoinsEarned;
+    }
+
+    public void setTotalCoinsEarned(Integer totalCoinsEarned) {
+        this.totalCoinsEarned = totalCoinsEarned;
     }
 
     public String getGroupId() {

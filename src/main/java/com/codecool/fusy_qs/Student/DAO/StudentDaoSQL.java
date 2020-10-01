@@ -1,11 +1,8 @@
 package com.codecool.fusy_qs.Student.DAO;
 
-import com.codecool.fusy_qs.Group.Group;
-import com.codecool.fusy_qs.Group.GroupDao;
-import com.codecool.fusy_qs.Group.GroupDaoSQL;
-import com.codecool.fusy_qs.Group.GroupService;
-import com.codecool.fusy_qs.Student.Model.Student;
+import com.codecool.fusy_qs.Order;
 import com.codecool.fusy_qs.PSQLconnection;
+import com.codecool.fusy_qs.Student.Model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -17,19 +14,17 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
 
     @Override
     public Student getStudentByID(String id) {
-//        String query = "SELECT * FROM user_data WHERE  user_id = ? ;";
         String query = "SELECT * FROM user_data " +
                 "RIGHT JOIN student ON" +
                 " user_data.user_id=student.user_id" +
                 " WHERE student.user_id= ?;";
-
 
         Student student = null;
 
         try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
-            pst.setString(1, id);
+            pst.setString(Order.FIRST_ATTRIBUTE.getValue(), id);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -38,13 +33,12 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
                 String lastName = rs.getString("last_name");
                 Integer accountType = rs.getInt("account_type_id");
                 String email = rs.getString("email");
-
                 String groupId = rs.getString("group_id");
+                Integer wallet = rs.getInt("wallet");
+                Integer totalCoinsEarned = rs.getInt("total_coins_earned");
 
 
-
-
-                student = new Student(id, accountType, firstName, lastName, email, groupId);
+                student = new Student(id, accountType, firstName, lastName, email, groupId, wallet, totalCoinsEarned);
             }
 
         } catch (SQLException ex) {
@@ -55,9 +49,5 @@ public class StudentDaoSQL extends PSQLconnection implements StudentDao {
 
         return student;
     }
-
-
-//    select * from user_data FULL OUTER JOIN student ON user_data.user_id=student.user_id FULL OUTER JOIN groups ON student.group_id=groups.group_id
-
 
 }
