@@ -122,6 +122,12 @@ body
 	font-weight: 900;
 	letter-spacing: 2px;
 }
+.smalltitle
+{
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
 
 .dottedline
 {

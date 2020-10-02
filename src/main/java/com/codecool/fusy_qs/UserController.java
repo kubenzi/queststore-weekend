@@ -89,4 +89,12 @@ public class UserController {
         return "students/transactions";
 
     }
+
+    // DO TESTOWANIA !!!
+    @GetMapping("groups")
+    String showGroups(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
+        return "mentors/groups";
+    }
 }
