@@ -10,4 +10,6 @@ public interface LevelService {
     List<Level> getAllLevels();
 
     Level getLevelById(Integer idLevel);
+
+    Level editLevelById(Integer idLevel);
 }
