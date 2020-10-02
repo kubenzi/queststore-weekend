@@ -28,4 +28,9 @@ public class LevelServiceIMPL implements LevelService {
     public Level getLevelById(Integer idLevel) {
         return levelDao.getLevelById(idLevel);
     }
+
+    @Override
+    public Level editLevelById(Integer idLevel) {
+        return null;
+    }
 }
