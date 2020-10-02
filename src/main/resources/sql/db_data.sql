@@ -113,6 +113,7 @@ CREATE TABLE quest (
 CREATE TABLE quest_achievements (
     achievement_id character varying(8) NOT NULL,
     quest_id character varying(255) NOT NULL,
+    prize int NOT NULL,
 
     PRIMARY KEY (achievement_id),
     FOREIGN KEY (quest_id) REFERENCES quest(quest_id)
@@ -239,7 +240,8 @@ INSERT INTO groups VALUES
 
 INSERT INTO quest_type VALUES
     (1, 'individual quest'),
-    (2, 'group quest');
+    (2, 'group quest'),
+    (3, 'inactive');
 
 INSERT INTO quest VALUES
     ('dSz6P|4~', 1, 'Finishing two-week self-assignment', 100),
@@ -268,26 +270,27 @@ INSERT INTO quest_achievements VALUES
     ('jKv9E/6}', 'qIr3C$3/'),
     ('wFy0R~2]', 'oIl4O&0[');
 
+--cena dodana do achievement_details na wypadek zmiany ceny w tabeli quest
 INSERT INTO achievement_details VALUES
-    ('sFg6A&4.', 'hAv7V<9!', 'x>[>j!X#'),
-    ('iUa6W~8?', 'sSn6S/6_', 'x>[>j!X#'),
-    ('kHl5I|3:', 'sSn6S/6_', ')+e)CWq!'),
-    ('kSq3T,1,', 'fIt8E!1/', ')+e)CWq!'),
-    ('cGy8P$2>', 'kNd8J_1-', 'XtPra1XX'),
-    ('rEd0S<3_', 'bIq1X#9[', 'XtPra1XX'),
-    ('cUx2R/9~', 'bIq1X#9[', 'p4>xX8<X'),
-    ('bUp1C}3#', 'xXk0Q%6$', 'p4>xX8<X'),
-    ('dUx5G}6|', 'rNf5I!6.', 'x>[>j!X#'),
-    ('pJl1A&0_', 'sMi6E<1<', 'x>[>j!X#'),
-    ('rDk8U#7^', 'sMi6E<1<', ')+e)CWq!'),
-    ('jNd6U|5|', 'zNy5I}9[', 'x>[>j!X#'),
-    ('oXk5M~2.', 'zNy5I}9[', ')+e)CWq!'),
-    ('yCv4D-9{', 'wFg1F>8~', 'XtPra1XX'),
-    ('bLf8K]9&', 'wFg1F>8~', 'p4>xX8<X'),
-    ('cKx2W(6-', 'mTu9E[5/', 'XtPra1XX'),
-    ('kHl1P^2|', 'jKv9E/6}', 'XtPra1XX'),
-    ('fJk6R?5[', 'jKv9E/6}', 'p4>xX8<X'),
-    ('tIz6U>4&', 'wFy0R~2]', 'p4>xX8<X');
+    ('sFg6A&4.', 'hAv7V<9!', 'x>[>j!X#', 100),
+    ('iUa6W~8?', 'sSn6S/6_', 'x>[>j!X#', 150),
+    ('kHl5I|3:', 'sSn6S/6_', ')+e)CWq!', 150),
+    ('kSq3T,1,', 'fIt8E!1/', ')+e)CWq!', 100),
+    ('cGy8P$2>', 'kNd8J_1-', 'XtPra1XX', 250),
+    ('rEd0S<3_', 'bIq1X#9[', 'XtPra1XX', 400),
+    ('cUx2R/9~', 'bIq1X#9[', 'p4>xX8<X', 400),
+    ('bUp1C}3#', 'xXk0Q%6$', 'p4>xX8<X', 300),
+    ('dUx5G}6|', 'rNf5I!6.', 'x>[>j!X#', 250),
+    ('pJl1A&0_', 'sMi6E<1<', 'x>[>j!X#', 400),
+    ('rDk8U#7^', 'sMi6E<1<', ')+e)CWq!', 400),
+    ('jNd6U|5|', 'zNy5I}9[', 'x>[>j!X#', 400),
+    ('oXk5M~2.', 'zNy5I}9[', ')+e)CWq!', 400),
+    ('yCv4D-9{', 'wFg1F>8~', 'XtPra1XX', 400),
+    ('bLf8K]9&', 'wFg1F>8~', 'p4>xX8<X', 400),
+    ('cKx2W(6-', 'mTu9E[5/', 'XtPra1XX', 250),
+    ('kHl1P^2|', 'jKv9E/6}', 'XtPra1XX', 200),
+    ('fJk6R?5[', 'jKv9E/6}', 'p4>xX8<X', 200),
+    ('tIz6U>4&', 'wFy0R~2]', 'p4>xX8<X', 250);
 
 INSERT INTO item_type VALUES
     (1, 'individual item'),
