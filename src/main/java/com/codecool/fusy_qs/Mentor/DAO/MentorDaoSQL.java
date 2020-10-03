@@ -24,7 +24,7 @@ public class MentorDaoSQL extends PSQLconnection implements MentorDao {
         String query = "SELECT * FROM user_data " +
                 "RIGHT JOIN mentor ON" +
                 " user_data.user_id=mentor.user_id" +
-                " WHERE mentor.user_id= ?;";
+                " WHERE mentor.mentor_id= ?;";
 
 
         Mentor mentor = null;

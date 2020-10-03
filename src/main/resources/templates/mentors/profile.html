@@ -71,17 +71,14 @@
                 </div>
 
                 <div id="class">
-                    Classes:
-                    <tr th:each="class: ${mentor.classes}">
-                        <td th:text="${class.name}" />
-                    </tr>
+                    Classes: <span th:text="${mentor.classes}"/>
                 </div>
 
                 <div id="group">
                     Groups:
-                    <tr th:each="group: ${mentor.groups}">
-                        <td th:text="${group.name}" />
-                    </tr>
+<!--                    <tr th:each="group: ${mentor.groups}">-->
+<!--                        <td th:text="${group.groupName}" />-->
+<!--                    </tr>-->
 
                 </div>
             </div>

@@ -15,7 +15,7 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
     @Override
     public Group getGroupById(String groupId) {
 
-        String query = "SELECT * FROM groups" +
+        String query = "SELECT * FROM groups " +
                 "WHERE group_id= ?;";
 
         Group group = null;
@@ -30,11 +30,11 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
 
                 String classId = rs.getString("class_id");
                 String groupName = rs.getString("group_name");
-                Integer groupWallet = rs.getInt("group_wallet");
+
                 String mentorId = rs.getString("mentor_id");
 
 
-                group = new Group(groupId, classId, groupName, groupWallet, mentorId);
+                group = new Group(groupId, classId, groupName, mentorId);
             }
 
         } catch (SQLException ex) {
@@ -47,8 +47,7 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
     @Override
     public ArrayList<Group> getGroupsByMentorId(String mentor_id) {
         ArrayList<Group> groupsByMentorId = new ArrayList<>();
-        String query = "SELECT * FROM groups" +
-                "WHERE mentor_id= ?;";
+        String query = "SELECT * FROM groups WHERE mentor_id= ?;";
 
         Group group = null;
 
@@ -62,11 +61,10 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
                 String groupId = rs.getString("group_id");
                 String classId = rs.getString("class_id");
                 String groupName = rs.getString("group_name");
-                Integer groupWallet = rs.getInt("group_wallet");
                 String mentorId = rs.getString("mentor_id");
 
 
-                group = new Group(groupId, classId, groupName, groupWallet, mentorId);
+                group = new Group(groupId, classId, groupName, mentorId);
                 groupsByMentorId.add(group);
             }
 

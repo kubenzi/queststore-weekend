@@ -23,7 +23,7 @@ public class UserController {
         model.addAttribute("student", student);
 //        model.addAttribute("group", group);
 //        System.out.println(group.getGroupName());
-        return "students";
+        return "students/students";
     }
 
     @GetMapping("achievements")

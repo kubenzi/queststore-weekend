@@ -11,7 +11,7 @@ public class Mentor {
     private String lastName;
     private String email;
     private ArrayList<Group> groups;
-    private String[] classes = {"Web"};
+    private String classes = "Web";
 
     public Mentor(String id, Integer accountType, String firstName, String lastName, String email, ArrayList<Group> groups) {
         this.id = id;
@@ -46,7 +46,7 @@ public class Mentor {
         this.groups = groups;
     }
 
-    public void setClasses(String[] classes) {
+    public void setClasses(String classes) {
         this.classes = classes;
     }
 
@@ -74,9 +74,7 @@ public class Mentor {
         return groups;
     }
 
-    public String[] getClasses() {
-        return classes;
-    }
+    public String getClasses() {return classes;}
     @Override
     public String toString() {
         return "Mentor{" +
