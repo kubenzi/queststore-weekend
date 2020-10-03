@@ -98,33 +98,5 @@ public class UserController {
         return "mentors/groups";
     }
 
-    @GetMapping("add-student")
-    String showAddStudentMentor(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
-        return "mentors/add-student";
-    }
-
-    @GetMapping("group")
-    String showGroupMentor(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
-        return "mentors/group";
-    }
-
-    @GetMapping("quests")
-    String showQuestsMentor(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
-        return "mentors/quests";
-    }
-
-    @GetMapping("student")
-    String showStudentMentor(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
-        return "mentors/student";
-    }
-
 
 }
