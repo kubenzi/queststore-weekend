@@ -90,13 +90,7 @@ public class UserController {
 
     }
 
-    // DO TESTOWANIA !!!
-    @GetMapping("groups")
-    String showGroupsMentor(Model model) {
-        Student student = studentService.getStudentById("x>[>j!X#");
-        model.addAttribute(student);
-        return "mentors/groups";
-    }
+
 
 
 }
