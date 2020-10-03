@@ -4,19 +4,29 @@ public class Level {
     private Integer levelId;
     private String levelName;
     private Integer ccolcoinsRequired;
+    private String iconName;
 
     public Level() {
     }
 
-    public Level(Integer levelId, String levelName, Integer ccolcoinsRequired) {
+    public Level(Integer levelId, String levelName, Integer ccolcoinsRequired, String iconName) {
         this.levelId = levelId;
         this.levelName = levelName;
         this.ccolcoinsRequired = ccolcoinsRequired;
+        this.iconName = iconName;
     }
 
     public Level(String levelName, Integer ccolcoinsRequired) {
         this.levelName = levelName;
         this.ccolcoinsRequired = ccolcoinsRequired;
+    }
+
+    public String getIconName() {
+        return iconName;
+    }
+
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
     }
 
     public Integer getLevelId() {

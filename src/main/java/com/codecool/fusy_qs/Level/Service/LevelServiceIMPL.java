@@ -30,7 +30,12 @@ public class LevelServiceIMPL implements LevelService {
     }
 
     @Override
-    public Level editLevelById(Integer idLevel) {
-        return null;
+    public void editLevel(Level level) {
+         levelDao.editLevel(level);
+    }
+
+    @Override
+    public void deleteLevelById(Integer idLevel) {
+        levelDao.deleteLevelById(idLevel);
     }
 }

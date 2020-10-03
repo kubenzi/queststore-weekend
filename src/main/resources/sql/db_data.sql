@@ -71,6 +71,7 @@ CREATE TABLE level_of_experience (
     level_id int NOT NULL,
     level_name character varying(255) NOT NULL,
     coolcoins_required int NOT NULL,
+    icon_name character varying(255) NOT NULL,
 
     PRIMARY KEY (level_id)
 );
@@ -113,6 +114,7 @@ CREATE TABLE quest (
 CREATE TABLE quest_achievements (
     achievement_id character varying(8) NOT NULL,
     quest_id character varying(255) NOT NULL,
+    prize int NOT NULL,
 
     PRIMARY KEY (achievement_id),
     FOREIGN KEY (quest_id) REFERENCES quest(quest_id)
@@ -224,11 +226,11 @@ INSERT INTO admin VALUES
     ('mQh5G+8#', 'x%[>j!X#');
 
 INSERT INTO level_of_experience VALUES
-    (1, 'paper plane', 0),
-    (2, 'plane', 500),
-    (3, 'jet', 1000),
-    (4, 'satellite', 2000),
-    (5, 'space shuttle', 3000);
+    (1, 'paper plane', 0, 'icon-paper-plane-empty'),
+    (2, 'plane', 500, 'icon-paper-plane'),
+    (3, 'jet', 1000, 'icon-fighter-jet'),
+    (4, 'space shuttle', 2000, 'icon-space-shuttle'),
+    (5, 'rocket', 3000, 'icon-rocket');
 
 INSERT INTO class VALUES
     ('sUm2F/9<', 'krk weekend 02/2020');
@@ -239,7 +241,8 @@ INSERT INTO groups VALUES
 
 INSERT INTO quest_type VALUES
     (1, 'individual quest'),
-    (2, 'group quest');
+    (2, 'group quest'),
+    (3, 'inactive');
 
 INSERT INTO quest VALUES
     ('dSz6P|4~', 1, 'Finishing two-week self-assignment', 100),
@@ -254,20 +257,21 @@ INSERT INTO quest VALUES
     ('xNq2B{0^', 1, 'Do a presentation on a meet-up', 300);
 
 INSERT INTO quest_achievements VALUES
-    ('hAv7V<9!', 'dSz6P|4~'),
-    ('sSn6S/6_', 'tTa5C^6,'),
-    ('fIt8E!1/', 'gEl8T<5#'),
-    ('kNd8J_1-', 'oIl4O&0['),
-    ('bIq1X#9[', 'oNt0K%4?'),
-    ('xXk0Q%6$', 'xNq2B{0^'),
-    ('rNf5I!6.', 'oIl4O&0['),
-    ('sMi6E<1<', 'oNt0K%4?'),
-    ('zNy5I}9[', 'oNt0K%4?'),
-    ('wFg1F>8~', 'oNt0K%4?'),
-    ('mTu9E[5/', 'oIl4O&0['),
-    ('jKv9E/6}', 'qIr3C$3/'),
-    ('wFy0R~2]', 'oIl4O&0[');
+    ('hAv7V<9!', 'dSz6P|4~', 100),
+    ('sSn6S/6_', 'tTa5C^6,', 150),
+    ('fIt8E!1/', 'gEl8T<5#', 100),
+    ('kNd8J_1-', 'oIl4O&0[', 250),
+    ('bIq1X#9[', 'oNt0K%4?', 400),
+    ('xXk0Q%6$', 'xNq2B{0^', 300),
+    ('rNf5I!6.', 'oIl4O&0[', 250),
+    ('sMi6E<1<', 'oNt0K%4?', 400),
+    ('zNy5I}9[', 'oNt0K%4?', 400),
+    ('wFg1F>8~', 'oNt0K%4?', 400),
+    ('mTu9E[5/', 'oIl4O&0[', 250),
+    ('jKv9E/6}', 'qIr3C$3/', 200),
+    ('wFy0R~2]', 'oIl4O&0[', 250);
 
+--cena dodana do achievement_details na wypadek zmiany ceny w tabeli quest
 INSERT INTO achievement_details VALUES
     ('sFg6A&4.', 'hAv7V<9!', 'x>[>j!X#'),
     ('iUa6W~8?', 'sSn6S/6_', 'x>[>j!X#'),

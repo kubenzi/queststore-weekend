@@ -146,6 +146,7 @@ public class UserController {
         Group group = groupService.getGroupById(student.getGroupId());
         Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
 
+
         List<Level> levelList = levelService.getAllLevels();
 
         model.addAttribute("student", student);
@@ -176,6 +177,7 @@ public class UserController {
     @PostMapping("/update-level/{id}")
     String updateUser (@PathVariable("id") Integer levelId, Level level,  Model model) {
 
+        levelService.editLevel(level);
 
 
 

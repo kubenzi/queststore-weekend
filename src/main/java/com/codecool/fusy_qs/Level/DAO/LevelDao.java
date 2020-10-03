@@ -11,4 +11,9 @@ public interface LevelDao {
 
     Level getLevelById(Integer levelId);
 
+    void editLevel(Level level);
+
+    void deleteLevelById(Integer idLevel);
 }
+
+
