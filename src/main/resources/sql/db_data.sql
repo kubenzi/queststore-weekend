@@ -1,5 +1,3 @@
---usuwanie danych po usunięciu z tabeli nadrzędnej
-
 DROP TABLE IF EXISTS account_type CASCADE;
 DROP TABLE IF EXISTS user_data CASCADE;
 DROP TABLE IF EXISTS student CASCADE;
@@ -113,11 +111,11 @@ CREATE TABLE quest (
 
 CREATE TABLE quest_achievements (
     achievement_id character varying(8) NOT NULL,
-    quest_id character varying(255) NOT NULL,
+    quest_description character varying(255) NOT NULL,
+    quest_type_name character varying(255) NOT NULL,
     prize int NOT NULL,
 
-    PRIMARY KEY (achievement_id),
-    FOREIGN KEY (quest_id) REFERENCES quest(quest_id)
+    PRIMARY KEY (achievement_id)
 );
 
 CREATE TABLE achievement_details (
@@ -179,11 +177,12 @@ CREATE TABLE item_status_type (
 
 CREATE TABLE transactions (
     transaction_id character varying(8) NOT NULL,
-    item_id character varying(8) NOT NULL,
+    item_name character varying(255) NOT NULL,
+    item_description character varying(255) NOT NULL,
+    item_type_name character varying(255) NOT NULL,
     item_status_id int NOT NULL,
 
     PRIMARY KEY (transaction_id),
-    FOREIGN KEY (item_id) REFERENCES item(item_id),
     FOREIGN KEY (item_status_id) REFERENCES item_status_type(item_status_id)
 );
 
@@ -241,8 +240,7 @@ INSERT INTO groups VALUES
 
 INSERT INTO quest_type VALUES
     (1, 'individual quest'),
-    (2, 'group quest'),
-    (3, 'inactive');
+    (2, 'group quest');
 
 INSERT INTO quest VALUES
     ('dSz6P|4~', 1, 'Finishing two-week self-assignment', 100),
@@ -253,23 +251,23 @@ INSERT INTO quest VALUES
     ('eEe5D/3)', 1, 'Organizing a workshop for other students', 400),
     ('oIl4O&0[', 1, 'Attending 1 months without being late', 250),
     ('hQe0O[0-', 1, 'Set up a SMART goal accepted by a mentor, then achieve it', 400),
-    ('oNt0K%4?', 2, 'Students choose the best project of the week. Selected team scores ', 400),
+    ('oNt0K%4?', 2, 'Students choose the best project of the week. Selected team scores', 400),
     ('xNq2B{0^', 1, 'Do a presentation on a meet-up', 300);
 
 INSERT INTO quest_achievements VALUES
-    ('hAv7V<9!', 'dSz6P|4~', 100),
-    ('sSn6S/6_', 'tTa5C^6,', 150),
-    ('fIt8E!1/', 'gEl8T<5#', 100),
-    ('kNd8J_1-', 'oIl4O&0[', 250),
-    ('bIq1X#9[', 'oNt0K%4?', 400),
-    ('xXk0Q%6$', 'xNq2B{0^', 300),
-    ('rNf5I!6.', 'oIl4O&0[', 250),
-    ('sMi6E<1<', 'oNt0K%4?', 400),
-    ('zNy5I}9[', 'oNt0K%4?', 400),
-    ('wFg1F>8~', 'oNt0K%4?', 400),
-    ('mTu9E[5/', 'oIl4O&0[', 250),
-    ('jKv9E/6}', 'qIr3C$3/', 200),
-    ('wFy0R~2]', 'oIl4O&0[', 250);
+    ('hAv7V<9!', 'Finishing two-week self-assignment', 'individual quest', 100),
+    ('sSn6S/6_', 'Finishing two-week group-assignment', 'group quest', 150),
+    ('fIt8E!1/', 'Spot a major mistake in the assignment', 'individual quest', 100),
+    ('kNd8J_1-', 'Attending 1 months without being late', 'individual quest', 250),
+    ('bIq1X#9[', 'Students choose the best project of the week. Selected team scores', 'group quest', 400),
+    ('xXk0Q%6$', 'Do a presentation on a meet-up', 'individual quest', 300),
+    ('rNf5I!6.', 'Attending 1 months without being late', 'individual quest', 250),
+    ('sMi6E<1<', 'Students choose the best project of the week. Selected team scores', 'group quest', 400),
+    ('zNy5I}9[', 'Students choose the best project of the week. Selected team scores', 'group quest', 400),
+    ('wFg1F>8~', 'Students choose the best project of the week. Selected team scores', 'group quest', 400),
+    ('mTu9E[5/', 'Attending 1 months without being late', 'individual quest', 250),
+    ('jKv9E/6}', 'Doing a demo for the class (side project, new technology, ...)', 'group quest', 200),
+    ('wFy0R~2]', 'Attending 1 months without being late', 'individual quest', 250);
 
 --cena dodana do achievement_details na wypadek zmiany ceny w tabeli quest
 INSERT INTO achievement_details VALUES
@@ -324,12 +322,12 @@ INSERT INTO item_status_type VALUES
     (2, 'used');
 
 INSERT INTO transactions VALUES
-    ('oBj1D:4#', 'kLe8U+2_', 1),
-    ('oJu7B|7(', 'gGy6S_9|', 2),
-    ('vEa7D?8}', 'aQz2P#7&', 2),
-    ('kUv7I(6}', 'fLl8F.3.', 2),
-    ('xLq3Y!6)', 'wPx6Q{5:', 1),
-    ('aXf3G?6!', 'wVw7D|3$', 2);
+    ('oBj1D:4#', 'Teach us!', '60 min workshop by a mentor(s) of the chosen topic', 'group item', 1),
+    ('oJu7B|7(', '200 percent power!', 'Mentor joins your team for a one hour', 'group item', 2),
+    ('vEa7D?8}', 'Secret book', 'Extra material for the current topic', 'group item', 2),
+    ('kUv7I(6}', 'Teach me!', 'Private mentoring', 'individual item', 2),
+    ('xLq3Y!6)', 'Coding in bed', 'You can spend a day in home office', 'individual item', 1),
+    ('aXf3G?6!', 'Extra day', 'Extend SI week assignment deadline by one day', 'individual item', 2);
 
 INSERT INTO transaction_students VALUES
     ('sEk7E$7{', 'oBj1D:4#', 'x>[>j!X#', 600),

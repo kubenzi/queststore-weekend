@@ -19,10 +19,35 @@ public class MentorController {
     @GetMapping("/mentor")
     String showStudentPage(Model model) {
         Mentor mentor = mentorService.getMentorById("bIx0U[5~");
-
         model.addAttribute("mentor", mentor);
-
         return "mentors/profile";
     }
 
+    @GetMapping("/newstudent")
+    String showNewStudentPage(Model model) {
+        Mentor mentor = mentorService.getMentorById("bIx0U[5~");
+        model.addAttribute("mentor", mentor);
+        return "mentors/add-student";
+    }
+
+    @GetMapping("/classes")
+    String showClassesPage(Model model) {
+        Mentor mentor = mentorService.getMentorById("bIx0U[5~");
+        model.addAttribute("mentor", mentor);
+        return "mentors/classes";
+    }
+
+    @GetMapping("/groups")
+    String showGroupsPage(Model model) {
+        Mentor mentor = mentorService.getMentorById("bIx0U[5~");
+        model.addAttribute("mentor", mentor);
+        return "mentors/groups";
+    }
+
+    @GetMapping("/shop-class")
+    String showShopClassPage(Model model) {
+        Mentor mentor = mentorService.getMentorById("bIx0U[5~");
+        model.addAttribute("mentor", mentor);
+        return "mentors/shop-class";
+    }
 }
