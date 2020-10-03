@@ -11,16 +11,16 @@ public class Mentor {
     private String firstName;
     private String lastName;
     private String email;
-    private ArrayList<Group> groups;
+
     private String classes = "Web";
 
-    public Mentor(String id, Integer accountType, String firstName, String lastName, String email, ArrayList<Group> groups) {
+    public Mentor(String id, Integer accountType, String firstName, String lastName, String email) {
         this.id = id;
         this.accountType = accountType;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.groups = groups;
+
     }
 
     public void setId(String id) {
@@ -43,9 +43,7 @@ public class Mentor {
         this.email = email;
     }
 
-    public void setGroups(ArrayList<Group> groups) {
-        this.groups = groups;
-    }
+
 
     public void setClasses(String classes) {
         this.classes = classes;
@@ -71,9 +69,7 @@ public class Mentor {
         return email;
     }
 
-    public ArrayList<Group> getGroups() {
-        return groups;
-    }
+
 
     public String getClasses() {return classes;}
     @Override

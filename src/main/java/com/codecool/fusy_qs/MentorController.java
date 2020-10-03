@@ -2,6 +2,7 @@ package com.codecool.fusy_qs;
 
 
 
+import com.codecool.fusy_qs.Group.Model.Group;
 import com.codecool.fusy_qs.Mentor.Model.Mentor;
 import com.codecool.fusy_qs.Mentor.Service.MentorService;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,11 @@ public class MentorController {
     public MentorController(MentorService mentorService) {this.mentorService = mentorService;}
 
     @GetMapping("/mentor")
-    String showStudentPage(Model model) {
+    String showMentorPage(Model model) {
         Mentor mentor = mentorService.getMentorById("bIx0U[5~");
+        ArrayList<Group> groups = mentorService.getMentorsGroupsById("bIx0U[5~");
         model.addAttribute("mentor", mentor);
+        model.addAttribute("groups",groups);
         return "mentors/profile";
     }
 
@@ -44,10 +47,5 @@ public class MentorController {
         return "mentors/groups";
     }
 
-    @GetMapping("/shop-class")
-    String showShopClassPage(Model model) {
-        Mentor mentor = mentorService.getMentorById("bIx0U[5~");
-        model.addAttribute("mentor", mentor);
-        return "mentors/shop-class";
-    }
+
 }

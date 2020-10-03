@@ -12,7 +12,6 @@ import com.codecool.fusy_qs.PSQLconnection;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,14 +47,12 @@ public class MentorDaoSQL  implements MentorDao {
                 String email = rs.getString("email");
 
 
-                GroupDao groupDao = new GroupDaoSQL(psqLconnection);
-                ArrayList<Group> groupsByMentorId = groupDao.getGroupsByMentorId(id);
-                GroupService groupService = new GroupServiceIMPL(groupDao);
 
 
 
 
-                mentor = new Mentor(id, accountType, firstName, lastName, email, groupsByMentorId);
+
+                mentor = new Mentor(id, accountType, firstName, lastName, email);
             }
 
         } catch (SQLException ex) {

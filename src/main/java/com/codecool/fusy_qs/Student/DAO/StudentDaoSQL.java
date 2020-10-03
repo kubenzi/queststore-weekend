@@ -3,6 +3,7 @@ package com.codecool.fusy_qs.Student.DAO;
 import com.codecool.fusy_qs.Order;
 import com.codecool.fusy_qs.PSQLconnection;
 import com.codecool.fusy_qs.Student.Model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 public class StudentDaoSQL implements StudentDao {
 
     private PSQLconnection psqLconnection;
-
+    @Autowired
     public StudentDaoSQL(PSQLconnection psqLconnection) {
         this.psqLconnection = psqLconnection;
     }

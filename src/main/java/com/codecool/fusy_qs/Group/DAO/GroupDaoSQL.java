@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 
 @Repository
 public class GroupDaoSQL implements GroupDao {
-    PSQLconnection psqLconnection;
+
+    private PSQLconnection psqLconnection;
 
     public GroupDaoSQL(PSQLconnection psqLconnection) {
         this.psqLconnection = psqLconnection;
@@ -53,8 +54,11 @@ public class GroupDaoSQL implements GroupDao {
 
     @Override
     public ArrayList<Group> getGroupsByMentorId(String mentor_id) {
+
         ArrayList<Group> groupsByMentorId = new ArrayList<>();
-        String query = "SELECT * FROM groups WHERE mentor_id= ?;";
+
+        String query = "SELECT * FROM groups " +
+                "WHERE mentor_id= ?;";
 
         Group group = null;
 
@@ -68,10 +72,10 @@ public class GroupDaoSQL implements GroupDao {
                 String groupId = rs.getString("group_id");
                 String classId = rs.getString("class_id");
                 String groupName = rs.getString("group_name");
-                String mentorId = rs.getString("mentor_id");
 
 
-                group = new Group(groupId, classId, groupName, mentorId);
+
+                group = new Group(groupId, classId, groupName, mentor_id);
                 groupsByMentorId.add(group);
             }
 
