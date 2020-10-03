@@ -23,7 +23,7 @@ public class UserController {
         model.addAttribute("student", student);
 //        model.addAttribute("group", group);
 //        System.out.println(group.getGroupName());
-        return "students/student";
+        return "students";
     }
 
     @GetMapping("achievements")
@@ -92,9 +92,39 @@ public class UserController {
 
     // DO TESTOWANIA !!!
     @GetMapping("groups")
-    String showGroups(Model model) {
+    String showGroupsMentor(Model model) {
         Student student = studentService.getStudentById("x>[>j!X#");
         model.addAttribute(student);
         return "mentors/groups";
     }
+
+    @GetMapping("add-student")
+    String showAddStudentMentor(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
+        return "mentors/add-student";
+    }
+
+    @GetMapping("group")
+    String showGroupMentor(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
+        return "mentors/group";
+    }
+
+    @GetMapping("quests")
+    String showQuestsMentor(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
+        return "mentors/quests";
+    }
+
+    @GetMapping("student")
+    String showStudentMentor(Model model) {
+        Student student = studentService.getStudentById("x>[>j!X#");
+        model.addAttribute(student);
+        return "mentors/student";
+    }
+
+
 }
