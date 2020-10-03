@@ -1,13 +1,14 @@
 package com.codecool.fusy_qs.Mentor.DAO;
 
-import com.codecool.fusy_qs.Group.Group;
-import com.codecool.fusy_qs.Group.GroupDao;
-import com.codecool.fusy_qs.Group.GroupDaoSQL;
-import com.codecool.fusy_qs.Group.GroupService;
+
+import com.codecool.fusy_qs.Group.DAO.GroupDao;
+import com.codecool.fusy_qs.Group.DAO.GroupDaoSQL;
+
+import com.codecool.fusy_qs.Group.Model.Group;
+import com.codecool.fusy_qs.Group.Service.GroupService;
+import com.codecool.fusy_qs.Group.Service.GroupServiceIMPL;
 import com.codecool.fusy_qs.Mentor.Model.Mentor;
 import com.codecool.fusy_qs.PSQLconnection;
-import com.codecool.fusy_qs.Student.DAO.StudentDao;
-import com.codecool.fusy_qs.Student.Model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -16,7 +17,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class MentorDaoSQL extends PSQLconnection implements MentorDao {
+public class MentorDaoSQL  implements MentorDao {
+    PSQLconnection psqLconnection;
+
+    public MentorDaoSQL(PSQLconnection psqLconnection) {
+        this.psqLconnection = psqLconnection;
+    }
 
     @Override
     public Mentor getMentorByID(String id) {
@@ -28,7 +34,7 @@ public class MentorDaoSQL extends PSQLconnection implements MentorDao {
 
 
         Mentor mentor = null;
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
             pst.setString(1, id);
@@ -42,9 +48,9 @@ public class MentorDaoSQL extends PSQLconnection implements MentorDao {
                 String email = rs.getString("email");
 
 
-                GroupDao groupDao = new GroupDaoSQL();
+                GroupDao groupDao = new GroupDaoSQL(psqLconnection);
                 ArrayList<Group> groupsByMentorId = groupDao.getGroupsByMentorId(id);
-                GroupService groupService = new GroupService(groupDao);
+                GroupService groupService = new GroupServiceIMPL(groupDao);
 
 
 

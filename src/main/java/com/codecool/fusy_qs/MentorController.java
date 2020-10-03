@@ -1,7 +1,7 @@
 package com.codecool.fusy_qs;
 
 
-import com.codecool.fusy_qs.Group.Group;
+
 import com.codecool.fusy_qs.Mentor.Model.Mentor;
 import com.codecool.fusy_qs.Mentor.Service.MentorService;
 import org.springframework.stereotype.Controller;

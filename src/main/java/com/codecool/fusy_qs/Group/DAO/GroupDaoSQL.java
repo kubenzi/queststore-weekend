@@ -1,8 +1,9 @@
-package com.codecool.fusy_qs.Group;
+package com.codecool.fusy_qs.Group.DAO;
 
+import com.codecool.fusy_qs.Group.Model.Group;
 import com.codecool.fusy_qs.PSQLconnection;
 import com.codecool.fusy_qs.Student.DAO.StudentDaoSQL;
-import com.codecool.fusy_qs.Student.Model.Student;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,7 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class GroupDaoSQL extends PSQLconnection implements GroupDao {
+public class GroupDaoSQL implements GroupDao {
+    PSQLconnection psqLconnection;
+
+    public GroupDaoSQL(PSQLconnection psqLconnection) {
+        this.psqLconnection = psqLconnection;
+    }
+
     @Override
     public Group getGroupById(String groupId) {
 
@@ -20,7 +27,7 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
 
         Group group = null;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
             pst.setString(1, groupId);
@@ -51,7 +58,7 @@ public class GroupDaoSQL extends PSQLconnection implements GroupDao {
 
         Group group = null;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
             pst.setString(1, mentor_id);

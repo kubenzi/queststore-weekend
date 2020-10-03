@@ -1,18 +1,15 @@
-package com.codecool.fusy_qs.Group;
+package com.codecool.fusy_qs.Group.Model;
 
 public class Group {
     private String groupId;
     private String classId;
     private String groupName;
-    private Integer groupWallet;
     private String mentorId;
 
-    public Group(String groupId, String classId, String groupName,
-                String mentorId) {
+    public Group(String groupId, String classId, String groupName,String mentorId) {
         this.groupId = groupId;
         this.classId = classId;
         this.groupName = groupName;
-
         this.mentorId = mentorId;
     }
 
@@ -39,10 +36,6 @@ public class Group {
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
-
-
-
-
 
     public String getMentorId() {
         return mentorId;

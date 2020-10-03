@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.Mentor.Model;
 
-import com.codecool.fusy_qs.Group.Group;
+
+import com.codecool.fusy_qs.Group.Model.Group;
 
 import java.util.ArrayList;
 

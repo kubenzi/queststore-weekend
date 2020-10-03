@@ -10,15 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FusyQsApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FusyQsApplication.class, args);
-		MentorDao mentorDao = new MentorDaoSQL();
-		MentorService mentorService = new MentorService(mentorDao);
-		Mentor mentor = mentorService.getMentorById("bIx0U[5~");
-		System.out.println(mentor.toString());
+
 
 
 	}
+
 
 
 }

@@ -21,10 +21,9 @@
 		
 		<div id="bar">
 
-			<div th:insert="fragments/mentor-fragments :: mainBar"></div>
+			<div th:insert="fragments/student-fragments :: mainBar"></div>
 
-
-			<div th:insert="fragments/mentor-fragments :: lowMenu"></div>
+			<div th:insert="fragments/student-fragments :: lowMenu"></div>
 
 			<div style="clear:both;"></div>	
 
@@ -47,41 +46,38 @@
 
 		<div id="main_content">
 
-			<div th:insert="fragments/mentor-fragments :: sidebar"></div>
+			<div th:insert="fragments/student-fragments :: sidebar"></div>
 
 
 		<div id="content">
-			<span class="bigtitle">All transactions</span>
-			<br>
-			<br>
-			<div class="content">Listed all individual, group and class transactions</div>
+
+			<span class="bigtitle">Levels of Experience</span>
+
 			<div class="dottedline"></div>
-			<br>
-			<table id = "individual_items_table">
-				<tr>
-					<th>No.</th>
-					<th>Name</th>
-					<th>Type</th>
-					<th>Price</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>WORKSHOP</td>
-					<td>CLASS</td>
-					<td>1000 cc</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>BACKUP</td>
-					<td>GROUP</td>
-					<td>1000 cc</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>VIP</td>
-					<td>INDIVIDUAL</td>
-					<td>50 cc</td>
-				</tr>
+			<br/>
+			<table id = "group_members_table">
+
+
+
+				<form action="#" th:action="@{/update-level/{id}(id=${level.levelId})}" th:object="${level}" method="post">
+
+					<label for="name">Level </label>
+					<input type="text" th:field="*{levelId}" id="levelId" placeholder="Level">
+					</br>
+					<label for="name">Level name </label>
+					<input type="text" th:field="*{levelName}" id="levelName" placeholder="Level name">
+					</br>
+					</br>
+					<label for="name">CC Reauired </label>
+					<input type="text" th:field="*{ccolcoinsRequired}" id="ccolcoinsRequired" placeholder="CC Required">
+					</br>
+					</br>
+					<label for="name">CC Reauired </label>
+					<input type="text" th:field="*{iconName}" id="iconName" placeholder="iconName">
+
+					<input type="submit" value="Update Level">
+				</form>
+
 			</table>
 			<br/>
 			<br/>
@@ -89,7 +85,7 @@
 			</div>
 		</div>
 
-		<div th:insert="fragments/mentor-fragments :: footer"></div>
+		<div th:insert="fragments/student-fragments :: footer"></div>
 
 	</div>
 	
