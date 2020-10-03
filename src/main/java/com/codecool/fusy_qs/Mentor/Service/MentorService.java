@@ -4,6 +4,7 @@ import com.codecool.fusy_qs.Group.Model.Group;
 import com.codecool.fusy_qs.Group.Service.GroupService;
 import com.codecool.fusy_qs.Mentor.DAO.MentorDao;
 import com.codecool.fusy_qs.Mentor.Model.Mentor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,9 +13,10 @@ import java.util.ArrayList;
 public class MentorService {
     MentorDao mentorDao;
     GroupService groupService;
-
-    public MentorService(MentorDao mentorDao) {
+    @Autowired
+    public MentorService(MentorDao mentorDao,GroupService groupService) {
         this.mentorDao = mentorDao;
+        this.groupService = groupService;
     }
 
     public Mentor getMentorById(String id){
