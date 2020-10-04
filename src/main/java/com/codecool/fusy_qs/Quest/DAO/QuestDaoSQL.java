@@ -12,7 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class QuestDaoSQL extends PSQLconnection implements QuestDao {
+public class QuestDaoSQL implements QuestDao {
+    PSQLconnection psqLconnection;
+
+    public QuestDaoSQL(PSQLconnection psqLconnection) {
+        this.psqLconnection = psqLconnection;
+    }
 
     @Override
     public Quest getQuestByID(String questID) {
@@ -22,7 +27,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
 
         Quest quest = null;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
 
             pst.setString(Order.FIRST_ATTRIBUTE.getValue(), questID);
@@ -52,7 +57,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
 
         List<Quest> allQuests = new ArrayList<>();
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
             ResultSet rs = pst.executeQuery();
 
@@ -78,7 +83,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
 
         List<Quest> individualQuests = new ArrayList<>();
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
             ResultSet rs = pst.executeQuery();
 
@@ -104,7 +109,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
 
         List<Quest> groupQuests = new ArrayList<>();
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
             ResultSet rs = pst.executeQuery();
 
@@ -128,7 +133,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
 
         int affectrows= 0;
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst1 = con.prepareStatement(query)) {
 
             pst1.setString(Order.FIRST_ATTRIBUTE.getValue(), questID);
@@ -147,7 +152,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
         String query = "INSERT INTO quest(quest_id, quest_type_id, quest_description, quest_value) " +
                 "VALUES (?, ?, ?, ?)";
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst1 = con.prepareStatement(query)) {
 
             pst1.setString(Order.FIRST_ATTRIBUTE.getValue(), newQuest.getQuestID());
@@ -170,7 +175,7 @@ public class QuestDaoSQL extends PSQLconnection implements QuestDao {
         questToUpdate.setQuestDescription(newDescription);
         String query = "UPDATE quest SET quest_description = ?, quest_value = ? WHERE quest_id = ?;";
 
-        try (Connection con = DriverManager.getConnection(super.getUrl(), super.getUsername(), super.getPassword());
+        try (Connection con = DriverManager.getConnection(psqLconnection.getUrl(), psqLconnection.getUsername(), psqLconnection.getPassword());
              PreparedStatement pst = con.prepareStatement(query)) {
             pst.setString(Order.FIRST_ATTRIBUTE.getValue(), newDescription);
             pst.setInt(Order.SECOND_ATTRIBUTE.getValue(), newValue);
