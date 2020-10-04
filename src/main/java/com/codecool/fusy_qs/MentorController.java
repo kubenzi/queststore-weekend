@@ -21,8 +21,10 @@ public class MentorController {
     String showMentorPage(Model model) {
         Mentor mentor = mentorService.getMentorById("bIx0U[5~");
         ArrayList<Group> groups = mentorService.getMentorsGroupsById("bIx0U[5~");
+        Integer count = groups.size();
         model.addAttribute("mentor", mentor);
         model.addAttribute("groups",groups);
+        model.addAttribute("count", count);
         return "mentors/profile";
     }
 

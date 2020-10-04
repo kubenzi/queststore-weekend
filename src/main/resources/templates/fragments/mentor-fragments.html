@@ -36,10 +36,10 @@
             </div>
 
             <div class="lowMenu2">
-                <div class="option"> Classes: 1 </div>
+                <div class="option"> <span th:text="${mentor.lastName}"/> </div>
             </div>
             <div class="lowMenu3">
-                <div class="option">  Groups: 5 </div>
+                <div class="option">  Groups: <span th:text="${count}"/> </div>
             </div>
             <div class="lowMenu4">
                 <div class="option"> <i class="icon-logout"></i> </div>
@@ -48,22 +48,6 @@
         </div>
         <div style="clear:both;"></div>
 
-
-
-    </div>
-    <!-- do wywalenia -->
-    <div id="topbar">
-        <div id="topbarL">
-            <i class="icon-graduation-cap"></i>
-        </div>
-        <div id="topbarR">
-            <span class="bigtitle">Welcome to Your Profile Side Details  </span>
-            <div style="height: 15px;"></div>
-            Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
-            You can choose action. Enjoy our app!
-        </div>
-        <div style="clear:both;"></div>
-    </div>
 
     <div id="main_content">
 
@@ -92,7 +76,7 @@
             </ul>
 
             <div class="optionL"><a th:href="@{/quests}"> Quests </a></div>
-            <div class="optionL"><a th:href="@{/add-student}"> New Student Account</a></div>
+            <div class="optionL"><a th:href="@{/add-student}"> Add Student</a></div>
 
         </div>
 
