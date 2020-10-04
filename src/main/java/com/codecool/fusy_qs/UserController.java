@@ -176,9 +176,12 @@ public class UserController {
     }
 
     @PostMapping("/update-level/{id}")
-    String updateUser (@PathVariable("id") Integer levelId, Level level,  Model model) {
+    String updateLevel (@PathVariable("id") Integer levelId, Level level,  Model model) {
 
+        System.out.println(level.toString());
+        System.out.println(level.getIconName());
         levelService.editLevel(level);
+
 
 
 

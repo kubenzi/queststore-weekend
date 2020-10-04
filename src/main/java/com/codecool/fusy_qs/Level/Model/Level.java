@@ -16,10 +16,10 @@ public class Level {
         this.iconName = iconName;
     }
 
-    public Level(String levelName, Integer ccolcoinsRequired) {
-        this.levelName = levelName;
-        this.ccolcoinsRequired = ccolcoinsRequired;
-    }
+//    public Level(String levelName, Integer ccolcoinsRequired) {
+//        this.levelName = levelName;
+//        this.ccolcoinsRequired = ccolcoinsRequired;
+//    }
 
     public String getIconName() {
         return iconName;
