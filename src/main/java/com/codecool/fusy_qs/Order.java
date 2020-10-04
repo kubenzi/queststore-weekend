@@ -4,7 +4,8 @@ public enum Order {
     FIRST_ATTRIBUTE(1),
     SECOND_ATTRIBUTE(2),
     THIRD_ATTRIBUTE(3),
-    FOURTH_ATTRIBUTE(4);
+    FOURTH_ATTRIBUTE(4),
+    FIFTH_ATTRIBUTE(5);
 
     private final Integer value;
 
