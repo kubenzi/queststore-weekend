@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Repository
+//@Repository
 public class MentorDaoSQL  implements MentorDao {
     PSQLconnection psqLconnection;
 

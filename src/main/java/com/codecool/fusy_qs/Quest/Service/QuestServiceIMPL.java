@@ -10,12 +10,14 @@ import java.util.List;
 public class QuestServiceIMPL implements QuestService {
     private QuestDao questDao;
 
-    public QuestServiceIMPL(QuestDao questDao) {
+    public QuestServiceIMPL()
+    {
         this.questDao = questDao;
     }
 
     @Override
-    public Quest getQuestByID(String questID) {
+    public Quest getQuestByID(String questID)
+    {
         return questDao.getQuestByID(questID);
     }
 

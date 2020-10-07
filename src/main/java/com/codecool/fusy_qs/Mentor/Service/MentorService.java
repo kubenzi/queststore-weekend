@@ -11,16 +11,20 @@ import java.util.ArrayList;
 
 @Service
 public class MentorService {
-    MentorDao mentorDao;
+//    MentorDao mentorDao;
     GroupService groupService;
+
     @Autowired
-    public MentorService(MentorDao mentorDao,GroupService groupService) {
-        this.mentorDao = mentorDao;
+    public MentorService(
+//            MentorDao mentorDao,
+                         GroupService groupService) {
+//        this.mentorDao = mentorDao;
         this.groupService = groupService;
     }
 
     public Mentor getMentorById(String id){
-        return mentorDao.getMentorByID(id);
+//        return mentorDao.getMentorByID(id);
+        return null;
     }
 
     public ArrayList<Group> getMentorsGroupsById(String id){return groupService.getGroupsByMentorsID(id);}

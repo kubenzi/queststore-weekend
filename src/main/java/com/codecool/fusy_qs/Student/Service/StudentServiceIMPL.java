@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentServiceIMPL implements StudentService {
-    StudentDao studentDao;
+//    StudentDao studentDao;
 
-    public StudentServiceIMPL(StudentDao studentDao) {
-        this.studentDao = studentDao;
+    public StudentServiceIMPL() {
+//        this.studentDao = studentDao;
     }
 
     public Student getStudentById(String id) {
-        return studentDao.getStudentByID(id);
+//        return studentDao.getStudentByID(id);
+        return null;
     }
 }

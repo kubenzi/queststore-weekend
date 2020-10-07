@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Repository
+//@Repository
 public class StudentDaoSQL implements StudentDao {
 
     private PSQLconnection psqLconnection;

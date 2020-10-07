@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Repository
+//@Repository
 public class LevelDaoSQL implements LevelDao {
 
     PSQLconnection psqLconnection;

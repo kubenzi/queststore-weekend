@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class PSQLconnection {
 
     @Value("${db.URL}")
