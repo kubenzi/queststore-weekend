@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Guestbook Records</title>
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="main-header">
+                <h1> QUESTS </h1>
+            </div>
+
+            <div class="guestbook-data">
+                <table class="guestbook-table" th:each="quest : ${allQuests}">
+                    <div class="single-record">
+                        <tr>
+                            <td class="id" th:text="'QUEST NUMBER: ' + ${quest.id}"></td>
+                        </tr>
+                        <tr>
+                            <td class="name" th:text="'DESCRIPTION: ' + ${quest.questDescription}"></td>
+                        </tr>
+                        <tr>
+                            <td class="message" th:text="'VALUE: ' + ${quest.questValue}"></td>
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
