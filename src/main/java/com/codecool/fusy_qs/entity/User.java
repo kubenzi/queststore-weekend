@@ -8,7 +8,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
@@ -22,8 +22,13 @@ public class User {
     @OneToOne
     private AccountType accountType;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Group> groups;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            joinColumns = {@JoinColumn(name= "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "id")}
+//    )
 
     public User() {
     }

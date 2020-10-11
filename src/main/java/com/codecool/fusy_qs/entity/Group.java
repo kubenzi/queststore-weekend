@@ -12,17 +12,26 @@ public class Group {
 
     private String groupName;
 
+    @ManyToOne
+    private User user;
+
     @Embedded
     private Class groupClass;
 
     public Group() {
     }
 
-    public Group(String groupName,
-                 Class groupClass,
-                 List<User> user) {
+    public Group(String groupName, Class groupClass) {
         this.groupName = groupName;
         this.groupClass = groupClass;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGroupName() {
@@ -31,6 +40,14 @@ public class Group {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Class getGroupClass() {

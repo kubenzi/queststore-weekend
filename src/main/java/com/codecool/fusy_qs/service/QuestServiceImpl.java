@@ -2,13 +2,21 @@ package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Quest;
 import com.codecool.fusy_qs.repository.QuestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
 @Service
-public class QuestServiceImpl {
+public class QuestServiceImpl implements QuestService {
+
     QuestRepository questRepository;
+
+    @Autowired
+    public QuestServiceImpl(QuestRepository questRepository) {
+        this.questRepository = questRepository;
+    }
 
     public QuestServiceImpl() {
     }
@@ -23,5 +31,10 @@ public class QuestServiceImpl {
 
     public List<Quest> getAllIndividualQuests() {
         return questRepository.getAllIndividualQuests();
+    }
+
+    @Override
+    public void addQuest(Quest quest) {
+        questRepository.save(quest);
     }
 }

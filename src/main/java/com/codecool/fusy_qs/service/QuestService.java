@@ -8,4 +8,5 @@ public interface QuestService {
     List<Quest> getAllQuests();
     List<Quest> getAllGroupQuests();
     List<Quest> getAllIndividualQuests();
+    void addQuest(Quest quest);
 }
