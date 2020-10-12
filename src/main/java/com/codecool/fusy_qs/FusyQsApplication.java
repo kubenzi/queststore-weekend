@@ -3,6 +3,7 @@ package com.codecool.fusy_qs;
 import com.codecool.fusy_qs.entity.Group;
 import com.codecool.fusy_qs.entity.Quest;
 import com.codecool.fusy_qs.entity.Student;
+import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.boot.CommandLineRunner;
@@ -59,22 +60,18 @@ public class FusyQsApplication {
             Student kch = new Student("K", "CH", "kch@gmail", "345", accountTypeService.findAccountTypeById(1L),
                     groups, 2, 22);
 
+            List<User> students = Arrays.asList(bj, kch);
+
             studentRepository.save(bj); studentRepository.save(kch);
 
-            java.setUser(bj);
-            csharp.setUser(bj);
+            java.setUsers(students);
+            csharp.setUsers(students);
 
             groupService.addGroup(java);
             groupService.addGroup(csharp);
 
             bj.setGroups(groups);
 
-
-//            java.setUser(kch);
-//            csharp.setUser(kch);
-
-            groupService.addGroup(java);
-            groupService.addGroup(csharp);
 
             kch.setGroups(groups);
 

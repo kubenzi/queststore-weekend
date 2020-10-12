@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Quest {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne

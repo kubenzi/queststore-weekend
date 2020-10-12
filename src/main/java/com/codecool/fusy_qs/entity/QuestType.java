@@ -10,7 +10,7 @@ public class QuestType{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long questTypeId;
 
     private String questTypeName;
 
@@ -21,12 +21,12 @@ public class QuestType{
         this.questTypeName = questTypeName;
     }
 
-    public Long getId() {
-        return id;
+    public Long getQuestTypeId() {
+        return questTypeId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setQuestTypeId(Long questTypeId) {
+        this.questTypeId = questTypeId;
     }
 
     public String getQuestTypeName() {

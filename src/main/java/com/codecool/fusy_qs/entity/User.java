@@ -9,7 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long  userId;
 
     private String firstName;
 
@@ -22,13 +22,17 @@ public class User {
     @OneToOne
     private AccountType accountType;
 
-    @OneToMany(mappedBy = "user")
+//    @ManyToMany(mappedBy = "user")
+//    private List<Group> groups;
+
+    @ManyToMany
+    @JoinTable(
+            name = "User_Gruop",
+            joinColumns = {@JoinColumn(name= "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
     private List<Group> groups;
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            joinColumns = {@JoinColumn(name= "id")},
-//            inverseJoinColumns = {@JoinColumn(name = "id")}
-//    )
+
 
     public User() {
     }
@@ -44,6 +48,14 @@ public class User {
         this.password = password;
         this.accountType = accountType;
         this.groups = groups;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

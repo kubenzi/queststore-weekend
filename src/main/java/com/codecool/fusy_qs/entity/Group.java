@@ -8,12 +8,12 @@ public class Group {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long groupId;
 
     private String groupName;
 
-    @ManyToOne
-    private User user;
+    @ManyToMany
+    private List<User> users;
 
     @Embedded
     private Class groupClass;
@@ -26,12 +26,12 @@ public class Group {
         this.groupClass = groupClass;
     }
 
-    public Long getId() {
-        return id;
+    public Long getGroupId() {
+        return groupId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public String getGroupName() {
@@ -42,12 +42,12 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Class getGroupClass() {

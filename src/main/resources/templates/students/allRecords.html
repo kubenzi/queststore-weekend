@@ -11,7 +11,7 @@
             </div>
 
             <div class="guestbook-data">
-                <table class="guestbook-table" th:each="quest : ${allQuests}">
+                <table class="guestbook-table" th:each="quest : ${quests}">
                     <div class="single-record">
                         <tr>
                             <td class="id" th:text="'QUEST NUMBER: ' + ${quest.id}"></td>
