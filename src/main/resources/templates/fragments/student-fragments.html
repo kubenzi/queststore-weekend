@@ -34,23 +34,23 @@
 				
 				<div class="lowMenu1">
 					<div class="option">
-						<span th:text="${student.firstName}"/>
-						<span th:text="${student.lastName}"/>
+						<span th:text="${session.student.firstName}"/>
+						<span th:text="${session.student.lastName}"/>
 					</div>
 				</div>
 
 				<div class="lowMenu2">
-					<div class="option"><i class="icon-cc"></i> Your: <span th:text="${student.wallet}"/>
-					  Total coins:	<span th:text="${student.totalCoinsEarned}"/>
+					<div class="option"><i class="icon-cc"></i> Your: <span th:text="${session.student.wallet}"/>
+					  Total coins:	<span th:text="${session.student.totalCoinsEarned}"/>
 					</div>
 				</div>
 
 				<div class="lowMenu3">
-					<div class="option"><i class="icon-star"></i> <span th:text="${level.levelId}"/> </div>
+					<div class="option"><i class="icon-star"></i> <span th:text="${session.level.levelId}"/> </div>
 				</div>
 
 				<div class="lowMenu4">
-					<div class="option"> <i class="icon-logout"></i> </div>
+					<div class="option"><i class="icon-logout"></i> <a href="#" th:href="@{/logout}"></a> </div>
 				</div>
 				
 			</div>

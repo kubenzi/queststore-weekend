@@ -2,6 +2,7 @@ package com.codecool.fusy_qs.repository;
 
 import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.entity.User;
+import org.hibernate.Criteria;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,4 +17,6 @@ public interface GroupRepository extends CrudRepository<GroupClass, Long> {
             "WHERE group_id = 1;",
             nativeQuery = true)
     List<User> findAllUsersByGroupId(Long id);
+
+
 }

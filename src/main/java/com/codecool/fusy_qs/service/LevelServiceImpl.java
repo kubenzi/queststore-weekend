@@ -27,6 +27,16 @@ public class LevelServiceImpl implements LevelService {
         return levelRepository.findLevelByCoolcoinsRequired(coolcoinsRequired);
     }
 
+    @Override
+    public Level getLevelById(Long levelId) {
+        return levelRepository.findById(levelId).orElse(null);
+    }
+
+    @Override
+    public void saveLevel(Level level) {
+        levelRepository.save(level);
+    }
+
 
     @PostConstruct
     private void postConstruct() {

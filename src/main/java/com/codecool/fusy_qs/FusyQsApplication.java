@@ -3,8 +3,10 @@ package com.codecool.fusy_qs;
 import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.entity.Quest;
 import com.codecool.fusy_qs.entity.Student;
+import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.GroupRepository;
 import com.codecool.fusy_qs.repository.StudentRepository;
+import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,14 +24,16 @@ public class FusyQsApplication {
     private GroupServiceImpl groupService;
     private StudentRepository studentRepository;
     private GroupRepository groupRepository;
+    private UserRepository userRepository;
 
-    public FusyQsApplication(QuestServiceImpl questService, QuestTypeServiceIMPL questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository) {
+    public FusyQsApplication(QuestServiceImpl questService, QuestTypeServiceIMPL questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
         this.groupService = groupService;
         this.studentRepository = studentRepository;
         this.groupRepository = groupRepository;
+        this.userRepository = userRepository;
     }
 
     public static void main(String[] args) {
@@ -56,6 +60,9 @@ public class FusyQsApplication {
                     "123", accountTypeService.findAccountTypeById(1L), 0, 1000);
             Student kch = new Student("K", "CH", "kch@gmail", "345",
                     accountTypeService.findAccountTypeById(1L), 2, 1500);
+
+            User przemo = new User("Przemek", "Raczkowski", "przemek@gmail.com", "prze", accountTypeService.findAccountTypeById(1L));
+            userRepository.save(przemo);
 
             bj.getGroups().add(java);
             bj.getGroups().add(csharp);

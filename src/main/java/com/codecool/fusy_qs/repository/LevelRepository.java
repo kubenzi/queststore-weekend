@@ -10,8 +10,8 @@ public interface LevelRepository extends CrudRepository<Level, Long> {
             " WHERE coolcoins_required =(SELECT MAX (coolcoins_required)" +
             " FROM level WHERE coolcoins_required <= ?1)",
     nativeQuery = true)
-
     Level findLevelByCoolcoinsRequired(Integer coolCoinsRequired);
 
+    Level findLevelByLevelId(Long id);
 
 }

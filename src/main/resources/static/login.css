@@ -1,0 +1,146 @@
+html {
+    height: 100%; /*wykorzystanie pełnej wysokości ekranu*/
+}
+
+body {
+    height: 100%; /*wykorzystanie pełnej wysokości ekranu*/
+    margin: 0; /*usuwa margines w pionie - dopasowanie contentu do wysokości strony*/
+    font-family: Arial, Helvetica, sans-serif; /*rodzaje czcionki możliwej do wykorzystania (wg priorytetu*/
+    background : url(stars.jpg) repeat #373737; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+}
+
+#logo-field {
+    width: 500px; /*% zajmowanej szerokości ekranu*/
+    height: 70px; /*% zajmowanej wysokości ekranu*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 30px;
+    color: white;
+}
+
+#login-main-holder {
+    width: 450px; /*% zajmowanej szerokości ekranu*/
+    height: 300px; /*% zajmowanej wysokości ekranu*/
+    display: flex; /*automatycznie tworzy tyle wierszy ile elementów jest w selectorze (nie dzieli z automatu na kolumny)*/
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 7px; /*promień zaokrąglenia narożników selectora*/
+    box-shadow: 0px 0px 5px 2px black;
+    border: 2px solid white;
+
+    /*
+    0px (h-offset) - dodatnia wartość przesunie cień w prawo, ujemna w lewo
+    0px (v-offset) - dodatnia wartość przesunie cień w dół, ujemna do góry
+    5px (blur) - poziom rozmycia cienia
+    2px (spread) - poziom rozprzestrzenienia cienia
+    */
+}
+
+#login-header {
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.login-form-field::placeholder {
+    font-size: 20px;
+    text-align: center;
+    color: #3a3a3a; /*kolor czcionki placeholdera*/
+}
+
+.login-form-field {
+    border: none; /*usuwa obrys okienka formularza*/
+    border-bottom: 1px solid #3a3a3a; /*ustawia dolny obrys okienka formularza*/
+    margin-bottom: 20px; /*ustawia dolny margines elementu - odstęp od kolejnego elementu*/ 
+    border-radius: 3px;
+    padding: 0px 0px 5px 5px; /*kolejność: góra, prawo, dół, lewo*/
+    outline: none;
+    width: 300px;
+    height: 25px;
+}
+
+.login-form-submit {
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    background-color: #3a3a3a;
+    cursor: pointer; /*zmienia rodzaj kursora po najechaniu na element*/
+    outline: none; /*brak obwódki wokół elementu (border wykorzystuje przestrzeń elementu, outline jest poza elementem*/
+    width: 250px;
+    height: 40px;
+}
+
+#submit {
+    text-align: center;
+    justify-content: center;
+}
+
+#login-msg-holder {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+#login-msg {
+    width: 200px; /*element zajmie dany % szerokości swojego kontenera*/
+    text-align: center; /*wyśrodkowanie tekstu*/
+    padding: 5px; /*dodatkowa szerokość obwodu wokół (wokół, bo jest jedna wartość) zawartości selectora (między obrysem, a tekstem)*/
+    font-size: 12px; /*wielkość czcionki*/
+    font-weight: bold; /*grubość czcionki*/
+    color: #8a0000; /*kolor czcionki*/
+    border: 1px solid #8a0000; /*grubość, styl i kolor obrysu*/
+    background-color: #e58f8f;
+    text-decoration: line-through;
+    opacity: 20%; /*poziom przeźroczystości; ustawiony na pełną przeźroczystość - JS zmieni ten poziom przy błędnych danych logowania*/
+}
+
+footer {
+    width: 350px; /*% zajmowanej szerokości ekranu*/
+    height: 40px; /*% zajmowanej wysokości ekranu*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a39797;
+    text-decoration: none;
+}
+
+a:active {
+    color: white;
+    text-decoration: none;
+}

@@ -59,15 +59,16 @@
 
 				<div id="personalDetails">
 					<div id="firstname">
-						Firstname: <span th:text="${student.firstName}"/>
+						Firstname: <span th:text="${session.student.firstName}"/>
 					</div>
 
 					<div id="surname">
-						Surname: <span th:text="${student.lastName}"/>
+						Surname: <span th:text="${session.student.lastName}"/>
 					</div>
 
 					<div id="mail">
-						Mail: <span th:text="${student.email}"/>
+						Mail: <span th:text="${session.student.email}"/>
+
 					</div>
 
 					<div id="class">
