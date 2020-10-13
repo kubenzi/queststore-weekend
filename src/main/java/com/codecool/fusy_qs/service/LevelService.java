@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface LevelService {
     List<Level> getAllLevels();
+    Level getLevelByCcRequired(Integer coolcoinsRequired);
 }

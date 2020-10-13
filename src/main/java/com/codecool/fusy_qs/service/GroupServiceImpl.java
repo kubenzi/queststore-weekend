@@ -1,7 +1,7 @@
 package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Class;
-import com.codecool.fusy_qs.entity.Group;
+import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 @Service
-public class GroupServiceImpl implements GruopService {
+public class GroupServiceImpl implements GroupService {
     GroupRepository groupRepository;
 
     @Autowired
@@ -19,12 +19,12 @@ public class GroupServiceImpl implements GruopService {
 
 
     @Override
-    public void addGroup(Group group) {
+    public void addGroup(GroupClass group) {
         groupRepository.save(group);
     }
 
     @Override
-    public Group findGroupById(Long Id) {
+    public GroupClass findGroupById(Long Id) {
         return groupRepository.findById(Id).orElse(null);
     }
 
@@ -33,8 +33,8 @@ public class GroupServiceImpl implements GruopService {
     @PostConstruct
     private void postConstruct(){
         Class krk = new Class("krk-weekend");
-        Group java = new Group("Fusy", krk);
-        Group csharp = new Group("Csharp", krk);
+        GroupClass java = new GroupClass("Fusy", krk);
+        GroupClass csharp = new GroupClass("Csharp", krk);
         groupRepository.save(java);
         groupRepository.save(csharp);
     }

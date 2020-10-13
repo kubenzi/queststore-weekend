@@ -1,11 +1,7 @@
 package com.codecool.fusy_qs.service;
 
-import com.codecool.fusy_qs.entity.Group;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.StudentRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;

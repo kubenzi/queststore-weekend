@@ -1,6 +1,10 @@
 package com.codecool.fusy_qs;
 
+import com.codecool.fusy_qs.entity.Level;
 import com.codecool.fusy_qs.entity.Quest;
+import com.codecool.fusy_qs.entity.Student;
+import com.codecool.fusy_qs.repository.LevelRepository;
+import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.service.QuestService;
 import com.codecool.fusy_qs.service.QuestTypeService;
 import org.springframework.stereotype.Controller;
@@ -13,35 +17,57 @@ import java.util.List;
 public class UserController {
 
     QuestService questService;
+    StudentRepository studentRepository;
+    LevelRepository levelRepository;
 
-    public UserController(QuestService questService) {
+    public UserController(QuestService questService, StudentRepository studentRepository, LevelRepository levelRepository) {
         this.questService = questService;
+        this.studentRepository = studentRepository;
+        this.levelRepository = levelRepository;
     }
 
-    @GetMapping("/quests")
+    private Student getStudent(){
+        Student student = studentRepository.findById(1L).orElse(null);
+        return student;
+    }
+
+    private Level getLevel(){
+        return levelRepository.findLevelByCoolcoinsRequired(getStudent().getTotalCoinsEarned());
+    }
+
+    @GetMapping("/student")
     String showStudentsQuests(Model model) {
 
-        List<Quest> quests = questService.getAllGroupQuests();
 
+        model.addAttribute("student", getStudent());
+        model.addAttribute("level", getLevel());
 
-        model.addAttribute("quests", quests);
-
-        return "students/allRecords";
+        return "students/student";
     }
 
-//    @GetMapping("/transactions")
+    @GetMapping("/experience")
+    String showTransaction(Model model) {
+
+        List<Level> levelslist = (List<Level>) levelRepository.findAll();
+
+        model.addAttribute("student", getStudent());
+        model.addAttribute("levelslist", levelslist);
+        model.addAttribute("level", getLevel());
+
+        return "students/experience";
+    }
+
+
+//    @GetMapping("/edit-level")
 //    String showTransaction(Model model) {
-//        Student student = studentService.getStudentById(")+e)CWq!");
 //
-//        Group group = groupService.getGroupById(student.getGroupId());
-//        Level level = levelService.getLevelByCcReq(student.getTotalCoinsEarned());
+//        List<Level> levelslist = (List<Level>) levelRepository.findAll();
 //
-//        model.addAttribute("student", student);
-//        model.addAttribute("group", group);
-//        model.addAttribute("level", level);
+//        model.addAttribute("student", getStudent());
+//        model.addAttribute("levelslist", levelslist);
+//        model.addAttribute("level", getLevel());
 //
-//        return "students/transactions";
-//
+//        return "students/experience";
 //    }
 
 }

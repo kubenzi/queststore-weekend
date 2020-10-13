@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "USER_DATA")
@@ -31,7 +32,7 @@ public class User {
             joinColumns = {@JoinColumn(name= "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
-    private List<Group> groups;
+    private List<GroupClass> groups = new ArrayList<>();
 
 
     public User() {
@@ -41,14 +42,15 @@ public class User {
                 String lastName,
                 String email,
                 String password,
-                AccountType accountType, List<Group> groups) {
+                AccountType accountType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.accountType = accountType;
-        this.groups = groups;
+
     }
+
 
     public Long getUserId() {
         return userId;
@@ -98,11 +100,11 @@ public class User {
         this.accountType = accountType;
     }
 
-    public List<Group> getGroups() {
+    public List<GroupClass> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<GroupClass> groups) {
         this.groups = groups;
     }
 }

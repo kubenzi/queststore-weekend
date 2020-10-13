@@ -57,36 +57,7 @@
 			<br/>
 			<table id = "group_members_table">
 
-<!--				<tr>-->
-<!--					<td>Level 1</td>-->
-<!--					<td>Beginner</td>-->
-<!--					<td><i class="icon-paper-plane-empty"></i></td>-->
-<!--					<td>100</td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td>Level 2</td>-->
-<!--					<td>Amateur</td>-->
-<!--					<td><i class="icon-paper-plane"></i></td>-->
-<!--					<td>300</td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td>Level 3</td>-->
-<!--					<td>Semi-Pro</td>-->
-<!--					<td><i class="icon-space-shuttle"></i></td>-->
-<!--					<td>500</td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td>Level 4</td>-->
-<!--					<td>Professional</td>-->
-<!--					<td><i class="icon-fighter-jet"></i></td>-->
-<!--					<td>700</td>-->
-<!--				</tr>-->
-<!--				<tr>-->
-<!--					<td>Level 5</td>-->
-<!--					<td>World-class</td>-->
-<!--					<td><i class="icon-rocket"></i></td>-->
-<!--					<td>1000</td>-->
-<!--				</tr>-->
+
 				<tr>
 					<td class="tableTitle">Level no.</td>
 					<td class="tableTitle">Level icon</td>
@@ -98,11 +69,10 @@
 					<td><span th:text="${level.levelId}"> </span></td>
 					<td><span th:class="${level.iconName}"> </span></td>
 					<td ><span th:text="${level.levelName}"> </span></td>
-					<td><span th:text="${level.ccolcoinsRequired}"> </span></td>
+					<td><span th:text="${level.coolcoinsRequired}"> </span></td>
 
 
 					<td><a th:href="@{edit-level/{levelId}(levelId=${level.levelId})}" class="btn">Edit</a></td>
-<!--					<td><a href="#" th:href="@{/edit/{levelId}${level.levelId})}" class="btn"> Edit User </a></td>-->
 				</tr>
 
 			</table>

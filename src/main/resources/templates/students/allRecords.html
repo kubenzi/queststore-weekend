@@ -14,7 +14,7 @@
                 <table class="guestbook-table" th:each="quest : ${quests}">
                     <div class="single-record">
                         <tr>
-                            <td class="id" th:text="'QUEST NUMBER: ' + ${quest.id}"></td>
+                            <td class="id" th:text="'QUEST NUMBER: ' + ${quest.questType}"></td>
                         </tr>
                         <tr>
                             <td class="name" th:text="'DESCRIPTION: ' + ${quest.questDescription}"></td>
@@ -24,6 +24,35 @@
                         </tr>
                     </div>
                 </table>
+
+                <table class="level-table" th:each="level : ${levels}">
+                    <div class="single-record">
+                        <tr>
+                            <td class="id" th:text="'QUEST NUMBER: ' + ${level.levelId}"></td>
+                        </tr>
+                        <tr>
+                            <td class="name" th:text="'DESCRIPTION: ' + ${level.levelName}"></td>
+                        </tr>
+                        <tr>
+                            <td class="message" th:text="'VALUE: ' + ${level.coolcoinsRequired}"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="message" th:text="'VALUE: ' + ${level.iconName}"></td>
+                        </tr>
+                    </div>
+                </table>
+
+                <div class="student-level">
+                    <tr>
+                        <td class="id" th:text="'Your level ID: ' + ${level.levelId}"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="id" th:text="'Your level : ' + ${level.coolcoinsRequired}"></td>
+                    </tr>
+                </div>
+
             </div>
         </div>
     </body>

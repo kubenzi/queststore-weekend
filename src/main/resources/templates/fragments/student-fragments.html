@@ -33,7 +33,10 @@
 			<div th:fragment="lowMenu" id="lowMenu">
 				
 				<div class="lowMenu1">
-					<div class="option"> <span th:text="${student.firstName}"/> </div>
+					<div class="option">
+						<span th:text="${student.firstName}"/>
+						<span th:text="${student.lastName}"/>
+					</div>
 				</div>
 
 				<div class="lowMenu2">
