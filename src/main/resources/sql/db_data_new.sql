@@ -25,3 +25,30 @@ INSERT INTO quest VALUES
     (8, 'Set up a SMART goal accepted by a mentor, then achieve it', 400, 1),
     (9, 'Students choose the best project of the week. Selected team scores', 400, 2),
     (10, 'Do a presentation on a meet-up', 300, 1);
+
+INSERT INTO group_class VALUES
+    (1, '02.2020 Krk-weekend', 'Java-1'),
+    (2, '02.2020 Krk-weekend', 'Java-2');
+
+INSERT INTO user_data VALUES
+    ('student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15', 1450, 400, 1),
+    ('student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1200, 100, 1),
+    ('student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
+    ('student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
+    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
+
+INSERT INTO user_group VALUES
+    (1, 1),
+    (2, 1),
+    (3, 2),
+    (4, 2),
+    (5, 1),
+    (5, 2);
+
+INSERT INTO group_class_users VALUES
+    (1, 1),
+    (1, 2),
+    (2, 3),
+    (2, 4),
+    (1, 5),
+    (2, 5)
