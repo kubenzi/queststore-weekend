@@ -35,10 +35,6 @@ public class AccountTypeServiceImpl implements AccountTypeService {
 
     @PostConstruct
     public void postConstruct(){
-        AccountType stud = new AccountType("stud");
-//        AccountType mentor = new AccountType("mentor");
-
-        accountTypeRepository.saveAll(Arrays.asList(stud));
 
     }
 }
