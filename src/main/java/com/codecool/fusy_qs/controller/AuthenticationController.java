@@ -1,5 +1,6 @@
 package com.codecool.fusy_qs.controller;
 
+import com.codecool.fusy_qs.entity.AccountType;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.service.LevelService;
@@ -43,12 +44,18 @@ public class AuthenticationController {
                                     HttpServletResponse response,
                                     @ModelAttribute("maybeUser") User user) throws IOException {
         Optional<User> maybeUser = userService.login(user);
+        //co robi ten get()?
         if (maybeUser.isPresent()) {
-            Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
-            HttpSession session = request.getSession(true);
-            session.setAttribute("student", student);
-            session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
-            response.sendRedirect(request.getContextPath() + "/student");
+            String accountType = maybeUser.get().getAccountType().getAccountType();
+            switch (accountType) {
+                case "student":
+                    Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("student", student);
+                    session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
+                    response.sendRedirect(request.getContextPath() + "/student");
+            }
+
         } else {
             response.sendRedirect(request.getContextPath() + "/loginForm");
         }

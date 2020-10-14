@@ -26,10 +26,10 @@ public class QuestTypeServiceIMPL implements QuestTypeService {
 // dać orElse null albo optional?
     }
 
-    @PostConstruct
-    private void postConstruct(){
-        QuestType individual = new QuestType("individual");
-        QuestType group = new QuestType("group");
-        questTypeRepository.save(individual); questTypeRepository.save(group);
-    }
+//    @PostConstruct
+//    private void postConstruct(){
+//        QuestType individual = new QuestType("individual");
+//        QuestType group = new QuestType("group");
+//        questTypeRepository.save(individual); questTypeRepository.save(group);
+//    }
 }

@@ -25,8 +25,9 @@ public class FusyQsApplication {
     private StudentRepository studentRepository;
     private GroupRepository groupRepository;
     private UserRepository userRepository;
+    private UserService userService;
 
-    public FusyQsApplication(QuestServiceImpl questService, QuestTypeServiceIMPL questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository) {
+    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -34,6 +35,7 @@ public class FusyQsApplication {
         this.studentRepository = studentRepository;
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public static void main(String[] args) {
@@ -44,46 +46,60 @@ public class FusyQsApplication {
     public CommandLineRunner runner() {
         return (args) -> {
 
-            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
-                    "wash your car", 100));
-            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
-                    "clean your bedroom", 100));
-            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
-                    "make group project", 400));
-            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
-                    "build something", 500));
-
-            GroupClass java = groupService.findGroupById(2L);
-            GroupClass csharp = groupService.findGroupById(3L);
-
-            Student bj = new Student("B", "J", "bj@gmail",
-                    "123", accountTypeService.findAccountTypeById(1L), 0, 1000);
-            Student kch = new Student("K", "CH", "kch@gmail", "345",
-                    accountTypeService.findAccountTypeById(1L), 2, 1500);
-
-            User przemo = new User("Przemek", "Raczkowski", "przemek@gmail.com", "prze", accountTypeService.findAccountTypeById(1L));
-            userRepository.save(przemo);
-
-            bj.getGroups().add(java);
-            bj.getGroups().add(csharp);
-
-            kch.getGroups().add(java);
-            kch.getGroups().add(csharp);
-
-            studentRepository.save(bj); studentRepository.save(kch);
-
-
-            java.setUsers(Arrays.asList(bj, kch));
-            csharp.setUsers(Arrays.asList(bj, kch));
-
-//            java.getUsers().add(bj);
-//            java.getUsers().add(kch);
+//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
+//                    "wash your car", 100));
+//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
+//                    "clean your bedroom", 100));
+//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
+//                    "make group project", 400));
+//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
+//                    "build something", 500));
 //
-//            csharp.getUsers().add(bj);
-//            csharp.getUsers().add(kch);
-
-            groupService.addGroup(java);
-            groupService.addGroup(csharp);
+//            GroupClass java = groupService.findGroupById(3L);
+//            GroupClass csharp = groupService.findGroupById(4L);
+//
+//            User bj = new Student("B", "J", "bj@gmail",
+//                    "123", accountTypeService.findAccountTypeById(1L), 0, 1000);
+//            User kch = new Student("K", "CH", "kch@gmail", "345",
+//                    accountTypeService.findAccountTypeById(1L), 2, 1500);
+//
+//            User przemo = new User("Przemek", "Raczkowski", "przemek@gmail.com", "123", accountTypeService.findAccountTypeById(2L));
+//
+//
+//
+//            bj.getGroups().add(java);
+//            bj.getGroups().add(csharp);
+//            przemo.getGroups().add(java);
+//            przemo.getGroups().add(csharp);
+//
+//            kch.getGroups().add(java);
+//            kch.getGroups().add(csharp);
+//
+////            przemo.getGroups().add(java);
+////            przemo.getGroups().add(csharp);
+//
+//            userRepository.save(bj); userRepository.save(kch); userRepository.save(przemo);
+//
+//
+//            java.setUsers(Arrays.asList(bj, kch));
+//            csharp.setUsers(Arrays.asList(bj, kch));
+//            java.getUsers().add(przemo);
+//
+//
+//
+////            java.getUsers().add(bj);
+////
+////            java.getUsers().add(kch);
+////
+////            csharp.getUsers().add(bj);
+////            csharp.getUsers().add(kch);
+////
+////            java.getUsers().add(przemo);
+////            csharp.getUsers().add(przemo);
+//
+//
+//            groupService.addGroup(java);
+//            groupService.addGroup(csharp);
 
 
         };

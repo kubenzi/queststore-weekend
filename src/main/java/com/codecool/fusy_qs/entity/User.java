@@ -32,6 +32,7 @@ public class User {
             joinColumns = {@JoinColumn(name= "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
+
     private List<GroupClass> groups = new ArrayList<>();
 
 

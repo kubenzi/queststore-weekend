@@ -14,7 +14,7 @@ public class GroupClass {
     private String groupName;
 
     @ManyToMany
-    private List<Student> users= new ArrayList<>();
+    private List<User> users= new ArrayList<>();
 
     @Embedded
     private Class groupClass;
@@ -43,11 +43,11 @@ public class GroupClass {
         this.groupName = groupName;
     }
 
-    public List<Student> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<Student> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

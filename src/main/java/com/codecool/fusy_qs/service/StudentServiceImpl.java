@@ -23,9 +23,4 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-//    @Query("select u from groups_users u where u.users_user_id = ?1")
-//    public List<Group> findGroupsByStudentId(Long id){
-//
-//    }
-
 }

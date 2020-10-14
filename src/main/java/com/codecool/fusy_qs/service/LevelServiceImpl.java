@@ -38,15 +38,15 @@ public class LevelServiceImpl implements LevelService {
     }
 
 
-    @PostConstruct
-    private void postConstruct() {
-        Level leve1 = new Level("paper plane", 0, "icon-paper-plane-empty");
-        Level leve2 = new Level("plane", 500, "icon-paper-plane");
-        Level leve3 = new Level("jet", 1000, "icon-fighter-jet");
-        Level leve4 = new Level("space shuttle", 2000, "icon-space-shuttle");
-        Level leve5 = new Level("space shuttle", 3000, "icon-rocket");
-
-        levelRepository.saveAll(Arrays.asList(leve1, leve2, leve3, leve4, leve5));
-
-    }
+//    @PostConstruct
+//    private void postConstruct() {
+//        Level leve1 = new Level("paper plane", 0, "icon-paper-plane-empty");
+//        Level leve2 = new Level("plane", 500, "icon-paper-plane");
+//        Level leve3 = new Level("jet", 1000, "icon-fighter-jet");
+//        Level leve4 = new Level("space shuttle", 2000, "icon-space-shuttle");
+//        Level leve5 = new Level("space shuttle", 3000, "icon-rocket");
+//
+//        levelRepository.saveAll(Arrays.asList(leve1, leve2, leve3, leve4, leve5));
+//
+//    }
 }

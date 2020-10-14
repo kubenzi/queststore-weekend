@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,7 @@ public class UserController {
     QuestService questService;
     StudentRepository studentRepository;
     LevelService levelService;
+
 
     public UserController(QuestService questService, StudentRepository studentRepository, LevelService levelService) {
         this.questService = questService;
@@ -37,8 +40,10 @@ public class UserController {
     }
 
     @GetMapping("/student")
-    String showStudentsQuests(Model model) {
+    String showStudentsQuests(Model model, HttpServletRequest request) {
 
+        HttpSession session = request.getSession(true);
+        Student student = (Student) session.getAttribute("student");
 
 
         return "students/student";

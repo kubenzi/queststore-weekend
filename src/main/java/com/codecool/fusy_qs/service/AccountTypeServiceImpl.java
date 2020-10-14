@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -34,7 +35,10 @@ public class AccountTypeServiceImpl implements AccountTypeService {
 
     @PostConstruct
     public void postConstruct(){
-        AccountType student = new AccountType("Student");
-        accountTypeRepository.save(student);
+        AccountType stud = new AccountType("stud");
+//        AccountType mentor = new AccountType("mentor");
+
+        accountTypeRepository.saveAll(Arrays.asList(stud));
+
     }
 }

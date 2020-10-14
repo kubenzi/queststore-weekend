@@ -22,7 +22,7 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
         HttpSession session = httpServletRequest.getSession(false);
-        if (session == null || session.getAttribute("email") == null) {
+        if (session == null || session.getAttribute("student") == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/loginForm");
         } else {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
