@@ -1,5 +1,6 @@
 package com.codecool.fusy_qs.service;
 
+import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findStudentByEmail(String email) {
         return studentRepository.findByEmail(email);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        studentRepository.save(student);
     }
 
 

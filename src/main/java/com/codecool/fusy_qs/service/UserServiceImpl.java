@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
                         && user.getPassword().equals(validUser.getPassword()))
                 .findAny();
     }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

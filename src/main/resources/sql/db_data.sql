@@ -198,9 +198,9 @@ CREATE TABLE transaction_students (
 );
 
 INSERT INTO account_type VALUES
-    (1, 'admin'),
-    (2, 'mentor'),
-    (3, 'student');
+    (1, 'Admin'),
+    (2, 'Mentor'),
+    (3, 'Student');
 
 INSERT INTO user_data VALUES
     ('x%[>j!X#', 1, 'Krzysztof', 'Jerzyna', 'k_jerzyna@admin.pl', 'jerzyna1'),

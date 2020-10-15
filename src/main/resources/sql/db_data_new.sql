@@ -31,10 +31,10 @@ INSERT INTO group_class VALUES
     (2, '02.2020 Krk-weekend', 'Java-2');
 
 INSERT INTO user_data VALUES
-    ('student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15', 1450, 400, 1),
-    ('student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1200, 100, 1),
-    ('student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
-    ('student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
+    ('Student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15', 1450, 400, 1),
+    ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1200, 100, 1),
+    ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
+    ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
     ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
 
 INSERT INTO user_group VALUES

@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface GroupRepository extends CrudRepository<GroupClass, Long> {
-
+    public
 
     @Query(value = "SELECT * from user_data " +
             "INNER JOIN group_class_users ON user_data.user_id = group_class_users.users_user_id " +

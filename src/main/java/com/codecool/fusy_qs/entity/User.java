@@ -6,10 +6,11 @@ import java.util.List;
 
 @Entity(name = "USER_DATA")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@SequenceGenerator(name= "id_gen", initialValue = 10, allocationSize = 1)
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_gen")
     private Long  userId;
 
     private String firstName;

@@ -1,7 +1,6 @@
 package com.codecool.fusy_qs;
 
 import com.codecool.fusy_qs.entity.GroupClass;
-import com.codecool.fusy_qs.entity.Quest;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.GroupRepository;
@@ -13,10 +12,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-
 @SpringBootApplication
 public class FusyQsApplication {
+
 
     private QuestServiceImpl questService;
     private QuestTypeService questTypeService;
@@ -26,8 +24,9 @@ public class FusyQsApplication {
     private GroupRepository groupRepository;
     private UserRepository userRepository;
     private UserService userService;
+    private StudentService studentService;
 
-    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService) {
+    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService, StudentService studentService) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -36,6 +35,7 @@ public class FusyQsApplication {
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
         this.userService = userService;
+        this.studentService = studentService;
     }
 
     public static void main(String[] args) {
@@ -46,31 +46,45 @@ public class FusyQsApplication {
     public CommandLineRunner runner() {
         return (args) -> {
 
-//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
-//                    "wash your car", 100));
-//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(1L),
-//                    "clean your bedroom", 100));
-//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
-//                    "make group project", 400));
-//            questService.addQuest(new Quest(questTypeService.findQuestTypeById(2L),
-//                    "build something", 500));
+
+
+            GroupClass java = groupService.findGroupById(1L);
+
+            GroupClass csharp = groupService.findGroupById(2L);
+
 //
-//            GroupClass java = groupService.findGroupById(3L);
-//            GroupClass csharp = groupService.findGroupById(4L);
-//
-//            User bj = new Student("B", "J", "bj@gmail",
-//                    "123", accountTypeService.findAccountTypeById(1L), 0, 1000);
-//            User kch = new Student("K", "CH", "kch@gmail", "345",
-//                    accountTypeService.findAccountTypeById(1L), 2, 1500);
-//
-//            User przemo = new User("Przemek", "Raczkowski", "przemek@gmail.com", "123", accountTypeService.findAccountTypeById(2L));
+//            User user = userService.findUserById(410L);
+//            System.out.println(user.getEmail());
+
+//            Student student = studentService.findStudentById(1L);
+//            System.out.println(student.getEmail());
+
+
+//            Student student = new Student("B", "J", "bj@gmail.com", "1234", accountTypeService.findAccountTypeById(1L), 0, 0);
+//            studentRepository.save(student);
 //
 //
+//            student.getGroups().add(java);
+//
+//            studentService.addStudent(student);
+//
+//            java.getUsers().add(student);
+
+            System.out.println(questTypeService.findQuestTypeById(1L).getQuestTypeName());
+
+
+
+//            System.out.println(kch.getEmail());
+
+
+//            System.out.println(java.getUsers().size());
+//            System.out.println(bj.getGroups().size());
+
+
 //
 //            bj.getGroups().add(java);
 //            bj.getGroups().add(csharp);
-//            przemo.getGroups().add(java);
-//            przemo.getGroups().add(csharp);
+//
 //
 //            kch.getGroups().add(java);
 //            kch.getGroups().add(csharp);
@@ -78,12 +92,12 @@ public class FusyQsApplication {
 ////            przemo.getGroups().add(java);
 ////            przemo.getGroups().add(csharp);
 //
-//            userRepository.save(bj); userRepository.save(kch); userRepository.save(przemo);
+//            userRepository.save(bj); userRepository.save(kch);
 //
 //
 //            java.setUsers(Arrays.asList(bj, kch));
 //            csharp.setUsers(Arrays.asList(bj, kch));
-//            java.getUsers().add(przemo);
+//
 //
 //
 //

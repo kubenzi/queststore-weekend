@@ -10,5 +10,6 @@ public interface UserService {
 
     List<User> getAllUsers();
     Optional<User> login(User validUser);
+    User findUserById(Long id);
 
 }
