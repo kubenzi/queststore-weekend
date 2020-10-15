@@ -35,7 +35,7 @@ INSERT INTO user_data VALUES
     ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1200, 100, 1),
     ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
     ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
-    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
+    ('Mentor', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
 
 INSERT INTO user_group VALUES
     (1, 1),

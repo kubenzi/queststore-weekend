@@ -1,9 +1,11 @@
 package com.codecool.fusy_qs;
 
 import com.codecool.fusy_qs.entity.GroupClass;
+import com.codecool.fusy_qs.entity.Mentor;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.GroupRepository;
+import com.codecool.fusy_qs.repository.MentorRepository;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.*;
@@ -25,8 +27,10 @@ public class FusyQsApplication {
     private UserRepository userRepository;
     private UserService userService;
     private StudentService studentService;
+    private MentorService mentorService;
+    private MentorRepository mentorRepository;
 
-    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService, StudentService studentService) {
+    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService, StudentService studentService, MentorService mentorService, MentorRepository mentorRepository) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -36,6 +40,8 @@ public class FusyQsApplication {
         this.userRepository = userRepository;
         this.userService = userService;
         this.studentService = studentService;
+        this.mentorService = mentorService;
+        this.mentorRepository = mentorRepository;
     }
 
     public static void main(String[] args) {
@@ -52,6 +58,8 @@ public class FusyQsApplication {
 
             GroupClass csharp = groupService.findGroupById(2L);
 
+            Mentor mentor = mentorService.findMentorById(6L);
+            System.out.println(mentor.getUserId());
 //
 //            User user = userService.findUserById(410L);
 //            System.out.println(user.getEmail());
