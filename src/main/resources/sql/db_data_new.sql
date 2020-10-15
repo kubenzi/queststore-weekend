@@ -52,3 +52,7 @@ INSERT INTO group_class_users VALUES
     (2, 4),
     (1, 5),
     (2, 5)
+
+INSERT INTO item_type VALUES
+    (1, 'group');
+    (2, 'individual')
