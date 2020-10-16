@@ -39,10 +39,10 @@
                 <div class="option"> <span th:text="${session.mentor.lastName}"/> </div>
             </div>
             <div class="lowMenu3">
-<!--                <div class="option">  Groups: <span th:text="${count}"/> </div>-->
+                <div class="option">  Groups: <!--<span th:text="${count}"/>--> </div>
             </div>
             <div class="lowMenu4">
-                <div class="option"> <i class="icon-logout"></i> </div>
+                <a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
             </div>
 
         </div>

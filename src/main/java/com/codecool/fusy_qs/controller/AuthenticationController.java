@@ -54,10 +54,12 @@ public class AuthenticationController {
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
                     response.sendRedirect(request.getContextPath() + "/student");
+                    break;
                 case "mentor":
                     User mentor = userService.findUserByEmail(maybeUser.get().getEmail());
                     session.setAttribute("mentor", mentor);
                     response.sendRedirect(request.getContextPath() + "/profile");
+                    break;
             }
 
         } else {

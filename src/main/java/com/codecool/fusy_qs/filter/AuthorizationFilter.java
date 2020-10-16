@@ -24,7 +24,9 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = httpServletRequest.getSession(false);
         if (session == null || session.getAttribute("student") == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/loginForm");
-        } else {
+        } else if (session == null || session.getAttribute("mentor") == null){
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/loginForm");
+        }else{
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }

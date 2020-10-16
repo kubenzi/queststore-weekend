@@ -14,8 +14,9 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+
 #logo-field {
-    width: 500px; /*% zajmowanej szerokości ekranu*/
+    width: 600px; /*% zajmowanej szerokości ekranu*/
     height: 70px; /*% zajmowanej wysokości ekranu*/
     display: flex;
     justify-content: center;
@@ -60,7 +61,7 @@ body {
 }
 
 .login-form-field::placeholder {
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
     color: #3a3a3a; /*kolor czcionki placeholdera*/
 }

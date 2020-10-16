@@ -80,10 +80,6 @@ public class StudentController {
         return "loginForm";
     }
 
-    @GetMapping("/profile")
-    String showMentorProfile(){
 
-        return "mentors/profile";
-    }
 
 }
