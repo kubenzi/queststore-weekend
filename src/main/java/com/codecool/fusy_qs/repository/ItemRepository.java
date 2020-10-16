@@ -13,9 +13,9 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query(value = "SELECT * FROM item", nativeQuery = true)
     List<Item> getAllItems();
 
-    @Query(value = "SELECT record FROM item record WHERE record.itemType.itemTypeId = 2")
+    @Query(value = "SELECT record FROM Item record WHERE record.itemType.itemTypeId = 2")
     List<Item> getAllIndividualItems();
 
-    @Query(value = "SELECT record FROM item record WHERE record.itemType.itemTypeId = 1")
+    @Query(value = "SELECT record FROM Item record WHERE record.itemType.itemTypeId = 1")
     List<Item> getAllGroupItems();
 }

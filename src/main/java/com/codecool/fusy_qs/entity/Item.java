@@ -12,8 +12,6 @@ public class Item {
     @GeneratedValue
     private Long itemId;
 
-    private int itemTypeId;
-
     private String itemName;
 
     private String itemDescription;
@@ -26,22 +24,14 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long itemId, int itemTypeId, String itemName, String itemDescription, int itemCost, ItemType itemType) {
+    public Item(Long itemId, String itemName, String itemDescription, int itemCost, ItemType itemType) {
         this.itemId = itemId;
-        this.itemTypeId = itemTypeId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemCost = itemCost;
         this.itemType = itemType;
     }
 
-    public int getItemTypeId() {
-        return itemTypeId;
-    }
-
-    public void setItemTypeId(int itemTypeId) {
-        this.itemTypeId = itemTypeId;
-    }
 
     public String getItemName() {
         return itemName;

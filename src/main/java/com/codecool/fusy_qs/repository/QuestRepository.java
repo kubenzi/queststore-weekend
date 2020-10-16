@@ -13,9 +13,9 @@ public interface QuestRepository extends CrudRepository<Quest, Long> {
     @Query(value = "select * from QUEST", nativeQuery = true)
     List<Quest> getAllQuests();
 
-    @Query("select u from Quest u where u.questType.questTypeName = 'group'")
+    @Query(value = "select u from Quest u where u.questType.questTypeName = 'group'")
     List<Quest> getAllGroupQuests();
 
-    @Query("select u from Quest u where u.questType.questTypeName = 'individual'")
+    @Query(value = "select u from Quest u where u.questType.questTypeName = 'individual'")
     List<Quest> getAllIndividualQuests();
 }

@@ -55,4 +55,10 @@ INSERT INTO group_class_users VALUES
 
 INSERT INTO item_type VALUES
     (1, 'group');
-    (2, 'individual')
+    (2, 'individual');
+
+INSERT INTO item VALUES
+    (1, 'Mentoring', 'Private mentoring - 30 minutes', 50, 2);
+    (2, 'Home office', 'You can spend a day in home office', 300, 2);
+    (3, 'Workshop', '60 min workshop by a mentor of the chosen topic', 1000, 1);
+    (4, 'Boost', 'Mentor joins a students team for one hour', 1000, 1);
