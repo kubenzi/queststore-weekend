@@ -24,13 +24,13 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long itemId, String itemName, String itemDescription, int itemCost, ItemType itemType) {
-        this.itemId = itemId;
+    public Item(String itemName, String itemDescription, int itemCost, ItemType itemType) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemCost = itemCost;
         this.itemType = itemType;
     }
+
 
 
     public String getItemName() {

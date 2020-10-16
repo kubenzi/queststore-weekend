@@ -17,14 +17,14 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class StudentController {
 
     QuestService questService;
     StudentRepository studentRepository;
     LevelService levelService;
 
 
-    public UserController(QuestService questService, StudentRepository studentRepository, LevelService levelService) {
+    public StudentController(QuestService questService, StudentRepository studentRepository, LevelService levelService) {
         this.questService = questService;
         this.studentRepository = studentRepository;
         this.levelService = levelService;

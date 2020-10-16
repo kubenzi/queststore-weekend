@@ -49,6 +49,7 @@ public class AuthenticationController {
             String accountType = maybeUser.get().getAccountType().getAccountType();
             switch (accountType) {
                 case "student":
+
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
                     HttpSession session = request.getSession(true);
                     session.setAttribute("student", student);

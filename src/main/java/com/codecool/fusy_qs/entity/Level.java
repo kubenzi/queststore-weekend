@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "LEVEL_OF_EXPERIENCE")
+@Entity()
 public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

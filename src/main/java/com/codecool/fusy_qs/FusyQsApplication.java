@@ -1,11 +1,8 @@
 package com.codecool.fusy_qs;
 
-import com.codecool.fusy_qs.entity.GroupClass;
-import com.codecool.fusy_qs.entity.Mentor;
+import com.codecool.fusy_qs.entity.Level;
 import com.codecool.fusy_qs.entity.Student;
-import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.GroupRepository;
-import com.codecool.fusy_qs.repository.MentorRepository;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.*;
@@ -27,10 +24,13 @@ public class FusyQsApplication {
     private UserRepository userRepository;
     private UserService userService;
     private StudentService studentService;
-    private MentorService mentorService;
-    private MentorRepository mentorRepository;
+    private LevelService levelService;
 
-    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService, AccountTypeService accountTypeService, GroupServiceImpl groupService, StudentRepository studentRepository, GroupRepository groupRepository, UserRepository userRepository, UserService userService, StudentService studentService, MentorService mentorService, MentorRepository mentorRepository) {
+    public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService,
+                             AccountTypeService accountTypeService, GroupServiceImpl groupService,
+                             StudentRepository studentRepository, GroupRepository groupRepository,
+                             UserRepository userRepository, UserService userService,
+                             StudentService studentService, LevelService levelService) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -40,8 +40,7 @@ public class FusyQsApplication {
         this.userRepository = userRepository;
         this.userService = userService;
         this.studentService = studentService;
-        this.mentorService = mentorService;
-        this.mentorRepository = mentorRepository;
+        this.levelService = levelService;
     }
 
     public static void main(String[] args) {
@@ -53,18 +52,18 @@ public class FusyQsApplication {
         return (args) -> {
 
 
-
-            GroupClass java = groupService.findGroupById(1L);
-
-            GroupClass csharp = groupService.findGroupById(2L);
-
-            Mentor mentor = mentorService.findMentorById(6L);
-            System.out.println(mentor.getUserId());
+//
+//            GroupClass java = groupService.findGroupById(1L);
+//
+//            GroupClass csharp = groupService.findGroupById(2L);
+//
+//            Mentor mentor = mentorService.findMentorById(6L);
+//            System.out.println(mentor.getUserId());
 //
 //            User user = userService.findUserById(410L);
 //            System.out.println(user.getEmail());
 
-//            Student student = studentService.findStudentById(1L);
+
 //            System.out.println(student.getEmail());
 
 
@@ -78,7 +77,7 @@ public class FusyQsApplication {
 //
 //            java.getUsers().add(student);
 
-            System.out.println(questTypeService.findQuestTypeById(1L).getQuestTypeName());
+//            System.out.println(questTypeService.findQuestTypeById(1L).getQuestTypeName());
 
 
 

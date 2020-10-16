@@ -1,9 +1,9 @@
 INSERT INTO account_type VALUES
-    (1, 'admin'),
+    (1, 'student'),
     (2, 'mentor'),
-    (3, 'student');
+    (3, 'admin');
 
-INSERT INTO level_of_experience VALUES
+INSERT INTO level VALUES
     (1, 0, 'icon-paper-plane-empty', 'paper plane'),
     (2, 500, 'icon-paper-plane', 'plane'),
     (3, 1000, 'icon-fighter-jet', 'jet'),
@@ -35,7 +35,7 @@ INSERT INTO user_data VALUES
     ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1200, 100, 1),
     ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
     ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
-    ('Mentor', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
+    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
 
 INSERT INTO user_group VALUES
     (1, 1),
@@ -51,14 +51,14 @@ INSERT INTO group_class_users VALUES
     (2, 3),
     (2, 4),
     (1, 5),
-    (2, 5)
+    (2, 5);
 
 INSERT INTO item_type VALUES
-    (1, 'group');
+    (1, 'group'),
     (2, 'individual');
 
 INSERT INTO item VALUES
     (1, 50, 'Private mentoring - 30 minutes', 'Mentoring', 2),
     (2, 300, 'You can spend a day in home office', 'Home office', 2),
     (3, 1000, '60 min workshop by a mentor of the chosen topic',  'Workshop',1),
-    (4, 1000, 'Mentor joins a students team for one hour', 'Boost', 1);
+    (4, 1000, 'Mentor joins a students team for one hour', 'Boost', 1)

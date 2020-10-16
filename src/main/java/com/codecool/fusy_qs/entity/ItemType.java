@@ -16,8 +16,7 @@ public class ItemType {
     public ItemType() {
     }
 
-    public ItemType(int itemTypeId, String itemTypeName) {
-        this.itemTypeId = itemTypeId;
+    public ItemType(String itemTypeName) {
         this.itemTypeName = itemTypeName;
     }
 
