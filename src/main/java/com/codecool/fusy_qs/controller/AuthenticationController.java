@@ -47,14 +47,17 @@ public class AuthenticationController {
         //co robi ten get()?
         if (maybeUser.isPresent()) {
             String accountType = maybeUser.get().getAccountType().getAccountType();
+            HttpSession session = request.getSession(true);
             switch (accountType) {
                 case "student":
-
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
-                    HttpSession session = request.getSession(true);
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
                     response.sendRedirect(request.getContextPath() + "/student");
+                case "mentor":
+                    User mentor = userService.findUserByEmail(maybeUser.get().getEmail());
+                    session.setAttribute("mentor", mentor);
+                    response.sendRedirect(request.getContextPath() + "/profile");
             }
 
         } else {

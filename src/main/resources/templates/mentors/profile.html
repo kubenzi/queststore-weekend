@@ -59,26 +59,22 @@
 
             <div id="personalDetails">
                 <div id="firstname">
-                    Firstname: <span th:text="${mentor.firstName}"/>
+                    Firstname: <span th:text="${session.mentor.firstName}"/>
                 </div>
 
                 <div id="surname">
-                    Surname: <span th:text="${mentor.lastName}"/>
+                    Surname: <span th:text="${session.mentor.lastName}"/>
                 </div>
 
                 <div id="mail">
-                    Mail: <span th:text="${mentor.email}"/>
-                </div>
-
-                <div id="class">
-                    Classes: <span th:text="${mentor.classes}"/>
+                    Mail: <span th:text="${session.mentor.email}"/>
                 </div>
 
                 <div id="group">
                     Groups:
-               <tr th:each="group: ${groups}">
-                        <td th:text="${group.groupName}" />
-                   </tr>
+<!--               <tr th:each="group: ${groups}">-->
+<!--                        <td th:text="${group.groupName}" />-->
+<!--                   </tr>-->
 
                 </div>
             </div>

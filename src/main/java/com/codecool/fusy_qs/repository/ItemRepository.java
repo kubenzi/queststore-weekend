@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
-    @Query(value = "SELECT * FROM item", nativeQuery = true)
+    @Query(value = "SELECT * FROM Item", nativeQuery = true)
     List<Item> getAllItems();
 
     @Query(value = "SELECT record FROM Item record WHERE record.itemType.itemTypeId = 2")

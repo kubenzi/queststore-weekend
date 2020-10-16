@@ -64,4 +64,9 @@ public class Item {
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
+
+    @Override
+    public String toString() {
+        return itemId + '.' + itemName;
+    }
 }
