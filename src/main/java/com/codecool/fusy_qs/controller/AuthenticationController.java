@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.controller;
 
 import com.codecool.fusy_qs.entity.AccountType;
+import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.service.LevelService;
@@ -51,6 +52,10 @@ public class AuthenticationController {
             switch (accountType) {
                 case "student":
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
+                    for(GroupClass grupa : student.getGroups()){
+                        ;
+                    }
+
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
                     response.sendRedirect(request.getContextPath() + "/student");

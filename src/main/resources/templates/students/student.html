@@ -72,8 +72,15 @@
 					</div>
 
 					<div id="class">
-						Class: Web
+<!--						Group: <span th:text="${session.student.groups[0].groupName}"/>-->
+
+						<tr th:each="group : ${session.student.groups}">
+							Group:
+							<td><span th:text="${group.groupName}"> </span></td>
+						</tr>
+
 					</div>
+
 
 					<div id="group">
 <!--						Group: <span th:text="${group.groupName}"/>-->

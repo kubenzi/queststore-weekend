@@ -13,7 +13,7 @@ public class GroupClass {
 
     private String groupName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<User> users= new ArrayList<>();
 
     @Embedded

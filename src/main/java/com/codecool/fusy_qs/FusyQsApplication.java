@@ -1,7 +1,9 @@
 package com.codecool.fusy_qs;
 
+import com.codecool.fusy_qs.entity.GroupClass;
 import com.codecool.fusy_qs.entity.Level;
 import com.codecool.fusy_qs.entity.Student;
+import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.GroupRepository;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.repository.UserRepository;
@@ -10,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class FusyQsApplication {
@@ -53,33 +57,28 @@ public class FusyQsApplication {
 
 
 //
-//            GroupClass java = groupService.findGroupById(1L);
-//
-//            GroupClass csharp = groupService.findGroupById(2L);
-//
-//            Mentor mentor = mentorService.findMentorById(6L);
-//            System.out.println(mentor.getUserId());
-//
-//            User user = userService.findUserById(410L);
-//            System.out.println(user.getEmail());
+            GroupClass java = groupService.findGroupById(1L);
+
+            GroupClass csharp = groupService.findGroupById(2L);
 
 
-//            System.out.println(student.getEmail());
+            Student student = new Student("B", "J", "bj@gmail.com", "1234", accountTypeService.findAccountTypeById(1L), 0, 0);
+            studentRepository.save(student);
 
 
-//            Student student = new Student("B", "J", "bj@gmail.com", "1234", accountTypeService.findAccountTypeById(1L), 0, 0);
-//            studentRepository.save(student);
-//
-//
-//            student.getGroups().add(java);
-//
-//            studentService.addStudent(student);
-//
-//            java.getUsers().add(student);
+            student.getGroups().add(java);
+
+            studentService.addStudent(student);
+
+            java.getUsers().add(student);
 
 //            System.out.println(questTypeService.findQuestTypeById(1L).getQuestTypeName());
 
+            List<GroupClass> grups = student.getGroups();
 
+            for(GroupClass clasa: grups){
+                System.out.println(clasa.getGroupName());
+            }
 
 //            System.out.println(kch.getEmail());
 
