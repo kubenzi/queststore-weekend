@@ -12,5 +12,6 @@ public interface UserService {
     Optional<User> login(User validUser);
     User findUserById(Long id);
     User findUserByEmail(String email);
+    void deleteUserById(Long Id);
 
 }

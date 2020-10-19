@@ -27,7 +27,7 @@ public class User {
 //    @ManyToMany(mappedBy = "user")
 //    private List<Group> groups;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "User_Group",
             joinColumns = {@JoinColumn(name= "user_id")},

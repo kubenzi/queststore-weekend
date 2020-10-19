@@ -52,9 +52,9 @@ public class AuthenticationController {
             switch (accountType) {
                 case "student":
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
-                    for(GroupClass grupa : student.getGroups()){
-                        ;
-                    }
+//                    for(GroupClass grupa : student.getGroups()){
+//                        ;
+//                    }
 
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
