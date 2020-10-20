@@ -23,13 +23,13 @@ public class FusyQsApplication {
     private StudentService studentService;
     private LevelService levelService;
     private QuestRepository questRepository;
-    private AchievementRepository achievementRepository;
+
 
     public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService,
                              AccountTypeService accountTypeService, GroupServiceImpl groupService,
                              StudentRepository studentRepository, GroupRepository groupRepository,
                              UserRepository userRepository, UserService userService,
-                             StudentService studentService, LevelService levelService, QuestRepository questRepository, AchievementRepository achievementRepository) {
+                             StudentService studentService, LevelService levelService, QuestRepository questRepository) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -41,7 +41,7 @@ public class FusyQsApplication {
         this.studentService = studentService;
         this.levelService = levelService;
         this.questRepository = questRepository;
-        this.achievementRepository = achievementRepository;
+
     }
 
     public static void main(String[] args) {
@@ -67,13 +67,13 @@ public class FusyQsApplication {
             achievementTwo.setQuest(questNoTwo);
             achievementTree.setQuest(questNoTwo);
 
-            achievementOne.setStudent(kch);
-            achievementTwo.setStudent(kch);
-            achievementTree.setStudent(kch);
 
-            achievementRepository.save(achievementOne);
-            achievementRepository.save(achievementTwo);
-            achievementRepository.save(achievementTree);
+            kch.getAchievementList().add(achievementOne);
+            kch.getAchievementList().add(achievementTwo);
+            kch.getAchievementList().add(achievementTree);
+            kch.getAchievementList().add(achievementTree);
+
+            studentService.addStudent(kch);
 
         };
 

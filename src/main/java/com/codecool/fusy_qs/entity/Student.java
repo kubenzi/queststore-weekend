@@ -1,5 +1,8 @@
 package com.codecool.fusy_qs.entity;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +14,10 @@ public class Student extends User {
     private int wallet;
 
     private int totalCoinsEarned;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @OrderColumn
+    private List<Achievement> achievementList;
 
     public Student() {
     }
@@ -37,4 +44,11 @@ public class Student extends User {
         this.totalCoinsEarned = totalCoinsEarned;
     }
 
+    public List<Achievement> getAchievementList() {
+        return achievementList;
+    }
+
+    public void setAchievementList(List<Achievement> achievementList) {
+        this.achievementList = achievementList;
+    }
 }
