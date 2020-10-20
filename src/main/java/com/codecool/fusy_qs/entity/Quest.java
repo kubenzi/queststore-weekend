@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
 public class Quest {

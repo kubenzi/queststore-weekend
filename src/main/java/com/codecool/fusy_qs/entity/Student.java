@@ -1,7 +1,9 @@
 package com.codecool.fusy_qs.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Student extends User {

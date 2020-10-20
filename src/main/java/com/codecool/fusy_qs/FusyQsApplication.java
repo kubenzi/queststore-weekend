@@ -1,21 +1,12 @@
 package com.codecool.fusy_qs;
 
-import com.codecool.fusy_qs.entity.GroupClass;
-import com.codecool.fusy_qs.entity.Level;
-import com.codecool.fusy_qs.entity.Student;
-import com.codecool.fusy_qs.entity.User;
-import com.codecool.fusy_qs.repository.GroupRepository;
-import com.codecool.fusy_qs.repository.StudentRepository;
-import com.codecool.fusy_qs.repository.UserRepository;
+import com.codecool.fusy_qs.entity.*;
+import com.codecool.fusy_qs.repository.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-
-import javax.persistence.Column;
-import java.util.List;
 
 @SpringBootApplication
 public class FusyQsApplication {
@@ -31,12 +22,14 @@ public class FusyQsApplication {
     private UserService userService;
     private StudentService studentService;
     private LevelService levelService;
+    private QuestRepository questRepository;
+    private AchievementRepository achievementRepository;
 
     public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService,
                              AccountTypeService accountTypeService, GroupServiceImpl groupService,
                              StudentRepository studentRepository, GroupRepository groupRepository,
                              UserRepository userRepository, UserService userService,
-                             StudentService studentService, LevelService levelService) {
+                             StudentService studentService, LevelService levelService, QuestRepository questRepository, AchievementRepository achievementRepository) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -47,6 +40,8 @@ public class FusyQsApplication {
         this.userService = userService;
         this.studentService = studentService;
         this.levelService = levelService;
+        this.questRepository = questRepository;
+        this.achievementRepository = achievementRepository;
     }
 
     public static void main(String[] args) {
@@ -58,71 +53,27 @@ public class FusyQsApplication {
         return (args) -> {
 
 
-//
-            GroupClass java = groupService.findGroupById(1L);
+            Student kch = studentService.findStudentById(1L);
 
-            GroupClass csharp = groupService.findGroupById(2L);
-
-
-            Student student = new Student("B", "J", "bj@gmail.com", "1234", accountTypeService.findAccountTypeById(1L), 0, 0);
-            studentRepository.save(student);
+            Quest questNoOne = questRepository.findById(1L).orElse(null);
+            Quest questNoTwo = questRepository.findById(2L).orElse(null);
 
 
-            student.getGroups().add(java);
+            Achievement achievementOne = new Achievement();
+            Achievement achievementTwo = new Achievement();
+            Achievement achievementTree = new Achievement();
 
-            studentService.addStudent(student);
+            achievementOne.setQuest(questNoOne);
+            achievementTwo.setQuest(questNoTwo);
+            achievementTree.setQuest(questNoTwo);
 
-            java.getUsers().add(student);
+            achievementOne.setStudent(kch);
+            achievementTwo.setStudent(kch);
+            achievementTree.setStudent(kch);
 
-//            System.out.println(questTypeService.findQuestTypeById(1L).getQuestTypeName());
-
-            List<GroupClass> grups = student.getGroups();
-
-            for(GroupClass clasa: grups){
-                System.out.println(clasa.getGroupName());
-            }
-
-//            System.out.println(kch.getEmail());
-
-
-//            System.out.println(java.getUsers().size());
-//            System.out.println(bj.getGroups().size());
-
-
-//
-//            bj.getGroups().add(java);
-//            bj.getGroups().add(csharp);
-//
-//
-//            kch.getGroups().add(java);
-//            kch.getGroups().add(csharp);
-//
-////            przemo.getGroups().add(java);
-////            przemo.getGroups().add(csharp);
-//
-//            userRepository.save(bj); userRepository.save(kch);
-//
-//
-//            java.setUsers(Arrays.asList(bj, kch));
-//            csharp.setUsers(Arrays.asList(bj, kch));
-//
-//
-//
-//
-////            java.getUsers().add(bj);
-////
-////            java.getUsers().add(kch);
-////
-////            csharp.getUsers().add(bj);
-////            csharp.getUsers().add(kch);
-////
-////            java.getUsers().add(przemo);
-////            csharp.getUsers().add(przemo);
-//
-//
-//            groupService.addGroup(java);
-//            groupService.addGroup(csharp);
-
+            achievementRepository.save(achievementOne);
+            achievementRepository.save(achievementTwo);
+            achievementRepository.save(achievementTree);
 
         };
 
