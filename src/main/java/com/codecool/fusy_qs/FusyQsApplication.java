@@ -71,13 +71,9 @@ public class FusyQsApplication {
             Item itemNoTwo = itemService.getItemById(2L);
             Item itemNoTree = itemService.getItemById(3L);
 
-            Transaction transactionOne = new Transaction();
-            Transaction transactionTwo = new Transaction();
-            Transaction transactionTree = new Transaction();
-
-            transactionOne.setItem(itemNoOne);
-            transactionTwo.setItem(itemNoTwo);
-            transactionTree.setItem(itemNoTree);
+            Transaction transactionOne = new Transaction(itemNoOne);
+            Transaction transactionTwo = new Transaction(itemNoTwo);
+            Transaction transactionTree = new Transaction(itemNoTree);
 
             kch.getTransactionList().add(transactionOne);
             kch.getTransactionList().add(transactionTwo);

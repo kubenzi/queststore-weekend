@@ -9,21 +9,62 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String itemName;
+
+    private String itemDescription;
+
+    private Integer itemCost;
+
     @OneToOne
-    private Item item;
+    private ItemType itemType;
 
     public Request() {
     }
 
     public Request(Item item) {
-        this.item = item;
+        this.itemName = item.getItemName();
+        this.itemDescription = item.getItemDescription();
+        this.itemCost = item.getItemCost();
+        this.itemType = item.getItemType();
     }
 
-    public Item getItem() {
-        return item;
+    public Long getId() {
+        return id;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
+    public Integer getItemCost() {
+        return itemCost;
+    }
+
+    public void setItemCost(Integer itemCost) {
+        this.itemCost = itemCost;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 }
