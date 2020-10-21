@@ -13,4 +13,6 @@ public interface ItemService {
     List<Item> getAllGroupItems();
 
     void addItem(Item item);
+
+    Item getItemById(Long itemId);
 }

@@ -19,6 +19,11 @@ public class Student extends User {
     @OrderColumn
     private List<Achievement> achievementList;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @OrderColumn
+    private List<Transaction> transactionList;
+
+
     public Student() {
     }
 
@@ -50,5 +55,13 @@ public class Student extends User {
 
     public void setAchievementList(List<Achievement> achievementList) {
         this.achievementList = achievementList;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
     }
 }
