@@ -1,5 +1,6 @@
 package com.codecool.fusy_qs.service;
 
+import com.codecool.UserNotFoundException;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.UserRepository;
 import org.junit.Test;
@@ -7,12 +8,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 

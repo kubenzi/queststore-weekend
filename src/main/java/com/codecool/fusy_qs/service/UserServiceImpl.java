@@ -1,12 +1,11 @@
 package com.codecool.fusy_qs.service;
 
-import com.codecool.fusy_qs.entity.GroupClass;
+import com.codecool.UserNotFoundException;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.UserRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Optional;
 

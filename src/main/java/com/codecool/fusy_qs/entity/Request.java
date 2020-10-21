@@ -1,18 +1,21 @@
 package com.codecool.fusy_qs.entity;
 
-import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-@Embeddable
-public class Transaction {
+@Entity
+public class Request {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne
     private Item item;
 
-    public Transaction() {
+    public Request() {
     }
 
-    public Transaction(Item item) {
+    public Request(Item item) {
         this.item = item;
     }
 

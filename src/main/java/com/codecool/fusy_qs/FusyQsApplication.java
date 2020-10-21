@@ -2,6 +2,7 @@ package com.codecool.fusy_qs;
 
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.repository.*;
+import com.codecool.fusy_qs.repository.RequestDetailsReposiotry;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,8 @@ public class FusyQsApplication {
     private QuestRepository questRepository;
     private ItemRepository itemRepository;
     private ItemService itemService;
+    private RequestDetailsReposiotry requestDetailsReposiotry;
+    private RequestRepository requestRepository;
 
 
     public FusyQsApplication(QuestServiceImpl questService, QuestTypeService questTypeService,
@@ -32,7 +35,7 @@ public class FusyQsApplication {
                              StudentRepository studentRepository, GroupRepository groupRepository,
                              UserRepository userRepository, UserService userService,
                              StudentService studentService, LevelService levelService, QuestRepository questRepository,
-                             ItemRepository itemRepository, ItemService itemService) {
+                             ItemRepository itemRepository, ItemService itemService, RequestDetailsReposiotry requestDetailsReposiotry, RequestRepository requestRepository) {
         this.questService = questService;
         this.questTypeService = questTypeService;
         this.accountTypeService = accountTypeService;
@@ -46,7 +49,8 @@ public class FusyQsApplication {
         this.questRepository = questRepository;
         this.itemRepository = itemRepository;
         this.itemService = itemService;
-
+        this.requestDetailsReposiotry = requestDetailsReposiotry;
+        this.requestRepository = requestRepository;
     }
 
     public static void main(String[] args) {
@@ -94,6 +98,23 @@ public class FusyQsApplication {
 
 
             studentService.addStudent(kch);
+
+
+            kch.getTransactionList().add(new Transaction(itemRepository.findById(1L).orElse(null)));
+
+            Request req1 = new Request(itemRepository.findById(1L).orElse(null));
+            requestRepository.save(req1);
+
+
+            com.codecool.fusy_qs.entity.RequestDetails firstReq = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
+            com.codecool.fusy_qs.entity.RequestDetails firstReq2 = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
+            requestDetailsReposiotry.save(firstReq);
+            requestDetailsReposiotry.save(firstReq2);
+
+
+
+
+
 
         };
 

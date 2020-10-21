@@ -1,4 +1,4 @@
-package com.codecool.fusy_qs.service;
+package com.codecool;
 
 public class UserNotFoundException extends RuntimeException {
 
