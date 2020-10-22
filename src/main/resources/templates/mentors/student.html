@@ -1,97 +1,98 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Mentor_main_view </title>
+    <title>Mentor_main_view</title>
 
-    <meta name="keywords" content="mentor, codecool, quest, coolcoins" />
+    <meta name="keywords" content="mentor, student, codecool, quest, coolcoins" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link th:href="@{/student_template.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/student_template.css}" >
 
     <link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
+
 </head>
 
 <body>
 
-<div id="container">
+    <div id="container">
 
-    <div id="bar">
-
-
-        <div th:insert="fragments/mentor-fragments :: mainBar"></div>
+        <div id="bar">
 
 
-        <div th:insert="fragments/mentor-fragments :: lowMenu"></div>
-
-        <div style="clear:both;"></div>
+            <div th:insert="fragments/mentor-fragments :: mainBar"></div>
 
 
-    </div>
+            <div th:insert="fragments/mentor-fragments :: lowMenu"></div>
 
-    <div id="topbar">
-        <div id="topbarL">
-            <i class="icon-graduation-cap"></i>
-        </div>
+            <div style="clear:both;"></div>
 
-        <div id="topbarR">
-            <span class="bigtitle">Welcome to Your Profile Side Details  </span>
-            <div style="height: 15px;"></div>
-            Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
-            You can choose action. Enjoy our app!
-        </div>
-
-        <div style="clear:both;"></div>
-    </div>
-
-    <div id="main_content">
-
-        <div th:insert="fragments/mentor-fragments :: sidebar"></div>
-
-        <div id="content">
-
-            <span class="bigtitle">Student profile details</span>
-
-            <div class="dottedline"></div>
-
-            <div id="personalDetails">
-                <div id="firstname">
-                    Firstname: <span th:text="${student.firstName}"/>
-                </div>
-
-                <div id="surname">
-                    Surname: <span th:text="${student.lastName}"/>
-                </div>
-
-                <div id="mail">
-                    Mail: <span th:text="${student.email}"/>
-                </div>
-
-                <div id="class">
-                    Classes:
-                    <tr th:each="class: ${student.classes}">
-                        <td th:text="${student.name}" />
-                    </tr>
-                </div>
-
-                <div id="group">
-                    Groups:
-                    <tr th:each="group: ${student.groups}">
-                        <td th:text="${group.name}" />
-                    </tr>
-
-                </div>
 
         </div>
 
+        <div id="topbar">
+            <div id="topbarL">
+                <i class="icon-graduation-cap"></i>
+            </div>
+
+            <div id="topbarR">
+                <span class="bigtitle">Welcome to Your Profile Side Details  </span>
+                <div style="height: 15px;"></div>
+                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
+                You can choose action. Enjoy our app!
+            </div>
+
+            <div style="clear:both;"></div>
+        </div>
+
+        <div id="main_content">
+
+            <div th:insert="fragments/mentor-fragments :: sidebar"></div>
+
+            <div id="content">
+
+                <span class="bigtitle">Student profile details</span>
+
+                <div class="dottedline"></div>
+
+                <div id="personalDetails">
+                    <div id="firstname">
+                        Firstname: <span th:text="${student.firstName}"/>
+                    </div>
+
+                    <div id="surname">
+                        Surname: <span th:text="${student.lastName}"/>
+                    </div>
+
+                    <div id="mail">
+                        Mail: <span th:text="${student.email}"/>
+                    </div>
+
+                    <div id="class">
+                        Classes:
+                        <tr th:each="class: ${student.classes}">
+                            <td th:text="${student.name}" />
+                        </tr>
+                    </div>
+
+                    <div id="group">
+                        Groups:
+                        <tr th:each="group: ${student.groups}">
+                            <td th:text="${group.name}" />
+                        </tr>
+
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div th:insert="fragments/mentor-fragments :: footer"></div>
+
     </div>
-
-    <div th:insert="fragments/mentor-fragments :: footer"></div>
-
-</div>
 
 </body>
 </html>

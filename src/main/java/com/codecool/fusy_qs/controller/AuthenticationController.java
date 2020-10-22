@@ -63,7 +63,7 @@ public class AuthenticationController {
                 case "mentor":
                     User mentor = userService.findUserByEmail(maybeUser.get().getEmail());
                     session.setAttribute("mentor", mentor);
-                    response.sendRedirect(request.getContextPath() + "/profile");
+                    response.sendRedirect(request.getContextPath() + "/mentor/profile");
                     break;
             }
 

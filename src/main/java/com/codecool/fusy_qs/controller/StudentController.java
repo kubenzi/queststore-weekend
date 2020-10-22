@@ -49,7 +49,7 @@ public class StudentController {
         return "students/student";
     }
 
-    @GetMapping("/experience")
+    @GetMapping("/student/experience")
     String showTransaction(Model model) {
 
         List<Level> levelslist = levelService.getAllLevels();
@@ -60,13 +60,13 @@ public class StudentController {
     }
 
 
-    @GetMapping("/edit-level/{id}")
+    @GetMapping("/student/edit-level/{id}")
     String showUpdateForm(@PathVariable("id") Long levelId, Model model) {
 
         return "students/experience-update";
     }
 
-    @PostMapping("/update-level/{id}")
+    @PostMapping("/student/update-level/{id}")
     String updateLevel (@PathVariable("id") Integer levelId, Level level,  Model model) {
 
         levelService.saveLevel(level);

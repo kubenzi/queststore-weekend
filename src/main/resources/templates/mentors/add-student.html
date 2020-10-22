@@ -1,113 +1,114 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Mentor_main_view </title>
+    <title>Mentor_main_view</title>
 
-    <meta name="keywords" content="mentor, codecool, quest, coolcoins" />
+    <meta name="keywords" content="mentor, student, codecool, quest, coolcoins" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link th:href="@{/student_template.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/student_template.css}" >
 
     <link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
+
 </head>
 
 <body>
 
-<div id="container">
+    <div id="container">
 
-    <div id="bar">
-
-
-        <div th:insert="fragments/mentor-fragments :: mainBar"></div>
+        <div id="bar">
 
 
-        <div th:insert="fragments/mentor-fragments :: lowMenu"></div>
-
-        <div style="clear:both;"></div>
+            <div th:insert="fragments/mentor-fragments :: mainBar"></div>
 
 
-    </div>
+            <div th:insert="fragments/mentor-fragments :: lowMenu"></div>
 
-    <div id="topbar">
-        <div id="topbarL">
-            <i class="icon-user-secret"></i>
+            <div style="clear:both;"></div>
+
+
         </div>
 
-        <div id="topbarR">
-            <span class="bigtitle">Add Student Form  </span>
-            <div style="height: 15px;"></div>
-            Here you can add new Student to the Database and assign to the Group.
+        <div id="topbar">
+            <div id="topbarL">
+                <i class="icon-user-secret"></i>
+            </div>
+
+            <div id="topbarR">
+                <span class="bigtitle">Add Student Form  </span>
+                <div style="height: 15px;"></div>
+                Here you can add new Student to the Database and assign to the Group.
+            </div>
+
+            <div style="clear:both;"></div>
         </div>
 
-        <div style="clear:both;"></div>
-    </div>
+        <div id="main_content">
 
-    <div id="main_content">
+            <div th:insert="fragments/mentor-fragments :: sidebar"></div>
 
-        <div th:insert="fragments/mentor-fragments :: sidebar"></div>
+            <div id="content">
+                <br><br/>
 
-        <div id="content">
-            <br><br/>
+                <span class="bigtitle">Add new student</span>
 
-            <span class="bigtitle">Add new student</span>
+                <div class="dottedline"></div>
 
-            <div class="dottedline"></div>
+                <div id="editData">
 
-            <div id="editData">
+                    <span class="lowmenu">First name</span>
+                    <form id="add-student-form-mail">
 
-                <span class="lowmenu">First name</span>
-                <form id="add-student-form-mail">
+                        <input type="first-name" name="first-name" id="first-name-field" class="email-form-field" placeholder="First name"> </br>
 
-                    <input type="first-name" name="first-name" id="first-name-field" class="email-form-field" placeholder="First name"> </br>
+                    </form>
 
-                </form>
+                    <span class="lowmenu">Last name</span>
+                    <form id="add-student-form-mail">
 
-                <span class="lowmenu">Last name</span>
-                <form id="add-student-form-mail">
+                        <input type="last-name" name="last-name" id="last-name-field" class="email-form-field" placeholder="First name"> </br>
 
-                    <input type="last-name" name="last-name" id="last-name-field" class="email-form-field" placeholder="First name"> </br>
+                    </form>
 
-                </form>
+                    <span class="lowmenu">E-mail</span>
+                    <form id="add-student-form-mail">
 
-                <span class="lowmenu">E-mail</span>
-                <form id="add-student-form-mail">
+                        <input type="email" name="email" id="email-field" class="email-form-field" placeholder="E-mail"> </br>
 
-                    <input type="email" name="email" id="email-field" class="email-form-field" placeholder="E-mail"> </br>
+                    </form>
 
-                </form>
+                    <span class="lowmenu">Password</span>
+                    <form id="add-student-form-password">
 
-                <span class="lowmenu">Password</span>
-                <form id="add-student-form-password">
+                        <input type="password" name="password" id="password-field" class="password-form-field" placeholder="Password">
+                        <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat password" style="text-align: left;"></br>
 
-                    <input type="password" name="password" id="password-field" class="password-form-field" placeholder="Password">
-                    <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat password" style="text-align: left;"></br>
+                    </form>
 
-                </form>
+                    <span class="lowmenu">Group</span>
+                    <form id="group">
 
-                <span class="lowmenu">Group</span>
-                <form id="group">
+                        <input type="group" name="group" id="group-field" class="email-form-field" placeholder="Group"> </br>
 
-                    <input type="group" name="group" id="group-field" class="email-form-field" placeholder="Group"> </br>
+                    </form>
 
-                </form>
+                    </br></br>
 
-                </br></br>
+                    <input type="submit" value="Submit" id="password-form-submit">
 
-                <input type="submit" value="Submit" id="password-form-submit">
+                </div>
 
             </div>
 
         </div>
 
+        <div th:insert="fragments/mentor-fragments :: footer"></div>
+
     </div>
-
-    <div th:insert="fragments/mentor-fragments :: footer"></div>
-
-</div>
 
 </body>
 </html>

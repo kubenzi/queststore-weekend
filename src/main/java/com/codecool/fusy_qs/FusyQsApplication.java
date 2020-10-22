@@ -62,60 +62,60 @@ public class FusyQsApplication {
         return (args) -> {
 
 
-            Student kch = studentService.findStudentById(1L);
-
-//            Quest questNoOne = questRepository.findById(1L).orElse(null);
-//            Quest questNoTwo = questRepository.findById(2L).orElse(null);
+//            Student kch = studentService.findStudentById(1L);
 //
-//            Item itemNoOne = itemService.getItemById(1L);
-//            Item itemNoTwo = itemService.getItemById(2L);
-//            Item itemNoTree = itemService.getItemById(3L);
+////            Quest questNoOne = questRepository.findById(1L).orElse(null);
+////            Quest questNoTwo = questRepository.findById(2L).orElse(null);
+////
+////            Item itemNoOne = itemService.getItemById(1L);
+////            Item itemNoTwo = itemService.getItemById(2L);
+////            Item itemNoTree = itemService.getItemById(3L);
+////
+////            Transaction transactionOne = new Transaction(itemNoOne);
+////            Transaction transactionTwo = new Transaction(itemNoTwo);
+////            Transaction transactionTree = new Transaction(itemNoTree);
+////
+////            kch.getTransactionList().add(transactionOne);
+////            kch.getTransactionList().add(transactionTwo);
+////            kch.getTransactionList().add(transactionTree);
+////
+////
+////            Achievement achievementOne = new Achievement(questRepository.findById(1L).orElse(null));
+////            Achievement achievementTwo = new Achievement(questRepository.findById(1L).orElse(null));
+////            Achievement achievementTree = new Achievement(questRepository.findById(1L).orElse(null));
+////
+//////            achievementOne.setQuest(questNoOne);
+//////            achievementTwo.setQuest(questNoTwo);
+//////            achievementTree.setQuest(questNoTwo);
+////
+////            kch.getAchievementList().add(achievementOne);
+////            kch.getAchievementList().add(achievementTwo);
+////            kch.getAchievementList().add(achievementTree);
+////
+////
+////            studentService.addStudent(kch);
+////
+////
+////            kch.getTransactionList().add(new Transaction(itemRepository.findById(1L).orElse(null)));
+////
+////            Request req1 = new Request(itemRepository.findById(1L).orElse(null));
+////            requestRepository.save(req1);
+////
+////
+////            com.codecool.fusy_qs.entity.RequestDetails firstReq = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
+////            com.codecool.fusy_qs.entity.RequestDetails firstReq2 = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
+////            requestDetailsReposiotry.save(firstReq);
+////            requestDetailsReposiotry.save(firstReq2);
 //
-//            Transaction transactionOne = new Transaction(itemNoOne);
-//            Transaction transactionTwo = new Transaction(itemNoTwo);
-//            Transaction transactionTree = new Transaction(itemNoTree);
 //
-//            kch.getTransactionList().add(transactionOne);
-//            kch.getTransactionList().add(transactionTwo);
-//            kch.getTransactionList().add(transactionTree);
+//            for(Achievement achi : kch.getAchievementList()){
+//                System.out.println(achi.getQuestDescription());
+//            }
 //
-//
-//            Achievement achievementOne = new Achievement(questRepository.findById(1L).orElse(null));
-//            Achievement achievementTwo = new Achievement(questRepository.findById(1L).orElse(null));
-//            Achievement achievementTree = new Achievement(questRepository.findById(1L).orElse(null));
-//
-////            achievementOne.setQuest(questNoOne);
-////            achievementTwo.setQuest(questNoTwo);
-////            achievementTree.setQuest(questNoTwo);
-//
-//            kch.getAchievementList().add(achievementOne);
-//            kch.getAchievementList().add(achievementTwo);
-//            kch.getAchievementList().add(achievementTree);
-//
-//
-//            studentService.addStudent(kch);
-//
-//
-//            kch.getTransactionList().add(new Transaction(itemRepository.findById(1L).orElse(null)));
-//
-//            Request req1 = new Request(itemRepository.findById(1L).orElse(null));
-//            requestRepository.save(req1);
-//
-//
-//            com.codecool.fusy_qs.entity.RequestDetails firstReq = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
-//            com.codecool.fusy_qs.entity.RequestDetails firstReq2 = new com.codecool.fusy_qs.entity.RequestDetails(req1, kch, 10);
-//            requestDetailsReposiotry.save(firstReq);
-//            requestDetailsReposiotry.save(firstReq2);
-
-
-            for(Achievement achi : kch.getAchievementList()){
-                System.out.println(achi.getQuestDescription());
-            }
-
-            for(Transaction trans : kch.getTransactionList()){
-                System.out.println(trans.getItemDescription());
-                System.out.println(trans.isUsed());
-            }
+//            for(Transaction trans : kch.getTransactionList()){
+//                System.out.println(trans.getItemDescription());
+//                System.out.println(trans.isUsed());
+//            }
 
 
         };

@@ -2,6 +2,7 @@ package com.codecool.fusy_qs.service;
 
 import com.codecool.UserNotFoundException;
 import com.codecool.fusy_qs.entity.User;
+import com.codecool.fusy_qs.repository.GroupRepository;
 import com.codecool.fusy_qs.repository.UserRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,11 @@ public class UserServiceImpl implements UserService {
     } catch (EmptyResultDataAccessException e) {
         throw new UserNotFoundException(Id);
     }
+    }
 
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
 

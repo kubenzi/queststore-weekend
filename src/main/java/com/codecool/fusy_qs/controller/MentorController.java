@@ -12,9 +12,41 @@ public class MentorController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/mentor/profile")
     String showMentorProfile(){
 
         return "mentors/profile";
     }
+
+    @GetMapping("/mentor/addstudent")
+    String showAddStudent(){
+
+        return "mentors/add-student";
+    }
+
+    @GetMapping("/mentor/groups")
+    String showAllGroups(){
+
+        return "mentors/groups";
+    }
+
+    @GetMapping("/mentor/quests")
+    String showAllQuests(){
+
+        return "mentors/quests";
+    }
+
+    @GetMapping("/mentor/shop/group")
+    String showGroupShop(){
+
+        return "mentors/shop-group";
+    }
+
+    @GetMapping("/mentor/shop/individual")
+    String showIndividualShop(){
+
+        return "mentors/shop-individual";
+    }
+
+
 }
