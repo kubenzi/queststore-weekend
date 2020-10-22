@@ -71,7 +71,7 @@ public class StudentController {
 
         levelService.saveLevel(level);
 
-        return "redirect:/experience";
+        return "redirect:/student/experience";
     }
 
     @GetMapping("/login")
