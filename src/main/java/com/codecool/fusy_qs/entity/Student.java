@@ -17,11 +17,11 @@ public class Student extends User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @OrderColumn
-    private List<Achievement> achievementList;
+    private List<Achievement> achievementList = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
     @OrderColumn
-    private List<Transaction> transactionList;
+    private List<Transaction> transactionList = new ArrayList<>();
 
 
     public Student() {

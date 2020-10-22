@@ -15,15 +15,24 @@ public class Transaction {
     @OneToOne
     private ItemType itemType;
 
+    private boolean isUsed;
+
     public Transaction() {
     }
 
-    public Transaction(Item item) {
-        this.itemName = item.getItemName();
-        this.itemDescription = item.getItemDescription();
-        this.itemCost = item.getItemCost();
-        this.itemType = item.getItemType();
+    public Transaction(String itemName, String itemDescription, Integer itemCost, ItemType itemType, boolean isUsed) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.itemCost = itemCost;
+        this.itemType = itemType;
+        this.isUsed = isUsed;
     }
+
+    private boolean itemTypeValidator(Item item){
+        return item.getItemType().getItemTypeName().equals("group");
+    }
+
+
 
     public String getItemName() {
         return itemName;
@@ -55,5 +64,13 @@ public class Transaction {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
     }
 }

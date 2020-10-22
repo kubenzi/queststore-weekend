@@ -6,17 +6,42 @@ import javax.persistence.*;
 public class Achievement {
 
     @OneToOne
-    private Quest quest;
+    private QuestType questType;
+
+    private String questDescription;
+
+    private int questValue;
 
     public Achievement() {
     }
 
-    public Quest getQuest() {
-        return quest;
+    public Achievement(Quest quest) {
+        this.questType = quest.getQuestType();
+        this.questDescription = quest.getQuestDescription();
+        this.questValue = quest.getQuestValue();
     }
 
-    public void setQuest(Quest quest) {
-        this.quest = quest;
+    public QuestType getQuestType() {
+        return questType;
     }
 
+    public void setQuestType(QuestType questType) {
+        this.questType = questType;
+    }
+
+    public String getQuestDescription() {
+        return questDescription;
+    }
+
+    public void setQuestDescription(String questDescription) {
+        this.questDescription = questDescription;
+    }
+
+    public int getQuestValue() {
+        return questValue;
+    }
+
+    public void setQuestValue(int questValue) {
+        this.questValue = questValue;
+    }
 }
