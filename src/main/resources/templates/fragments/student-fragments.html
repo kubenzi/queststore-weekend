@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta charset="utf-8" />
 	<title>Student_main_view </title>
@@ -9,7 +9,7 @@
 
 	<script type="text/javascript" th:src="@{/time.js}"></script>
 <!--	<link th:href="@{/student_template.css}" rel="stylesheet" />-->
-	
+
 	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 	
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -85,6 +85,7 @@
             </div>
 			<div style="clear:both;"></div>
 		</div>
+
 		<div id="main_content">
 		<div th:fragment="sidebar" id="sidebar">
 
@@ -92,7 +93,6 @@
 
 			<div class="optionL"><a th:href="@{/group}"> Group </a></div>
 
-<!--			<div class="optionL"><a th:href="@{/class}"> Class </a></div>-->
 			<div class="optionL"><a th:href="@{/achievements}"> Achievements </a></div>
 
 			<ul>
@@ -109,7 +109,7 @@
 
             <div class="optionL"><a th:href="@{/transactions}"> Transactions </a></div>
 			<div class="optionL"><a th:href="@{/quests}"> Quests </a></div>
-			<div class="optionL" title="level of experience" ><a th:href="@{/experience}"> L.O.E</a></div>
+			<div class="optionL" title="level of experience" ><a th:href="@{student/experience}"> L.O.E</a></div>
 
 		</div>
 		
@@ -120,7 +120,7 @@
 			
 			Content
 			
-			</div>
+		</div>
 		</div>
 		<div th:fragment="footer" id="footer">
 			To contact responsible person sent mail to queststore@gmail.com  QUESTSTORE form 2020r. &copy; 

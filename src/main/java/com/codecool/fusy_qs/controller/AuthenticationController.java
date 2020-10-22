@@ -52,10 +52,6 @@ public class AuthenticationController {
             switch (accountType) {
                 case "student":
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
-//                    for(GroupClass grupa : student.getGroups()){
-//                        ;
-//                    }
-
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
                     response.sendRedirect(request.getContextPath() + "/student");
@@ -63,7 +59,7 @@ public class AuthenticationController {
                 case "mentor":
                     User mentor = userService.findUserByEmail(maybeUser.get().getEmail());
                     session.setAttribute("mentor", mentor);
-                    response.sendRedirect(request.getContextPath() + "/profile");
+                    response.sendRedirect(request.getContextPath() + "/mentor/profile");
                     break;
             }
 
