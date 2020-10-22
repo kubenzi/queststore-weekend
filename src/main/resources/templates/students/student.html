@@ -9,6 +9,8 @@
 
 	<link th:href="@{/student_template.css}" rel="stylesheet" />
 
+	<script type="text/javascript" th:src="@{/time.js}"></script>
+
 	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -85,6 +87,20 @@
 					<div id="group">
 <!--						Group: <span th:text="${group.groupName}"/>-->
 					</div>
+
+					<div id="demo">1</div>
+					<div th:onload="myTest()" id="demo">2</div>
+					<div id="actualtime">3</div>
+					<div th:onload="getDate()" id="actualtime">4</div>
+
+					<script th:inline="javascript">
+						
+						function myTest() {
+							document.getElementById("demo").innerText = "Hello World";
+						}
+
+					</script>
+
 				</div>
 				<br><br/>
 

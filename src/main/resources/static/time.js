@@ -10,11 +10,11 @@ function getDate()
     let minutes = today.getMinutes();
     let seconds = today.getSeconds();
 
-    document.getElementById('actualtime').innerHTML = day+"/"+month+"/"+year+"|"+hours+"/"+minutes+"/"+seconds;
+    document.getElementById('actualtime').innerText = day+"/"+month+"/"+year+"|"+hours+"/"+minutes+"/"+seconds;
 
     setTimeout("getDate()",1000);
 }
 
 function myTest() {
-    document.getElementById("demo").innerHTML = "Hello World";
+    document.getElementById("demo").innerText = "Hello World";
 }

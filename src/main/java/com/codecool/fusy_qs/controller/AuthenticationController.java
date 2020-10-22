@@ -74,7 +74,7 @@ public class AuthenticationController {
 
     @GetMapping("/logout")
     public void processLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
         if (session != null) {
             session.invalidate();
         }
