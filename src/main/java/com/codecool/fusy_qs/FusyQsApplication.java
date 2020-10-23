@@ -16,8 +16,6 @@ public class FusyQsApplication {
     public CommandLineRunner runner() {
         return (args) -> {
 
-
         };
-
     }
 }

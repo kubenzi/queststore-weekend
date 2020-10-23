@@ -32,8 +32,6 @@ public class Transaction {
         return item.getItemType().getItemTypeName().equals("group");
     }
 
-
-
     public String getItemName() {
         return itemName;
     }

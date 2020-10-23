@@ -1,6 +1,8 @@
 package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Request {
@@ -10,22 +12,28 @@ public class Request {
     private Long id;
 
     private String itemName;
-
     private String itemDescription;
-
     private Integer itemCost;
+
+    @OneToOne
+    private GroupClass group;
 
     @OneToOne
     private ItemType itemType;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @OrderColumn
+    private List<RequestDetail> requestDetails = new ArrayList<>();
+
     public Request() {
     }
 
-    public Request(Item item) {
+    public Request(Item item, Student student) {
         this.itemName = item.getItemName();
         this.itemDescription = item.getItemDescription();
         this.itemCost = item.getItemCost();
         this.itemType = item.getItemType();
+        this.group = student.getGroups().get(0);
     }
 
     public Long getId() {
@@ -66,5 +74,21 @@ public class Request {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public GroupClass getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupClass group) {
+        this.group = group;
+    }
+
+    public List<RequestDetail> getRequestDetails() {
+        return requestDetails;
+    }
+
+    public void setRequestDetails(List<RequestDetail> requestDetails) {
+        this.requestDetails = requestDetails;
     }
 }
