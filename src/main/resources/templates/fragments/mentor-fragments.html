@@ -2,14 +2,14 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Mentor_main_view</title>
+    <title>Student_main_view</title>
 
     <meta name="keywords" content="mentor, student, codecool, quest, coolcoins" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <!--    <link rel="stylesheet" th:href="@{/student_template.css}" />-->
 
-    <link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
+    <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -41,7 +41,12 @@
                     <div class="option"> <span th:text="${session.mentor.lastName}"/> </div>
                 </div>
                 <div class="lowMenu3">
-                    <div class="option">  Groups: <!--<span th:text="${session.mentor.groups.countGroups}"/>--></div>
+                    <div class="option">  Groups:
+                        <tr th:each="group : ${session.mentor.groups}">
+                        <span th:text="${group.groupName}"></span>
+                        </tr>
+                    </div>
+
                 </div>
                 <div class="lowMenu4">
     <!--                <div class="option"><i class="icon-logout"></i> <a href="#" th:href="@{/logout}"></a> </div>-->
@@ -54,18 +59,18 @@
 
         </div>
 
-        <div id="topbar">
-            <div id="topbarL">
-                <i class="icon-graduation-cap"></i>
-            </div>
-            <div id="topbarR">
-                <span class="bigtitle">Welcome to Your Profile Side Details  </span>
-                <div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
-                You can choose action. Enjoy our app!
-            </div>
-            <div style="clear:both;"></div>
-        </div>
+<!--        <div id="topbar">-->
+<!--            <div id="topbarL">-->
+<!--                <i class="icon-graduation-cap"></i>-->
+<!--            </div>-->
+<!--            <div id="topbarR">-->
+<!--                <span class="bigtitle">Welcome to Your Profile Side Details  </span>-->
+<!--                <div style="height: 15px;"></div>-->
+<!--                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.-->
+<!--                You can choose action. Enjoy our app!-->
+<!--            </div>-->
+<!--            <div style="clear:both;"></div>-->
+<!--        </div>-->
 
 
         <div id="main_content">
@@ -83,12 +88,14 @@
                         <div class="optionL">Shop</div>
                     </label>
                     <ul>
-                        <li><a th:href="@{/shop-individual}"> Individual </a></li>
-                        <li><a th:href="@{/shop-group}"> Group </a></li>
+                        <li><a th:href="@{/mentor/shop/individual}"> Individual </a></li>
+                        <li><a th:href="@{/mentor/shop/group}"> Group </a></li>
                     </ul>
             </ul>
 
-            <div class="optionL"><a th:href="@{/quests}"> Quests </a></div>
+            <div class="optionL"><a th:href="@{/mentor/quests}"> Quests </a></div>
+
+            <div class="optionL"><a th:href="@{/mentor/student}"> Students </a></div>
 
             <div class="optionL"><a th:href="@{/mentor/addstudent}"> Add Student</a></div>
 
