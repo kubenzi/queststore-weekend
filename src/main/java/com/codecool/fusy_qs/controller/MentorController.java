@@ -48,5 +48,12 @@ public class MentorController {
         return "mentors/shop-individual";
     }
 
+    @GetMapping("/mentor/student")
+    String showStudentProfile(){
+
+        return "mentors/student";
+    }
+
+
 
 }

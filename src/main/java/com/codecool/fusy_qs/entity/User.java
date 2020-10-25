@@ -37,7 +37,6 @@ public class User {
 
     private List<GroupClass> groups = new ArrayList<>();
 
-
     public User() {
     }
 

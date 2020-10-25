@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" th:href="@{/student_template.css}" >
 
-    <link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
+    <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -35,7 +35,7 @@
 
         <div id="topbar">
             <div id="topbarL">
-                <i class="icon-graduation-cap"></i>
+                <i class="icon-user-secret"></i>
             </div>
 
             <div id="topbarR">
@@ -58,31 +58,44 @@
 
                 <div class="dottedline"></div>
 
+                <select>
+                    <tr th:each="group : ${session.mentor.groups}">
+                    <optgroup th:label="${group.groupName}"/>
+                        <option>Student 1</option>
+                        <option>Student 2</option>
+                        <option>Student 3</option>
+                    </optgroup>
+                    </tr>
+                </select>
+
                 <div id="personalDetails">
                     <div id="firstname">
-                        Firstname: <span th:text="${student.firstName}"/>
+                        Firstname:
+<!--                         <span th:text="${student.firstName}"/>-->
                     </div>
 
                     <div id="surname">
-                        Surname: <span th:text="${student.lastName}"/>
+                        Surname:
+<!--                        <span th:text="${student.lastName}"/>-->
                     </div>
 
                     <div id="mail">
-                        Mail: <span th:text="${student.email}"/>
+                        Mail:
+<!--                         <span th:text="${student.email}"/>-->
                     </div>
 
                     <div id="class">
                         Classes:
-                        <tr th:each="class: ${student.classes}">
-                            <td th:text="${student.name}" />
-                        </tr>
+<!--                        <tr th:each="class: ${student.classes}">-->
+<!--                            <td th:text="${student.name}" />-->
+<!--                        </tr>-->
                     </div>
 
                     <div id="group">
                         Groups:
-                        <tr th:each="group: ${student.groups}">
-                            <td th:text="${group.name}" />
-                        </tr>
+<!--                        <tr th:each="group: ${student.groups}">-->
+<!--                            <td th:text="${group.name}" />-->
+<!--                        </tr>-->
 
                     </div>
 
