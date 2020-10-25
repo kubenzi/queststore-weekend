@@ -62,7 +62,8 @@ public class StudentController {
 
     @GetMapping("/student/edit-level/{id}")
     String showUpdateForm(@PathVariable("id") Long levelId, Model model) {
-
+        Level level = levelService.getLevelById(levelId);
+        model.addAttribute(level);
         return "students/experience-update";
     }
 

@@ -61,23 +61,21 @@
 
 				<form action="#" th:action="@{/student/update-level/{id}(id=${level.levelId})}" th:object="${level}" method="post">
 
-<!--					<label for="name">Level </label>-->
-
 					<p>Level <span type="text" th:text="${level.levelId}"></span> </p>
 
 					<input type="hidden" th:value="${level.levelId}" id="levelId" name="levelId">
 
 					</br>
 					<label for="name">Level name </label>
-					<input type="text" th:field="*{level.levelName}" id="levelName" placeholder="Level name">
+					<input type="text" th:field="*{levelName}" id="levelName" placeholder="Level name">
 					</br>
 					</br>
 					<label for="name">CC Reauired </label>
-					<input type="text" th:field="*{level.coolcoinsRequired}" id="ccolcoinsRequired" placeholder="CC Required">
+					<input type="text" th:field="*{coolcoinsRequired}" id="ccolcoinsRequired" placeholder="CC Required">
 					</br>
 					</br>
 
-					<input type="hidden" th:field="*{level.iconName}" id="iconName" placeholder="iconName">
+					<input type="hidden" th:field="*{iconName}" id="iconName" placeholder="iconName">
 
 					<input type="submit" value="Update Level">
 				</form>
