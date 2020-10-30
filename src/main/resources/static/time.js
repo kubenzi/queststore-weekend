@@ -15,6 +15,4 @@ function getDate()
     setTimeout("getDate()",1000);
 }
 
-function myTest() {
-    document.getElementById("demo").innerText = "Hello World";
-}
+getDate();

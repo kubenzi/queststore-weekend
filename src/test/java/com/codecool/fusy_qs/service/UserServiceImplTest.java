@@ -11,7 +11,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -48,11 +50,31 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void should_match_user(){
+    public void should_match_valid_user(){
         // given:
+        User user = new User("Przemek", "123");
+        when(userService.getAllUsers()).thenReturn(createUsersSamples());
 
+        // when:
+        User userAfterValidation = userService.login(user).orElse(null);
 
+        // then:
+        assertNotNull(userAfterValidation);
     }
+
+    @Test
+    public void should_not_match_invalid_user(){
+        // given:
+        User user = new User("Przemek", "000");
+        when(userService.getAllUsers()).thenReturn(createUsersSamples());
+
+        // when:
+        User userAfterValidation = userService.login(user).orElse(null);
+
+        // then:
+        assertNull(userAfterValidation);
+    }
+
 
     private List<User> createUsersSamples() {
         return Arrays.asList(

@@ -50,7 +50,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/experience")
-    String showTransaction(Model model) {
+    String getLevels(Model model) {
 
         List<Level> levelslist = levelService.getAllLevels();
 
@@ -79,6 +79,16 @@ public class StudentController {
     String login() {
 
         return "loginForm";
+    }
+
+    @GetMapping("/student/group")
+    String getGroup(Model model) {
+
+        List<Level> levelslist = levelService.getAllLevels();
+
+        model.addAttribute("levelslist", levelslist);
+
+        return "students/group";
     }
 
 

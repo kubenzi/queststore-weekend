@@ -57,13 +57,13 @@
  
 .icon-cc:before { content: '\e800';} /* '' */
 .icon-star:before { content: '\e801'; } /* '' */
-.icon-wallet:before { content: '\e802'; font-size: 100px; margin-top: 35px;} /* '' */
+.icon-wallet:before { content: '\e802'; font-size: 100px; margin-top: 25px;} /* '' */
 .icon-logout:before { content: '\e803'; } /* '' */
 .icon-fighter-jet:before { content: '\f0fb'; } /* '' */
 .icon-rocket:before { content: '\f135'; } /* '' */
 .icon-space-shuttle:before { content: '\f197'; } /* '' */
-.icon-bank:before { content: '\f19c'; font-size: 100px; margin-top: 35px;} /* '' */
-.icon-graduation-cap:before { content: '\f19d'; font-size: 100px; margin-top: 35px;} /* '' */
+.icon-bank:before { content: '\f19c'; font-size: 100px; margin-top: 25px;} /* '' */
+.icon-graduation-cap:before { content: '\f19d'; font-size: 100px; margin-top: 25px;} /* '' */
 .icon-paper-plane:before { content: '\f1d8';} /* '' */
 .icon-paper-plane-empty:before { content: '\f1d9'; } /* '' */
-.icon-user-secret:before { content: '\f21b'; font-size: 100px; margin-top: 35px;} /* '' */
+.icon-user-secret:before { content: '\f21b'; font-size: 100px; margin-top: 25px;} /* '' */
