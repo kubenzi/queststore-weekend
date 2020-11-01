@@ -44,4 +44,9 @@ public class Achievement {
     public void setQuestValue(int questValue) {
         this.questValue = questValue;
     }
+
+    @Override
+    public String toString() {
+        return questType.getQuestTypeName() + " - " + questDescription + " - " + questValue;
+    }
 }

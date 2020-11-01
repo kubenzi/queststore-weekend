@@ -1,97 +1,88 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8" />
-	<title>Student_main_view </title>
-	
-	<meta name="keywords" content="student, codecool, quest, coolcoins" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title> Bought items </title>
 
-	<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
-	
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
 
-</head>
-
-<body>
-	
-	<div id="container">
-		
-		<div id="bar">
-
-			<div th:insert="fragments/student-fragments :: mainBar"></div>
-
-
-			<div th:insert="fragments/student-fragments :: lowMenu"></div>
-
-			<div style="clear:both;"></div>	
-
-
-
-		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-graduation-cap"></i>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/student-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/student-fragments :: lowMenu" ></div>
 			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
-            </div>
-			<div style="clear:both;"></div>
-		</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-graduation-cap"></i>
+				</div>
 
-		<div id="main_content">
-
-			<div th:insert="fragments/student-fragments :: sidebar"></div>
-
-
-		<div id="content">
-			<span class="bigtitle">All transactions</span>
-			<br>
-			<br>
-			<div class="content">Listed all individual, group and class transactions</div>
-			<div class="dottedline"></div>
-			<br>
-			<table id = "individual_items_table">
-				<tr>
-					<th>No.</th>
-					<th>Name</th>
-					<th>Type</th>
-					<th>Price</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>WORKSHOP</td>
-					<td>CLASS</td>
-					<td>1000 cc</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>BACKUP</td>
-					<td>GROUP</td>
-					<td>1000 cc</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>VIP</td>
-					<td>INDIVIDUAL</td>
-					<td>50 cc</td>
-				</tr>
-			</table>
-			<br/>
-			<br/>
-
+				<div id="topbarR" >
+					<span class="bigtitle"> Bought items </span>
+					<div style="height: 15px;"></div>
+					If you have purchased individual or group items, you will find a list of them here.
+					Group items are used at the time of purchase.
+					The use of individual items is possible by clicking on the 'USE' button.
+				</div>
 			</div>
+
+			<!--------------- MAIN CONTENT --------------->
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/student-fragments :: sidebar"></div>
+				</div>
+
+				<div id="content">
+					<span class="bigtitle"> INDIVIDUAL TRANSACTIONS LIST </span>
+					<div class="dottedline"></div> <br/>
+					<table id = "individual_transactions_table">
+						<tr>
+							<td class="tableTitle"> Name </td>
+							<td class="tableTitle"> Description </td>
+							<td class="tableTitle"> Price </td>
+							<td class="tableTitle"> Status </td>
+						</tr>
+
+						<tr th:each="item : ${individualTransactions}">
+							<td><span th:text="${item.itemName}"> </span></td>
+							<td><span th:text="${item.itemDescription}"> </span></td>
+							<td><span th:text="${item.itemCost}"> </span></td>
+							<td>  </td>
+						</tr>
+					</table>
+					<br/><br/>
+
+					<span class="bigtitle"> GROUP TRANSACTIONS LIST </span>
+					<div class="dottedline"></div> <br/>
+					<table id = "group_achievements_table">
+						<tr>
+							<td class="tableTitle"> Name </td>
+							<td class="tableTitle"> Description </td>
+							<td class="tableTitle"> Price </td>
+						</tr>
+
+						<tr th:each="item : ${groupTransactions}">
+							<td><span th:text="${item.itemName}"> </span></td>
+							<td><span th:text="${item.itemDescription}"> </span></td>
+							<td><span th:text="${item.itemCost}"> </span></td>
+						</tr>
+					</table>
+					<br/> <br/>
+				</div>
+			</div>
+
+			<!-- FOOTER -->
+			<div th:insert="fragments/student-fragments :: footer"></div>
 		</div>
-
-		<div th:insert="fragments/student-fragments :: footer"></div>
-
-	</div>
-	
-</body>
+	</body>
 </html>

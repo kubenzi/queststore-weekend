@@ -1,150 +1,81 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8" />
-	<title>Student_main_view </title>
-	
-	<meta name="keywords" content="student, codecool, quest, coolcoins" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title> Student's achievements</title>
 
-	<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
-	
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
-</head>
-
-<body>
-	
-	<div id="container">
-		
-		<div id="bar">
-
-			<div th:insert="fragments/student-fragments :: mainBar"></div>
-
-			<div th:insert="fragments/student-fragments :: lowMenu"></div>
-
-			<div style="clear:both;"></div>	
-
-
-		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-graduation-cap"></i>
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/student-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/student-fragments :: lowMenu" ></div>
 			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
-            </div>
-			<div style="clear:both;"></div>
-		</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-graduation-cap"></i>
+				</div>
 
-		<div id="main_content">
-
-			<div th:insert="fragments/student-fragments :: sidebar"></div>
-
-
-			<div id="content">
-
-				<span class="bigtitle">Individual transactions</span>
-
-				<div class="dottedline"></div>
-				<br/>
-				<table id = "individual_transactions_table">
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Coolcoins</th>
-						<th>Date</th>
-					</tr>
-					<tr>
-						<td>WORKSHOP</td>
-						<td>60 min workshop by a mentor of the chosen topic</td>
-						<td>1000 cc</td>
-						<td>10.12.20</td>
-					</tr>
-					<tr>
-						<td>WANT MORE</td>
-						<td>Extra material for the current topic</td>
-						<td>500 cc</td>
-						<td>19.08.20</td>
-					</tr>
-
-
-				</table>
-				<br/>
-				<br/>
-
-				<span class="bigtitle">Group transactions</span>
-
-				<div class="dottedline"></div>
-				<br/>
-				<table id = "group_transactions_table">
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Price</th>
-						<th>Group</th>
-						<th>Date</th>
-					</tr>
-					<tr>
-						<td>GROUP DELAY</td>
-						<td>extend SI week assignment deadline by one day</td>
-						<td>500 cc</td>
-						<td>Mars</td>
-						<td>12.08.20</td>
-					</tr>
-					<tr>
-						<td>WANT MORE</td>
-						<td>Extra material for the current topic</td>
-						<td>500 cc</td>
-						<td>Mars</td>
-						<td>12.08.20</td>
-					</tr>
-					<tr>
-						<td>WORKSHOP</td>
-						<td>60 min workshop by a mentor of the chosen topic</td>
-						<td>1000 cc</td>
-						<td>Mars</td>
-						<td>12.08.20</td>
-					</tr>
-
-				</table>
-				<br/>
-				<br/>
-
-				<span class="bigtitle">Class transactions</span>
-
-				<div class="dottedline"></div>
-				<br/>
-				<table id = "class_transactions_table">
-					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Price</th>
-						<th>Date</th>
-					</tr>
-					<tr>
-						<td>ACCELERATION</td>
-						<td>The whole course goes to an off-school program instead for a day</td>
-						<td>30000 cc</td>
-						<td>18.06.20</td>
-					</tr>
-
-				</table>
+				<div id="topbarR" >
+					<span class="bigtitle"> Achievements list </span>
+					<div style="height: 15px;"></div>
+					Here you can check your individual and group achievements. If something is missing, please inform your mentor.
+				</div>
 			</div>
 
+			<!--------------- MAIN CONTENT --------------->
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/student-fragments :: sidebar"></div>
+				</div>
+
+				<div id="content">
+					<span class="bigtitle"> Individual achievements list</span>
+					<div class="dottedline"></div> <br/>
+					<table id = "individual_achievements_table">
+						<tr>
+							<td class="tableTitle"> Quest description </td>
+							<td class="tableTitle"> Coolcoins earned </td>
+						</tr>
+
+						<tr th:each="achievement : ${individualAchievements}">
+							<td><span th:text="${achievement.questDescription}"> </span></td>
+							<td><span th:text="${achievement.questValue}"> </span></td>
+						</tr>
+					</table>
+					<h3> TOTAL VALUE: <span th:text="${totalIndividualValue}"> </span></h3>
+					<br/><br/>
+
+					<span class="bigtitle"> Group achievements list</span>
+					<div class="dottedline"></div> <br/>
+					<table id = "group_achievements_table">
+						<tr>
+							<td class="tableTitle">Quest description</td>
+							<td class="tableTitle">Coolcoins earned</td>
+						</tr>
+
+						<tr th:each="achievement : ${groupAchievements}">
+							<td><span th:text="${achievement.questDescription}"> </span></td>
+							<td><span th:text="${achievement.questValue}"> </span></td>
+						</tr>
+					</table>
+					<h3> TOTAL VALUE: <span th:text="${totalGroupValue}"> </span></h3>
+					<br/> <br/>
+				</div>
 			</div>
 
+			<!-- FOOTER -->
+			<div th:insert="fragments/student-fragments :: footer"></div>
 		</div>
-
-		<div th:insert="fragments/student-fragments :: footer"></div>
-
-	</div>
-	
-</body>
+	</body>
 </html>

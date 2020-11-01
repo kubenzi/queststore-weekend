@@ -289,13 +289,17 @@ a:active {
 }
 
 #main-content{
-
     background-color: lightgrey;
     /*height: 170px;*/
     padding: 10px;
     margin-top: 20px;
     margin-bottom: 25px;
     border-radius: 40px/25px;
+}
+
+.tableTitle{
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 
