@@ -5,6 +5,8 @@ import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
@@ -26,6 +28,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void addStudent(Student student) {
         studentRepository.save(student);
+    }
+
+    @Override
+    public List<Student> findAllStudents() {
+        return studentRepository.findAllStudents();
     }
 
 

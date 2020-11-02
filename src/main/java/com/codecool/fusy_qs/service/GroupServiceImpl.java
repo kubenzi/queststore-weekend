@@ -29,6 +29,12 @@ public class GroupServiceImpl implements GroupService {
         return groupRepository.findById(Id).orElse(null);
     }
 
+    @Override
+    public void saveGroup(GroupClass group) {
+        groupRepository.save(group);
+    }
+
+
 //    @Override
 //    public void addUser(GroupClass group, User user) {
 //        group.getUsers().add(user);

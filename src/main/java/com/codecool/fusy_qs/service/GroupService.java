@@ -7,6 +7,7 @@ public interface GroupService {
 
     void addGroup(GroupClass group);
     GroupClass findGroupById(Long Id);
+    void saveGroup(GroupClass group);
 //    void addUser(GroupClass group, User user);
 
 }

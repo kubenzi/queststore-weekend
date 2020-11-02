@@ -11,9 +11,9 @@ import java.util.Map;
 @Entity
 public class Student extends User {
 
-    private int wallet;
+    private Integer wallet;
 
-    private int totalCoinsEarned;
+    private Integer totalCoinsEarned;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @OrderColumn
@@ -27,25 +27,25 @@ public class Student extends User {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String password, AccountType accountType, int wallet, int totalCoinsEarned) {
+    public Student(String firstName, String lastName, String email, String password, AccountType accountType, Integer wallet, Integer totalCoinsEarned) {
         super(firstName, lastName, email, password, accountType);
         this.wallet = wallet;
         this.totalCoinsEarned = totalCoinsEarned;
     }
 
-    public int getWallet() {
+    public Integer getWallet() {
         return wallet;
     }
 
-    public void setWallet(int wallet) {
+    public void setWallet(Integer wallet) {
         this.wallet = wallet;
     }
 
-    public int getTotalCoinsEarned() {
+    public Integer getTotalCoinsEarned() {
         return totalCoinsEarned;
     }
 
-    public void setTotalCoinsEarned(int totalCoinsEarned) {
+    public void setTotalCoinsEarned(Integer totalCoinsEarned) {
         this.totalCoinsEarned = totalCoinsEarned;
     }
 

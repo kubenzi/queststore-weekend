@@ -58,4 +58,5 @@ public class GroupClass {
     public void setGroupClass(Class groupClass) {
         this.groupClass = groupClass;
     }
+
 }
