@@ -28,6 +28,13 @@ public class Transaction {
         this.isUsed = isUsed;
     }
 
+    public Transaction(String itemName, String itemDescription, Integer itemCost, boolean isUsed) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.itemCost = itemCost;
+        this.isUsed = isUsed;
+    }
+
     private boolean itemTypeValidator(Item item){
         return item.getItemType().getItemTypeName().equals("group");
     }

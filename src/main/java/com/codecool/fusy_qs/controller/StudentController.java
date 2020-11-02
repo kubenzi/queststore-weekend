@@ -1,10 +1,12 @@
 package com.codecool.fusy_qs.controller;
 
+import com.codecool.fusy_qs.dto.IndividualItemDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -127,6 +129,27 @@ public class StudentController {
         model.addAttribute("individualItems", individualItems);
 
         return "students/shop-individual";
+    }
+
+    @GetMapping("/student/shop-individual/{id}")
+    String showIndividualItemPage(@PathVariable("id") Long itemId, Model model) {
+        Item item = itemService.getItemById(itemId);
+        model.addAttribute(item);
+        model.addAttribute("boughtItem", new IndividualItemDto());
+        return "students/shop-individual-item";
+    }
+
+    @PostMapping("/student/shop-individual/{id}")
+    String buyIndividualItem(IndividualItemDto individualItemDto, HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        Student currentStudent = (Student) session.getAttribute("student");
+
+        Transaction newTransaction = new Transaction(individualItemDto.getName(), individualItemDto.getDescription(),
+                individualItemDto.getPrice(), false);
+
+        studentService.addNewIndividualTransaction(newTransaction, currentStudent);
+
+        return "redirect:students/shop-individual";
     }
 
     @GetMapping("/student/shop-group")

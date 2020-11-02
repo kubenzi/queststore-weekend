@@ -90,4 +90,20 @@ public class StudentServiceImpl implements StudentService {
         }
         return groupTransactions;
     }
+
+    @Override
+    public void addNewIndividualTransaction(Transaction newTransaction, Student currentStudent) {
+        newTransaction.setItemType(itemTypeService.findItemTypeById(1L));
+        currentStudent.getTransactionList().add(newTransaction);
+        studentRepository.save(currentStudent);
+    }
+
+    @Override
+    public void addNewGroupTransaction(Transaction newTransaction, List<Student> groupStudents) {
+        newTransaction.setItemType(itemTypeService.findItemTypeById(2L));
+        for (Student student : groupStudents) {
+            student.getTransactionList().add(newTransaction);
+            studentRepository.save(student);
+        }
+    }
 }

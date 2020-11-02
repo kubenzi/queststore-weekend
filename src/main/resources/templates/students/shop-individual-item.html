@@ -27,9 +27,10 @@
 				</div>
 
 				<div id="topbarR" >
-					<span class="bigtitle"> Shop - individual items </span>
+					<span class="bigtitle"> Item page </span>
 					<div style="height: 15px;"></div>
-					List of all individual items available in our store. To buy an item, click the button on its right.
+					If you want to purchase an individual item, you can do so here.
+					You can use a purchased individual item in the 'Transactions' tab.
 				</div>
 			</div>
 
@@ -41,24 +42,15 @@
 				</div>
 
 				<div id="content">
-					<span class="bigtitle"> INDIVIDUAL ITEMS </span>
-					<div class="dottedline"></div> <br/>
-					<table id = "individual_items_table">
-						<tr>
-							<td class="tableTitle"> Name </td>
-							<td class="tableTitle"> Description </td>
-							<td class="tableTitle"> Price </td>
-							<td class="tableTitle"> ItemId </td>
-						</tr>
-
-						<tr th:each="item : ${individualItems}">
-							<td><span th:text="${item.itemName}"> </span></td>
-							<td><span th:text="${item.itemDescription}"> </span></td>
-							<td><span th:text="${item.itemCost}"> </span></td>
-							<td><a th:href="@{/student/shop-individual/{id}(id=${item.itemId})}"> BUY! </a></td>
-						</tr>
-					</table>
-					<br/><br/>
+					<h2> NAME: <span type="text" th:text="${item.itemName}" th:field="*{name}"></span> </h2>
+					<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
+					<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
+					<form action="#"
+						  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
+						  th:object="${boughtItem}"
+						  method="post">
+						<input type="submit" value="BUY">
+					</form> <br/><br/>
 				</div>
 			</div>
 
