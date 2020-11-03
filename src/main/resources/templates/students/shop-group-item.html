@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
-	<title> Shop - group items </title>
+	<title> Shop - group item </title>
 
 	<meta name="keywords" content="student, codecool, quest, coolcoins" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,12 +27,11 @@
 		</div>
 
 		<div id="topbarR" >
-			<span class="bigtitle"> Shop - group items </span>
+			<span class="bigtitle"> Group item page </span>
 			<div style="height: 15px;"></div>
-			List of all group items available in our store. To buy an item, click the button on its right.
-			If you want to propose the purchase of a group item,
-			select the item from the list and then indicate the amount you want to spend on its purchase.
-			Other group members will be able to contribute to the purchase visible in the 'Group shopping' tab.
+			If you want to start a purchase, enter the amount you want to spend on it and confirm.
+			Information about the opened purchase process will be visible to your colleagues in the 'Group shopping' tab.
+			If you enter an amount equal to the price of the item, the item will be automatically purchased and used.
 		</div>
 	</div>
 
@@ -44,23 +43,16 @@
 		</div>
 
 		<div id="content">
-			<span class="bigtitle"> GROUP ITEMS </span>
-			<div class="dottedline"></div> <br/>
-			<table id = "group_items_table">
-				<tr>
-					<td class="tableTitle"> Name </td>
-					<td class="tableTitle"> Description </td>
-					<td class="tableTitle"> Price </td>
-				</tr>
-
-				<tr th:each="item : ${groupItems}">
-					<td><span th:text="${item.itemName}"> </span></td>
-					<td><span th:text="${item.itemDescription}"> </span></td>
-					<td><span th:text="${item.itemCost}"> </span></td>
-					<td><a th:href="@{/student/shop-group/{id}(id=${item.itemId})}"> DETAILS </a></td>
-				</tr>
-			</table>
-			<br/><br/>
+			<h2> NAME: <span type="text" th:text="${item.itemName}" th:field="*{name}"></span> </h2>
+			<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
+			<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
+			<form action="#"
+				  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
+				  th:object="${form}"
+				  method="post">
+				<input th:placeholder="coolcoins">
+				<input type="submit" value="SEND COOLCOINS">
+			</form> <br/><br/>
 		</div>
 	</div>
 

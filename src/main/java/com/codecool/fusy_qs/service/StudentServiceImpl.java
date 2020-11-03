@@ -106,4 +106,9 @@ public class StudentServiceImpl implements StudentService {
             studentRepository.save(student);
         }
     }
+
+    @Override
+    public boolean validateAccountBalance(Student currentStudent, int coolcoins) {
+        return currentStudent.getWallet() >= coolcoins;
+    }
 }

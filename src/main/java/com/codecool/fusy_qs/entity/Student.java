@@ -27,7 +27,13 @@ public class Student extends User {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String password, AccountType accountType, int wallet, int totalCoinsEarned) {
+    public Student(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   AccountType accountType,
+                   int wallet,
+                   int totalCoinsEarned) {
         super(firstName, lastName, email, password, accountType);
         this.wallet = wallet;
         this.totalCoinsEarned = totalCoinsEarned;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
-		<title> Shop - individual items </title>
+		<title> Shop - individual item </title>
 
 		<meta name="keywords" content="student, codecool, quest, coolcoins" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,7 +27,7 @@
 				</div>
 
 				<div id="topbarR" >
-					<span class="bigtitle"> Item page </span>
+					<span class="bigtitle"> Individual item page </span>
 					<div style="height: 15px;"></div>
 					If you want to purchase an individual item, you can do so here.
 					You can use a purchased individual item in the 'Transactions' tab.
@@ -47,7 +47,7 @@
 					<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
 					<form action="#"
 						  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
-						  th:object="${boughtItem}"
+						  th:object="${item}"
 						  method="post">
 						<input type="submit" value="BUY">
 					</form> <br/><br/>

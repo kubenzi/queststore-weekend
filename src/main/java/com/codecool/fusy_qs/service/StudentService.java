@@ -18,4 +18,5 @@ public interface StudentService {
     List<Transaction> findIndividualTransactions(Student student);
     void addNewIndividualTransaction(Transaction newTransaction, Student currentStudent);
     void addNewGroupTransaction(Transaction newTransaction, List<Student> groupStudents);
+    boolean validateAccountBalance(Student currentStudent, int coolcoins);
 }

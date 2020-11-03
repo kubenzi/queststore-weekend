@@ -62,7 +62,6 @@ public class AuthenticationController {
                     response.sendRedirect(request.getContextPath() + "/mentor/profile");
                     break;
             }
-
         } else {
             response.sendRedirect(request.getContextPath() + "/loginForm");
         }

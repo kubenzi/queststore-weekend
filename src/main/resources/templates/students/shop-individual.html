@@ -48,14 +48,13 @@
 							<td class="tableTitle"> Name </td>
 							<td class="tableTitle"> Description </td>
 							<td class="tableTitle"> Price </td>
-							<td class="tableTitle"> ItemId </td>
 						</tr>
 
 						<tr th:each="item : ${individualItems}">
 							<td><span th:text="${item.itemName}"> </span></td>
 							<td><span th:text="${item.itemDescription}"> </span></td>
 							<td><span th:text="${item.itemCost}"> </span></td>
-							<td><a th:href="@{/student/shop-individual/{id}(id=${item.itemId})}"> BUY! </a></td>
+							<td><a th:href="@{/student/shop-individual/{id}(id=${item.itemId})}"> DETAILS </a></td>
 						</tr>
 					</table>
 					<br/><br/>

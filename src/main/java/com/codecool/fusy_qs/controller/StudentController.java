@@ -1,6 +1,5 @@
 package com.codecool.fusy_qs.controller;
 
-import com.codecool.fusy_qs.dto.IndividualItemDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
@@ -134,22 +133,26 @@ public class StudentController {
     @GetMapping("/student/shop-individual/{id}")
     String showIndividualItemPage(@PathVariable("id") Long itemId, Model model) {
         Item item = itemService.getItemById(itemId);
-        model.addAttribute(item);
-        model.addAttribute("boughtItem", new IndividualItemDto());
+        model.addAttribute("item", item);
         return "students/shop-individual-item";
     }
 
     @PostMapping("/student/shop-individual/{id}")
-    String buyIndividualItem(IndividualItemDto individualItemDto, HttpServletRequest request) {
+    String buyIndividualItem(@PathVariable("id" ) Long itemId, HttpServletRequest request) {
+        Item boughtItem = itemService.getItemById(itemId);
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
 
-        Transaction newTransaction = new Transaction(individualItemDto.getName(), individualItemDto.getDescription(),
-                individualItemDto.getPrice(), false);
+        if (!studentService.validateAccountBalance(currentStudent, boughtItem.getItemCost()))
+            return "redirect:/student/shop-individual";
+
+        currentStudent.setWallet(currentStudent.getWallet() - boughtItem.getItemCost());
+        Transaction newTransaction = new Transaction(boughtItem.getItemName(), boughtItem.getItemDescription(),
+                boughtItem.getItemCost(), false);
 
         studentService.addNewIndividualTransaction(newTransaction, currentStudent);
 
-        return "redirect:students/shop-individual";
+        return "redirect:/student/shop-individual";
     }
 
     @GetMapping("/student/shop-group")
@@ -158,6 +161,13 @@ public class StudentController {
         model.addAttribute("groupItems", groupItems);
 
         return "students/shop-group";
+    }
+
+    @GetMapping("/student/shop-group/{id}")
+    String showGroupItemPage(@PathVariable("id") Long itemId, Model model) {
+        Item item = itemService.getItemById(itemId);
+        model.addAttribute("item", item);
+        return "students/shop-group-item";
     }
 
     @GetMapping("/student/shop-group-shopping")

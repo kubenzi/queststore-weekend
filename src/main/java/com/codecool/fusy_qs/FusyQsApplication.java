@@ -15,7 +15,6 @@ public class FusyQsApplication {
     @Bean
     public CommandLineRunner runner() {
         return (args) -> {
-
         };
     }
 }
