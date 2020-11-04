@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RequestService {
     List<Request> getCurrentGroupRequests(Long groupId);
+    void saveNewRequest(Request newRequest);
 }

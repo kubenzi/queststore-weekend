@@ -1,14 +1,14 @@
 package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Request {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name= "request_id_gen", initialValue = 10, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_id_gen")
     private Long id;
 
     private String itemName;
@@ -21,9 +21,9 @@ public class Request {
     @OneToOne
     private ItemType itemType;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<RequestDetail> requestDetails = new ArrayList<>();
+    @OneToMany
+    @JoinTable(name = "request_request_details", inverseJoinColumns = @JoinColumn(name = "request_detail_id"))
+    private List<RequestDetail> requestDetails;
 
     public Request() {
     }

@@ -2,8 +2,13 @@ package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
 
-@Embeddable
+@Entity
 public class Achievement {
+
+    @Id
+    @SequenceGenerator(name= "achievement_id_gen", initialValue = 20, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "achievement_id_gen")
+    private Long id;
 
     @OneToOne
     private QuestType questType;
@@ -12,13 +17,26 @@ public class Achievement {
 
     private int questValue;
 
+    @ManyToOne
+    private Student student;
+
     public Achievement() {
     }
 
-    public Achievement(Quest quest) {
+    public Achievement(Quest quest,
+                       Student student) {
         this.questType = quest.getQuestType();
         this.questDescription = quest.getQuestDescription();
         this.questValue = quest.getQuestValue();
+        this.student = student;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public QuestType getQuestType() {
@@ -43,6 +61,14 @@ public class Achievement {
 
     public void setQuestValue(int questValue) {
         this.questValue = questValue;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override

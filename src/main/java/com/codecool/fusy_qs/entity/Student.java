@@ -1,28 +1,20 @@
 package com.codecool.fusy_qs.entity;
 
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Student extends User {
-
     private int wallet;
-
     private int totalCoinsEarned;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<Achievement> achievementList = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "student_achievement_list", inverseJoinColumns = @JoinColumn(name = "achievement_id"))
+    private List<Achievement> achievementList;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<Transaction> transactionList = new ArrayList<>();
-
+    @OneToMany
+    @JoinTable(name = "student_transaction_details", inverseJoinColumns = @JoinColumn(name = "transaction_id"))
+    private List<Transaction> transactionList;
 
     public Student() {
     }

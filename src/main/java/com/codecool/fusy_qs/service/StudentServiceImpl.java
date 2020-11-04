@@ -14,13 +14,16 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
     QuestTypeService questTypeService;
     ItemTypeService itemTypeService;
+    TransactionService transactionService;
 
     public StudentServiceImpl(StudentRepository studentRepository,
                               QuestTypeService questTypeService,
-                              ItemTypeService itemTypeService) {
+                              ItemTypeService itemTypeService,
+                              TransactionService transactionService) {
         this.questTypeService = questTypeService;
         this.studentRepository = studentRepository;
         this.itemTypeService = itemTypeService;
+        this.transactionService = transactionService;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
     public List<Transaction> findIndividualTransactions(Student student) {
         List<Transaction> individualTransactions = new ArrayList<>();
 
-        List<Transaction> allTransactions = student.getTransactionList();
+        List<Transaction> allTransactions = transactionService.getAllTransactionsByStudentId(student.getUserId());
         for(Transaction transaction : allTransactions) {
             if (transaction != null && transaction.getItemType().equals(itemTypeService.findItemTypeById(1L))) {
                 individualTransactions.add(transaction);
@@ -82,29 +85,13 @@ public class StudentServiceImpl implements StudentService {
     public List<Transaction> findGroupTransactions(Student student) {
         List<Transaction> groupTransactions = new ArrayList<>();
 
-        List<Transaction> allTransactions = student.getTransactionList();
+        List<Transaction> allTransactions = transactionService.getAllTransactionsByStudentId(student.getUserId());
         for(Transaction transaction : allTransactions) {
             if (transaction != null && transaction.getItemType().equals(itemTypeService.findItemTypeById(2L))) {
                 groupTransactions.add(transaction);
             }
         }
         return groupTransactions;
-    }
-
-    @Override
-    public void addNewIndividualTransaction(Transaction newTransaction, Student currentStudent) {
-        newTransaction.setItemType(itemTypeService.findItemTypeById(1L));
-        currentStudent.getTransactionList().add(newTransaction);
-        studentRepository.save(currentStudent);
-    }
-
-    @Override
-    public void addNewGroupTransaction(Transaction newTransaction, List<Student> groupStudents) {
-        newTransaction.setItemType(itemTypeService.findItemTypeById(2L));
-        for (Student student : groupStudents) {
-            student.getTransactionList().add(newTransaction);
-            studentRepository.save(student);
-        }
     }
 
     @Override

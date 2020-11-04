@@ -1,13 +1,11 @@
 package com.codecool.fusy_qs.controller;
 
+import com.codecool.fusy_qs.dto.GroupPurchaseDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,19 +19,25 @@ public class StudentController {
     AchievementService achievementService;
     ItemService itemService;
     RequestService requestService;
+    RequestDetailService requestDetailService;
+    TransactionService transactionService;
 
     public StudentController(QuestService questService,
                              StudentService studentService,
                              LevelService levelService,
                              AchievementService achievementService,
                              ItemService itemService,
-                             RequestService requestService) {
+                             RequestService requestService,
+                             TransactionService transactionService,
+                             RequestDetailService requestDetailService) {
         this.questService = questService;
         this.studentService = studentService;
         this.levelService = levelService;
         this.achievementService = achievementService;
         this.itemService = itemService;
         this.requestService = requestService;
+        this.transactionService = transactionService;
+        this.requestDetailService = requestDetailService;
     }
 
     @GetMapping("/student/profile")
@@ -148,9 +152,9 @@ public class StudentController {
 
         currentStudent.setWallet(currentStudent.getWallet() - boughtItem.getItemCost());
         Transaction newTransaction = new Transaction(boughtItem.getItemName(), boughtItem.getItemDescription(),
-                boughtItem.getItemCost(), false);
+                boughtItem.getItemCost(), false, currentStudent);
 
-        studentService.addNewIndividualTransaction(newTransaction, currentStudent);
+        transactionService.saveNewIndividualTransaction(newTransaction);
 
         return "redirect:/student/shop-individual";
     }
@@ -166,8 +170,32 @@ public class StudentController {
     @GetMapping("/student/shop-group/{id}")
     String showGroupItemPage(@PathVariable("id") Long itemId, Model model) {
         Item item = itemService.getItemById(itemId);
+        GroupPurchaseDto coolcoinsSent = new GroupPurchaseDto();
         model.addAttribute("item", item);
+        model.addAttribute("coolcoinsSent", coolcoinsSent);
         return "students/shop-group-item";
+    }
+
+    @PostMapping("/student/shop-group/{id}")
+    String buyGroupItemPage(@PathVariable("id") Long itemId,
+                            @ModelAttribute("coolcoinsSent") GroupPurchaseDto coolcoinsSent,
+                            HttpServletRequest request) {
+        Item item = itemService.getItemById(itemId);
+        HttpSession session = request.getSession(true);
+        Student currentStudent = (Student) session.getAttribute("student");
+        int coolcoins = coolcoinsSent.getCoolcoins();
+
+        if (!studentService.validateAccountBalance(currentStudent, coolcoins))
+            return "redirect:/student/shop-individual";
+
+        currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
+
+        Request newRequest = new Request(item, currentStudent);
+        requestService.saveNewRequest(newRequest);
+        RequestDetail newRequestDetail = new RequestDetail(currentStudent, coolcoins, newRequest);
+        requestDetailService.saveRequestDetail(newRequestDetail);
+
+        return "redirect:/student/shop-group-shopping";
     }
 
     @GetMapping("/student/shop-group-shopping")

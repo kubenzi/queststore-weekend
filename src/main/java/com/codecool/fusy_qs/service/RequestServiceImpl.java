@@ -20,4 +20,9 @@ public class RequestServiceImpl implements RequestService {
     public List<Request> getCurrentGroupRequests(Long groupId) {
         return requestRepository.getRequestsByGroupId(groupId);
     }
+
+    @Override
+    public void saveNewRequest(Request newRequest) {
+        requestRepository.save(newRequest);
+    }
 }

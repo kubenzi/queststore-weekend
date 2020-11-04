@@ -48,11 +48,13 @@
 			<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
 			<form action="#"
 				  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
-				  th:object="${form}"
+				  th:object="${coolcoinsSent}"
 				  method="post">
-				<input th:placeholder="coolcoins">
-				<input type="submit" value="SEND COOLCOINS">
+
+				<input type="number" th:field="*{coolcoins}" required>
+				<input type="submit" value="SEND COOLCOINS"/>
 			</form> <br/><br/>
+			<a th:href="@{/student/shop-group}"> Back to group items list </a>
 		</div>
 	</div>
 
