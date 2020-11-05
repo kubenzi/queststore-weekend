@@ -13,53 +13,64 @@
 </head>
 
 <body>
-<div id="container">
-	<div id="bar">
-		<!--------------- MAIN BAR --------------->
-		<div th:insert="fragments/student-fragments :: mainBar" ></div>
-		<!--------------- LOW MENU --------------->
-		<div th:insert="fragments/student-fragments :: lowMenu" ></div>
+	<div id="container">
+		<div id="bar">
+			<!--------------- MAIN BAR --------------->
+			<div th:insert="fragments/student-fragments :: mainBar" ></div>
+			<!--------------- LOW MENU --------------->
+			<div th:insert="fragments/student-fragments :: lowMenu" ></div>
+		</div>
+		<!--------------- TOP BAR --------------->
+		<div id="topbar" class="flex-container">
+			<div id="topbarL" class="topbarL">
+				<i class="icon-graduation-cap"></i>
+			</div>
+
+			<div id="topbarR" >
+				<span class="bigtitle"> Group item page </span>
+				<div style="height: 15px;"></div>
+				If you want to start a purchase, enter the amount you want to spend on it and confirm.
+				Information about the opened purchase process will be visible to your colleagues in the 'Group shopping' tab.
+				If you enter an amount equal to the price of the item, the item will be automatically purchased and used.
+			</div>
+		</div>
+
+		<!--------------- MAIN CONTENT --------------->
+		<div id="main-content" class="flex-container">
+			<!--------------- SIDEBAR --------------->
+			<div class="sidebar-div">
+				<div th:insert="fragments/student-fragments :: sidebar"></div>
+			</div>
+
+			<div id="content">
+				<h2> NAME: <span type="text" th:text="${item.itemName}" th:field="*{name}"></span> </h2>
+				<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
+				<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
+
+<!--				<script>-->
+<!--					function setMaxInputValue() {-->
+<!--						let wallet = [[${session.student.wallet}]];-->
+<!--						let price = [[${item.itemCost}]];-->
+<!--						const lowerValue = Math.min(wallet, price);-->
+<!--						const lowerValueString = lowerValue.toString();-->
+
+<!--						document.getElementById("coolcoinsInput").setAttribute("name", lowerValueString);-->
+<!--					}-->
+<!--				</script>-->
+
+				<form action="post"
+					  th:action="@{/student/shop-group/{id}(id=${item.itemId})}"
+					  th:object="${coolcoinsSent}"
+					  method="post">
+					<input id="coolcoinsInput" type="number" step="10" min="10" th:max="${item.itemCost}" th:field="*{coolcoins}" required>
+					<input type="submit" value="SEND COOLCOINS"/>
+				</form> <br/><br/>
+				<a th:href="@{/student/shop-group}"> Back to group items list </a>
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div th:insert="fragments/student-fragments :: footer"></div>
 	</div>
-	<!--------------- TOP BAR --------------->
-	<div id="topbar" class="flex-container">
-		<div id="topbarL" class="topbarL">
-			<i class="icon-graduation-cap"></i>
-		</div>
-
-		<div id="topbarR" >
-			<span class="bigtitle"> Group item page </span>
-			<div style="height: 15px;"></div>
-			If you want to start a purchase, enter the amount you want to spend on it and confirm.
-			Information about the opened purchase process will be visible to your colleagues in the 'Group shopping' tab.
-			If you enter an amount equal to the price of the item, the item will be automatically purchased and used.
-		</div>
-	</div>
-
-	<!--------------- MAIN CONTENT --------------->
-	<div id="main-content" class="flex-container">
-		<!--------------- SIDEBAR --------------->
-		<div class="sidebar-div">
-			<div th:insert="fragments/student-fragments :: sidebar"></div>
-		</div>
-
-		<div id="content">
-			<h2> NAME: <span type="text" th:text="${item.itemName}" th:field="*{name}"></span> </h2>
-			<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
-			<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
-			<form action="#"
-				  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
-				  th:object="${coolcoinsSent}"
-				  method="post">
-
-				<input type="number" th:field="*{coolcoins}" required>
-				<input type="submit" value="SEND COOLCOINS"/>
-			</form> <br/><br/>
-			<a th:href="@{/student/shop-group}"> Back to group items list </a>
-		</div>
-	</div>
-
-	<!-- FOOTER -->
-	<div th:insert="fragments/student-fragments :: footer"></div>
-</div>
 </body>
 </html>

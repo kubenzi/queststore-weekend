@@ -16,5 +16,5 @@ public interface StudentService {
     List<Achievement> findIndividualAchievements(Student student);
     List<Transaction> findGroupTransactions(Student student);
     List<Transaction> findIndividualTransactions(Student student);
-    boolean validateAccountBalance(Student currentStudent, int coolcoins);
+    boolean checkAccountBalance(Student currentStudent, int coolcoins);
 }

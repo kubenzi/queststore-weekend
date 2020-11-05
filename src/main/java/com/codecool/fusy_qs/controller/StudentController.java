@@ -5,10 +5,14 @@ import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -147,7 +151,7 @@ public class StudentController {
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
 
-        if (!studentService.validateAccountBalance(currentStudent, boughtItem.getItemCost()))
+        if (!studentService.checkAccountBalance(currentStudent, boughtItem.getItemCost()))
             return "redirect:/student/shop-individual";
 
         currentStudent.setWallet(currentStudent.getWallet() - boughtItem.getItemCost());
@@ -185,15 +189,19 @@ public class StudentController {
         Student currentStudent = (Student) session.getAttribute("student");
         int coolcoins = coolcoinsSent.getCoolcoins();
 
-        if (!studentService.validateAccountBalance(currentStudent, coolcoins))
-            return "redirect:/student/shop-individual";
+        if (currentStudent.getWallet() < coolcoins) {
+            coolcoins = currentStudent.getWallet();
+        }
 
         currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
 
-        Request newRequest = new Request(item, currentStudent);
+        RequestDetail newDetail = new RequestDetail(currentStudent, coolcoins);
+        requestDetailService.saveRequestDetail(newDetail);
+        List<RequestDetail> details = Arrays.asList(newDetail);
+        Request newRequest = new Request(item, currentStudent, details);
         requestService.saveNewRequest(newRequest);
-        RequestDetail newRequestDetail = new RequestDetail(currentStudent, coolcoins, newRequest);
-        requestDetailService.saveRequestDetail(newRequestDetail);
+        newDetail.setRequest(newRequest);
+        requestDetailService.saveRequestDetail(newDetail);
 
         return "redirect:/student/shop-group-shopping";
     }
@@ -207,5 +215,14 @@ public class StudentController {
         model.addAttribute("groupRequests", groupRequests);
 
         return "students/shop-group-shopping";
+    }
+
+    @GetMapping("/student/shop-group-shopping-details/{id}")
+    String showGroupRequestDetails(@PathVariable("id") Long id,
+                                   Model model) {
+        Request request = requestService.findRequestById(id);
+        model.addAttribute("currentRequest", request);
+
+        return "students/shop-group-shopping-details";
     }
 }

@@ -12,7 +12,7 @@ public class Student extends User {
     @JoinTable(name = "student_achievement_list", inverseJoinColumns = @JoinColumn(name = "achievement_id"))
     private List<Achievement> achievementList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "student_transaction_details", inverseJoinColumns = @JoinColumn(name = "transaction_id"))
     private List<Transaction> transactionList;
 

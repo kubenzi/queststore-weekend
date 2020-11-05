@@ -28,12 +28,15 @@ public class Request {
     public Request() {
     }
 
-    public Request(Item item, Student student) {
+    public Request(Item item,
+                   Student student,
+                   List<RequestDetail> requestDetails) {
         this.itemName = item.getItemName();
         this.itemDescription = item.getItemDescription();
         this.itemCost = item.getItemCost();
         this.itemType = item.getItemType();
         this.group = student.getGroups().get(0);
+        this.requestDetails = requestDetails;
     }
 
     public Long getId() {

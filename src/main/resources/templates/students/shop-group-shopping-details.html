@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
-		<title> Group shopping </title>
+		<title> Group shopping details </title>
 
 		<meta name="keywords" content="student, codecool, quest, coolcoins" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,10 +27,10 @@
 				</div>
 
 				<div id="topbarR" >
-					<span class="bigtitle"> Group shopping </span>
+					<span class="bigtitle"> Group transaction details </span>
 					<div style="height: 15px;"></div>
-					In this tab you will find information about all currently open fundraisers.
-					If you click on the 'details' button, the page with the details of the selected transaction will be displayed.
+					Here you can contribute to the selected transaction
+					or withdraw your funds before the end of the fundraiser.
 				</div>
 			</div>
 
@@ -42,24 +42,24 @@
 				</div>
 
 				<div id="content">
-					<span class="bigtitle"> CURRENT REQUESTS </span>
-					<div class="dottedline"></div> <br/>
-					<table id = "group_items_table">
+					<h2> ITEM NAME: <span th:text="${currentRequest.itemName}"> </span></h2>
+					<p> DESCRIPTION: <span th:text="${currentRequest.itemDescription}"> </span></p>
+					<p>PRICE: <span th:text="${currentRequest.itemCost}"> </span> coolcoins </p>
+					<br>
+
+					<h3> DETAILS </h3>
+					<div class="dottedline"></div>
+					<table id = "request_details_table">
 						<tr>
-							<td class="tableTitle"> Name </td>
-							<td class="tableTitle"> Description </td>
-							<td class="tableTitle"> Price </td>
-<!--							<td class="tableTitle"> Your <br> contribution </td>-->
-<!--							<td class="tableTitle"> Start <br> fundraising </td>-->
+							<td class="tableTitle"> Student's name </td>
+							<td class="tableTitle"> Contribution </td>
+							<td class="tableTitle"> </td>
 						</tr>
 
-						<tr th:each="request : ${groupRequests}">
-							<td><span th:text="${request.itemName}"> </span></td>
-							<td><span th:text="${request.itemDescription}"> </span></td>
-							<td><span th:text="${request.itemCost}"> </span></td>
-							<td><a th:href="@{/student/shop-group-shopping-details/{id}(id=${request.id})}"> DETAILS </a></td>
-<!--							<td> </td>-->
-<!--							<td> </td>-->
+						<tr th:each="detail : ${currentRequest.requestDetails}">
+							<td><span th:text="${detail.student.firstName}"> </span></td>
+							<td><span th:text="${detail.coolcoins}"> </span></td>
+							<td><span> WITHDRAW </span></td>
 						</tr>
 					</table>
 					<br/><br/>

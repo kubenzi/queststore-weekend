@@ -22,11 +22,9 @@ public class RequestDetail {
     }
 
     public RequestDetail(Student student,
-                         Integer coolcoins,
-                         Request request) {
+                         Integer coolcoins) {
         this.student = student;
         this.coolcoins = coolcoins;
-        this.request = request;
     }
 
     public Student getStudent() {
