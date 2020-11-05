@@ -2,17 +2,17 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Student_main_view</title>
+    <title>Student_main_view </title>
 
-    <meta name="keywords" content="mentor, student, codecool, quest, coolcoins" />
+    <meta name="keywords" content="student, codecool, quest, coolcoins" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<!--    <link rel="stylesheet" th:href="@{/student_template.css}" />-->
+    <!--	<script type="text/javascript" th:src="@{/time.js}"></script>-->
+    <!--	<link th:href="@{/student_template.css}" rel="stylesheet" />-->
 
-    <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+    <link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
 
 </head>
 
@@ -21,65 +21,50 @@
     <div id="container">
 
         <div id="bar">
+            <!--------------MAIN BAR--------------->
+            <div th:fragment="mainBar" id="mainBar" class="flex-container">
 
-            <div th:fragment="mainBar" id="mainBar">
-                <div class="logoL">QUEST</div>
                 <div class="logoC">
-                    <i class="icon-rocket"></i>
+                    QUEST<i class="icon-rocket"></i>STORE
                 </div>
-                <div class="logoR">STORE</div>
-                <div style="clear:both;"></div>
+
             </div>
 
-            <div th:fragment="lowMenu" id="lowMenu">
-
-                <div class="lowMenu1">
-                    <div class="option"> <span th:text="${session.mentor.firstName}"/> </div>
+            <!--------------LOW BAR--------------->
+            <div th:fragment="lowMenu" id="lowMenu" class="flex-container">
+                <div class="option">
+                    <span th:text="${session.mentor.firstName}"/>
+                    <span th:text="${session.mentor.lastName}"/>
                 </div>
 
-                <div class="lowMenu2">
-                    <div class="option"> <span th:text="${session.mentor.lastName}"/> </div>
-                </div>
-                <div class="lowMenu3">
-                    <div class="option">  Groups:
-                        <tr th:each="group : ${session.mentor.groups}">
+                <div class="option">  Groups:
+                    <tr th:each="group : ${session.mentor.groups}">
                         <span th:text="${group.groupName}"></span>
-                        </tr>
-                    </div>
-
+                    </tr>
                 </div>
-                <div class="lowMenu4">
-    <!--                <div class="option"><i class="icon-logout"></i> <a href="#" th:href="@{/logout}"></a> </div>-->
-    <!--                <div class="option"><i class="icon-logout"> <a href="#" th:href="@{/logout}"></a></i> </div>-->
-                    <a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
+
+                <div id="icons">
+                    <div>
+                        <a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
+                    </div>
                 </div>
 
             </div>
-            <div style="clear:both;"></div>
-
         </div>
 
-<!--        <div id="topbar">-->
-<!--            <div id="topbarL">-->
-<!--                <i class="icon-graduation-cap"></i>-->
-<!--            </div>-->
-<!--            <div id="topbarR">-->
-<!--                <span class="bigtitle">Welcome to Your Profile Side Details  </span>-->
-<!--                <div style="height: 15px;"></div>-->
-<!--                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.-->
-<!--                You can choose action. Enjoy our app!-->
-<!--            </div>-->
-<!--            <div style="clear:both;"></div>-->
-<!--        </div>-->
+        <!--------------TOP BAR--------------->
+        <!--		DEFINED  IN MASTER HTML-->
 
+        <!--------------DIV MAIN CONTENT--------------->
+        <!--		DEFINED  IN MASTER HTML-->
 
-        <div id="main_content">
-
-        <div th:fragment="sidebar" id="sidebar">
+        <!-------------- SIDE BAR--------------->
+        <div th:fragment="sidebar" id="sidebar" class="sidebar">
 
             <div class="optionL"><a th:href="@{/mentor/profile}"> Your Profile </a></div>
-
-            <div class="optionL"><a th:href="@{/mentor/groups}"> Groups </a></div>
+            <div class="optionL"><a th:href="@{/mentor/group}"> Group </a></div>
+            <div class="optionL"><a th:href="@{/mentor/student}"> Students </a></div>
+            <div class="optionL"><a th:href="@{/mentor/add-student}"> New student </a></div>
 
             <ul>
                 <li>
@@ -88,30 +73,21 @@
                         <div class="optionL">Items</div>
                     </label>
                     <ul>
-                        <li><a th:href="@{/mentor/shop/individual}"> Individual </a></li>
-                        <li><a th:href="@{/mentor/shop/group}"> Group </a></li>
+                        <li><a th:href="@{/mentor/shop-individual}"> Individual items </a></li>
+                        <li><a th:href="@{/mentor/shop-group}"> Group items </a></li>
                     </ul>
             </ul>
 
+            <div class="optionL"><a th:href="@{/mentor/transactions}"> Transactions </a></div>
             <div class="optionL"><a th:href="@{/mentor/quests}"> Quests </a></div>
-
-            <div class="optionL"><a th:href="@{/mentor/experience}"> L.O.E </a></div>
-
-            <div class="optionL"><a th:href="@{/mentor/student}"> Students </a></div>
-
-            <div class="optionL"><a th:href="@{/mentor/addstudent}"> Add Student</a></div>
+            <div class="optionL" title="level of experience"><a th:href="@{/mentor/experience}"> L.O.E. </a></div>
 
         </div>
 
-        <div id="content">
-            <span class="bigtitle">Title?</span>
+        <!--------------CONTENT--------------->
+        <!--		DEFINDE  IN MASTER HTML-->
 
-            <div class="dottedline"></div>
-
-            Content
-
-        </div>
-        </div>
+        <!--------------FOOTER--------------->
         <div th:fragment="footer" id="footer">
             QUEST <i class="icon-rocket"></i> STORE ©
             <br>
