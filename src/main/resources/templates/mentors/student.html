@@ -86,7 +86,7 @@
 <!--                    <form action="/mentor/onestudent">-->
 <!--                        {id}(id=${academic.userId})-->
                     <form action="#" th:action="@{/mentor/one-student/{userId}(userId=1)}" method="get">
-                        <select th:value="*{userId}" id="studentId">
+                        <select th:value="*{userId}" name="studentId">
                             <tr th:each="group : ${session.mentor.groups}">
                                 <optgroup th:label="${group.groupName}"/>
                                     <div th:each="student : ${group.users}" th:if="*{student.accountType.id} == 1">

@@ -6,6 +6,7 @@ import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.GroupService;
+import com.codecool.fusy_qs.service.LevelService;
 import com.codecool.fusy_qs.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +22,14 @@ public class MentorController {
     UserRepository userRepository;
     StudentService studentService;
     GroupService groupService;
+    LevelService levelService;
 
-    public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService) {
+    public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService,
+                            LevelService levelService) {
         this.userRepository = userRepository;
         this.studentService = studentService;
         this.groupService = groupService;
+        this.levelService = levelService;
     }
 
 
@@ -88,7 +92,7 @@ public class MentorController {
     }
 
     @GetMapping("/mentor/edit-group/{id}")
-    String showUpdateForm(@PathVariable("id") Long groupId, Model model) {
+    String showUpdateGroupForm(@PathVariable("id") Long groupId, Model model) {
         GroupClass group = groupService.findGroupById(groupId);
         model.addAttribute(group);
         return "mentors/group-update";
@@ -102,7 +106,33 @@ public class MentorController {
         return "redirect:/mentors/groups";
     }
 
+    //Level
 
+    @GetMapping("/mentor/experience")
+    String showTransaction(Model model) {
+
+        List<Level> levelslist = levelService.getAllLevels();
+
+        model.addAttribute("levelslist", levelslist);
+
+        return "mentors/experience";
+    }
+
+
+    @GetMapping("/mentor/edit-level/{id}")
+    String showUpdateLevelForm(@PathVariable("id") Long levelId, Model model) {
+        Level level = levelService.getLevelById(levelId);
+        model.addAttribute(level);
+        return "mentors/experience-update";
+    }
+
+    @PostMapping("/mentor/update-level/{id}")
+    String updateLevel (@PathVariable("id") Integer levelId, Level level,  Model model) {
+
+        levelService.saveLevel(level);
+
+        return "redirect:/mentor/experience";
+    }
 
 
 }
