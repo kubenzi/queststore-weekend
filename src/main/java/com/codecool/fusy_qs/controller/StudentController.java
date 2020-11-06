@@ -110,7 +110,7 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    String updateStudent(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
+        String updateStudent(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
@@ -120,11 +120,10 @@ public class StudentController {
         }
 
         if (studentDataDto.getNewEmail() != null) {
-            currentStudent.setPassword(studentDataDto.getNewEmail());
+            currentStudent.setEmail(studentDataDto.getNewEmail());
         }
 
         studentService.addStudent(currentStudent);
-
 
         return "students/student";
     }
