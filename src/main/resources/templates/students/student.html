@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
 	<title>Student_main_view </title>
@@ -9,7 +9,9 @@
 
 	<link th:href="@{/student_template.css}" rel="stylesheet" />
 
-	<script type="module" th:src="@{/time.js}" defer></script>
+<!--	<script type="module" th:src="@{/scripts.js}" defer></script>-->
+<!--	<script type="module" th:src="@{/scripts.js}" defer></script>-->
+	<script type="text/javascript" th:src="@{/scripts.js}"></script>
 
 	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
 
@@ -85,12 +87,6 @@
 
 					</div>
 
-
-<!--					<div>test</div>-->
-<!--					<div th:onload="getDate()">11</div>-->
-<!--					<div id="actualtime"></div>-->
-<!--					<div>test</div>-->
-
 				</div>
 				<br><br/>
 
@@ -101,15 +97,38 @@
 				<div id="editData">
 
 					<span class="lowmenu">Change password</span>
-					<form id="edit-form-password">
 
-						<input type="password" name="password" id="first-password-field" class="password-form-field" placeholder="Old password"> </br>
 
-						<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password">
-						<input type="password" name="password" id="new-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
-						<input type="submit" value="Submit" id="password-form-submit">
+					<form id="password-form" action="#" name="password-form" th:action="@{/student}" th:object="${student}" method="post">
+
+						<input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password"> </br>
+
+						<input type="password" name="password" id="first-password-field"  class="password-form-field" placeholder="New password">
+						<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
+
+
+
+						<input type="hidden" th:value="${session.student.userId}" id="userId" name="userId">
+						<input type="hidden" th:value="${session.student.firstName}" id="firstName" name="firstName">
+						<input type="hidden" th:value="${session.student.lastName}" id="lastName" name="lastName">
+						<input type="hidden" th:value="${session.student.password}" id="lastName" name="lastName">
+						<input type="hidden" th:value="${session.student.email}" id="email" name="email">
+						<input type="hidden" th:class="${session.student.accountType}" id="accountType" name="accountType">
+						<input type="hidden" th:value="${session.student.wallet}" id="wallet" name="wallet">
+						<input type="hidden" th:value="${session.student.totalCoinsEarned}" id="totalCoinsEarned" name="totalCoinsEarned">
+
+
+
+						<input type="hidden" id="password" name="password">
+
+
+						<button id="edit-password" type="button" th:onclick="changePassword([[${session.student.password}]])">Edit</button>
+
 
 					</form>
+
+
+
 					</br></br>
 					<span class="lowmenu">Change e-mail</span>
 					<form id="edit-form-mail">
@@ -119,6 +138,7 @@
 						<input type="password" name="password" id="second-email-field" class="email-form-field" placeholder="New mail">
 						<input type="password" name="password" id="new-email-field" class="email-form-field" placeholder="New mail" style="text-align: left;"></br>
 						<input type="submit" value="Submit" id="email-form-submit">
+
 					</form>
 				</div>
 

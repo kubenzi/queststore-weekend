@@ -2,7 +2,6 @@ package com.codecool.fusy_qs.controller;
 
 import com.codecool.fusy_qs.entity.Level;
 import com.codecool.fusy_qs.entity.Student;
-import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.repository.StudentRepository;
 import com.codecool.fusy_qs.service.LevelService;
 import com.codecool.fusy_qs.service.QuestService;
@@ -30,12 +29,12 @@ public class StudentController {
         this.levelService = levelService;
     }
 
-    private Student getStudent(){
+    private Student getStudent() {
         Student student = studentRepository.findById(1L).orElse(null);
         return student;
     }
 
-    private Level getLevel(){
+    private Level getLevel() {
         return levelService.getLevelByCcRequired(getStudent().getTotalCoinsEarned());
     }
 
@@ -68,11 +67,21 @@ public class StudentController {
     }
 
     @PostMapping("/student/update-level/{id}")
-    String updateLevel (@PathVariable("id") Integer levelId, Level level,  Model model) {
+    String updateLevel(@PathVariable("id") Integer levelId, Level level, Model model) {
 
         levelService.saveLevel(level);
 
         return "redirect:/student/experience";
+    }
+
+    @PostMapping("/student")
+    String updateStudent(Student student, Model model) {
+
+        System.out.println(student.getFirstName());
+        System.out.println(student.getPassword());
+
+
+        return "students/student";
     }
 
     @GetMapping("/login")
@@ -90,7 +99,6 @@ public class StudentController {
 
         return "students/group";
     }
-
 
 
 }
