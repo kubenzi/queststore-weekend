@@ -43,7 +43,7 @@
                     <span class="bigtitle">Add new student</span>
                     <div class="dottedline"></div>
                     <div id="editData">
-                        <form action="#" th:action="@{/mentor/newstudent}" th:object="${student}" method="post">
+                        <form action="#" th:action="@{/mentor/newstudent}" th:object="${studentGroupDataDto}" method="post">
 
                             <span class="lowmenu">First name</span>
                             <input type="text" name="first-name" th:field="*{firstName}" placeholder="First name"> </br>
@@ -62,20 +62,28 @@
 
                             <span class="lowmenu">Password</span>
                             <input type="password" name="password" th:field="*{password}"  placeholder="Password">
+
 <!--                            <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat password" style="text-align: left;"></br>-->
 
-<!--                            <span class="lowmenu">Group</span>-->
-<!--                            <select>-->
-<!--                                    <tr th:each="group : ${session.mentor.groups}">-->
-<!--                                        <option th:value="${group.groupId}">-->
-<!--                                            <div th:text="${group.groupName}"></div>-->
-<!--                                            <input type="hidden" name="group" th:field="${group.groupId}" >-->
-<!--                                        </option>-->
-<!--                                    </tr>-->
-<!--                            </select>-->
+                            <span class="lowmenu">Group</span>
+<!--                            <fieldset>-->
+<!--                                <legend>Choose group</legend>-->
+<!--                                <div th:each="group : ${session.mentor.groups}">-->
+<!--                                    <input type="checkbox" id="group" name="group" value="group">-->
+<!--                                    <label for="group"><div th:text="${group.groupName}"></div></label>-->
+<!--                                </div>-->
+<!--                            </fieldset>-->
 
+                            <select th:field="*{groupId}">
+                                    <tr th:each="group : ${session.mentor.groups}">
+                                        <option th:value="${group.groupId}">
+                                            <div th:text="${group.groupName}"></div>
+                                        </option>
+                                    </tr>
+<!--                                <input type="hidden" name="group" th:field="*{groupId}">-->
+                            </select>
 <!--                                <input type="submit" th:value="View">-->
-<!--                            </form>-->
+
                             <input type="submit" name="Submit">
                         </form>
 

@@ -47,46 +47,46 @@
                     <div class="dottedline"></div>
 
                     <br/>
-<!--                    <table id = "group_members_table">-->
+                    <table id = "group_members_table">
 
-<!--                        <tr th:each="group : ${session.mentor.groups}">-->
-<!--                            <td<span th:text="${group.groupName}"></span></td>-->
-<!--                        <tr>-->
-<!--                            <td class="tableTitle">Student no.</td>-->
-<!--                            <td class="tableTitle">First name</td>-->
-<!--                            <td class="tableTitle">Last name</td>-->
-<!--                            <td class="tableTitle">Press the button to view</td>-->
-<!--                        </tr>-->
-<!--                        <tr th:each="student : ${studentsList}" th:if="*{student.accountType.id} == 1">-->
-<!--                            <td><span th:text="${student.userId}"> </span></td>-->
-<!--                            <td ><span th:text="${student.firstName}"> </span></td>-->
-<!--                            <td><span th:text="${student.lastName}"> </span></td>-->
-<!--                            <td><a th:href="@{/mentor/one-student/{userId}(userId=${student.userId})}" class="btn">View</a></td>-->
-<!--                        </tr>-->
-<!--                        </tr>-->
+                        <tr th:each="group : ${session.mentor.groups}">
+                            <td<span th:text="${group.groupName}"></span></td>
+                        <tr>
+                            <td class="tableTitle">Student no.</td>
+                            <td class="tableTitle">First name</td>
+                            <td class="tableTitle">Last name</td>
+                            <td class="tableTitle">Press the button to view</td>
+                        </tr>
+                        <tr th:each="student : ${studentsList}" >
+                            <td><span th:text="${student.userId}"> </span></td>
+                            <td ><span th:text="${student.firstName}"> </span></td>
+                            <td><span th:text="${student.lastName}"> </span></td>
+                            <td><a th:href="@{/mentor/one-student/{userId}(userId=${student.userId})}" class="btn">View</a></td>
+                        </tr>
+                        </tr>
+<!--                        th:if="*{student.accountType.id} == 1-->
+                    </table>
+                    <br/>
+                    <br/>
 
-<!--                    </table>-->
-<!--                    <br/>-->
-<!--                    <br/>-->
 
-
-wersja z listą rozwijaną
-                    <form action="#" th:action="@{/mentor/one-student/{userId}(userId=1)}" method="get">
-                        <select th:value="*{userId}" name="studentId">
-                            <tr th:each="group : ${session.mentor.groups}">
-                                <optgroup th:label="${group.groupName}"/>
-                                    <div th:each="student : ${group.users}" th:if="*{student.accountType.id} == 1">
-                                        <option th:value="${student.userId}">
-                                            <div th:text="${student.firstName}"></div>
-                                            <div th:text="${student.lastName}"></div>
-                                        </option>
-                                    </div>
-                                </optgroup>
-                            </tr>
-                        </select>
-                        <input type="submit" th:value="View">
-<!--                        <a th:href="@{/mentor/one-student/{userId}(userId=${student.userId})}" class="btn">View</a>-->
-                        <br><br>
+<!--wersja z listą rozwijaną-->
+<!--                    <form action="#" th:action="@{/mentor/one-student/{userId}(userId=1)}" method="get">-->
+<!--                        <select th:field="*{userId}" name="studentId">-->
+<!--                            <tr th:each="group : ${session.mentor.groups}">-->
+<!--                                <optgroup th:label="${group.groupName}"/>-->
+<!--                                    <div th:each="student : ${group.users}" th:if="*{student.accountType.id} == 1">-->
+<!--                                        <option th:value="${student.userId}">-->
+<!--                                            <div th:text="${student.firstName}"></div>-->
+<!--                                            <div th:text="${student.lastName}"></div>-->
+<!--                                        </option>-->
+<!--                                    </div>-->
+<!--                                </optgroup>-->
+<!--                            </tr>-->
+<!--                        </select>-->
+<!--                        <input type="submit" th:value="View">-->
+<!--&lt;!&ndash;                        <a th:href="@{/mentor/one-student/{userId}(userId=${student.userId})}" class="btn">View</a>&ndash;&gt;-->
+<!--                        <br><br>-->
 <!--                        <td><a th:href="@{/mentor/one-student/{userId}(userId=${student.userId})}" class="btn">View</a></td>-->
 <!--                        <input type="submit" value="View">-->
                     </form>

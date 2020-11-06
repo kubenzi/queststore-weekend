@@ -1,15 +1,18 @@
 package com.codecool.fusy_qs.controller;
 
+import com.codecool.fusy_qs.dto.MentorDataDto;
+import com.codecool.fusy_qs.dto.StudentDataDto;
+import com.codecool.fusy_qs.dto.StudentGroupDataDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.repository.UserRepository;
-import com.codecool.fusy_qs.service.GroupService;
-import com.codecool.fusy_qs.service.LevelService;
-import com.codecool.fusy_qs.service.QuestService;
-import com.codecool.fusy_qs.service.StudentService;
+import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,21 +22,47 @@ public class MentorController {
     GroupService groupService;
     LevelService levelService;
     QuestService questService;
+    UserService userService;
+    AccountTypeService accountTypeService;
 
     public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService,
-                            LevelService levelService, QuestService questService) {
+                            LevelService levelService, QuestService questService, UserService userService, AccountTypeService accountTypeService) {
         this.userRepository = userRepository;
         this.studentService = studentService;
         this.groupService = groupService;
         this.levelService = levelService;
         this.questService = questService;
+        this.userService = userService;
+        this.accountTypeService = accountTypeService;
     }
 
 
 
 
     @GetMapping("/mentor/profile")
-    String showMentorProfile(){
+    String showMentorProfile(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        MentorDataDto mentorDataDto = new MentorDataDto();
+        model.addAttribute("mentorDataDto", mentorDataDto);
+
+        return "mentors/profile";
+    }
+
+    @PostMapping("/mentor/profile")
+    String updateMentor(MentorDataDto mentorDataDto, Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(true);
+        User currentMentor = (User) session.getAttribute("mentor");
+
+        if (mentorDataDto.getNewPassword() != null) {
+            currentMentor.setPassword(mentorDataDto.getNewPassword());
+        }
+
+        if (mentorDataDto.getNewEmail() != null) {
+            currentMentor.setEmail(mentorDataDto.getNewEmail());
+        }
+
+        userService.saveUser(currentMentor);
 
         return "mentors/profile";
     }
@@ -68,21 +97,50 @@ public class MentorController {
 
     @GetMapping("/mentor/addstudent")
     String showAddStudentForm(Model model){
-        Student student = new Student();
-        model.addAttribute("student", student);
+//        Student student = new Student();
+        StudentGroupDataDto newStudent = new StudentGroupDataDto();
+        model.addAttribute("studentGroupDataDto", newStudent);
 
         return "mentors/add-student";
     }
 
     @PostMapping("/mentor/newstudent")
-    String addStudent(@ModelAttribute("student") Student student, Model model){
+    String addStudent(@ModelAttribute("studentGroupDataDto") StudentGroupDataDto studentGroupDataDto, Model model){
 
-        model.addAttribute("firstName", student.getFirstName());
-        model.addAttribute("lastName", student.getLastName());
-        model.addAttribute("email", student.getEmail());
-        model.addAttribute("password", student.getPassword());
-        model.addAttribute("group", student.getGroups().get(0));
-        studentService.addStudent(student);
+        Student newStudent = new Student();
+
+        if(studentGroupDataDto.getFirstName() != null){
+            newStudent.setFirstName(studentGroupDataDto.getFirstName());
+        }
+
+        if(studentGroupDataDto.getLastName() != null){
+            newStudent.setLastName(studentGroupDataDto.getLastName());
+        }
+
+        if(studentGroupDataDto.getEmail() != null){
+            newStudent.setEmail(studentGroupDataDto.getEmail());
+        }
+
+        if(studentGroupDataDto.getPassword() != null){
+            newStudent.setPassword(studentGroupDataDto.getPassword());
+        }
+
+        if(studentGroupDataDto.getGroupId() != null){
+            List <GroupClass> groupsList = new ArrayList<>();
+            groupsList.add(groupService.findGroupById(studentGroupDataDto.getGroupId()));
+            newStudent.setGroups(groupsList);
+        }
+
+//        if(studentGroupDataDto.getAccountType() != null){
+//            newStudent.setAccountType(accountTypeService.findAccountTypeById(1L));
+//        }
+
+        //Static values
+        newStudent.setAccountType(accountTypeService.findAccountTypeById(1L));
+        newStudent.setWallet(100);
+        newStudent.setTotalCoinsEarned(100);
+
+        studentService.addStudent(newStudent);
 
         return "redirect:/mentor/profile";
     }

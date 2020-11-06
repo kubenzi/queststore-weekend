@@ -84,12 +84,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Transaction> findGroupTransactions(Student student) {
         List<Transaction> groupTransactions = new ArrayList<>();
-    @Override
-    public List<Student> findAllStudents() {
-        return studentRepository.findAllStudents();
-    }
-
-
         List<Transaction> allTransactions = transactionService.getAllTransactionsByStudentId(student.getUserId());
         for(Transaction transaction : allTransactions) {
             if (transaction != null && transaction.getItemType().equals(itemTypeService.findItemTypeById(2L))) {
@@ -97,7 +91,16 @@ public class StudentServiceImpl implements StudentService {
             }
         }
         return groupTransactions;
+
     }
+
+    @Override
+    public List<Student> findAllStudents(){
+        return studentRepository.findAllStudents();
+    }
+
+
+
 
     @Override
     public boolean checkAccountBalance(Student currentStudent, int coolcoins) {
