@@ -31,7 +31,13 @@ public class Item {
         this.itemType = itemType;
     }
 
+    public Long getItemId() {
+        return itemId;
+    }
 
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
 
     public String getItemName() {
         return itemName;
@@ -67,6 +73,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return itemId + '.' + itemName;
+        return itemId + '.' + itemName + ' ' + itemCost;
     }
 }

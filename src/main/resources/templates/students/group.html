@@ -1,144 +1,137 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<title>Student_main_view </title>
-	
-	<meta name="keywords" content="student, codecool, quest, coolcoins" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <title>Student_main_view </title>
 
-	<link th:href="@{/student_template.css}" rel="stylesheet" />
+    <meta name="keywords" content="student, codecool, quest, coolcoins"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
-	
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link th:href="@{/student_template.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet'
+          type='text/css'>
 
 </head>
 
 <body>
-	
-	<div id="container">
-		
-		<div id="bar">
 
-			<div th:insert="fragments/student-fragments :: mainBar"></div>
-
-			<div th:insert="fragments/student-fragments :: lowMenu"></div>
-
-			<div style="clear:both;"></div>	
+<div id="container">
 
 
+    <div id="bar">
 
-		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-graduation-cap"></i>
-			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
-            </div>
-			<div style="clear:both;"></div>
-		</div>
+        <!--------------- MAIN BAR --------------->
+        <div th:insert="fragments/student-fragments :: mainBar"></div>
 
-		<div id="main_content">
+        <!--------------- LOW MENU --------------->
+        <div th:insert="fragments/student-fragments :: lowMenu"></div>
 
-			<div th:insert="fragments/student-fragments :: sidebar"></div>
+    </div>
+    <!--------------- TOP BAR --------------->
+    <div id="topbar" class="flex-container">
+        <div id="topbarL" class="topbarL">
+            <i class="icon-graduation-cap"></i>
+        </div>
 
-
-		<div id="content">
-
-			<span class="bigtitle">Group members</span>
-
-			<div class="dottedline"></div>
-			<br/>
-			<table id = "group_members_table">
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Level</th>
-					<th>coolcoins</th>
-					<th>contact</th>
-				</tr>
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>+48 123 123 123</td>
-				</tr>
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>+48 123 123 123</td>
-				</tr>
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>mail@gmail.com</td>
-				</tr>
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>mail@gmail.com</td>
-				</tr>
-
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>mail@gmail.com</td>
-				</tr>
-
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>mail@gmail.com</td>
-				</tr>
-
-				<tr>
-					<td>Krzysztof</td>
-					<td>Chromiec</td>
-					<td>1</td>
-					<td>150</td>
-					<td>mail@gmail.com</td>
-				</tr>
+        <div id="topbarR">
+            <span class="bigtitle">Welcome to Your Profile Side Details  </span>
+            <div style="height: 15px;"></div>
+            Here you can check your presonal data or modify them if something went wrong. On the lef side you have
+            option menu.
+            You can choose action. Enjoy our app!
+        </div>
+    </div>
 
 
+    <!--------------- MAIN CONTENT --------------->
+    <div id="main-content" class="flex-container">
 
-			</table>
-			<br/>
-			<br/>
+        <!--------------- SIDEBAR --------------->
+        <div class="sidebar-div">
+            <div th:insert="fragments/student-fragments :: sidebar"></div>
+        </div>
 
-			<span class="bigtitle">Group mentor</span>
-			<div class="dottedline"></div>
-			<div id = "mentor_data">
-				<ul id="mentor_data_list">
-					<li> <h3>Dominik Starzyk</h3></li>
-				</ul>
-				<div id = "mentor_mail">
-					dominikstarzyk@gmail.com
-				</div>
-			</div>
+        <div id="content">
 
-			</div>
-		</div>
+            <span class="bigtitle">Students</span>
 
-		<div th:insert="fragments/student-fragments :: footer"></div>
+            <div class="dottedline"></div>
+            <br/>
+            <table id="group_members_table">
 
-	</div>
-	
+                <tr>
+                    <td class="tableTitle">First name</td>
+                    <td class="tableTitle">Last name</td>
+                    <td class="tableTitle">Email</td>
+
+                </tr>
+
+
+                <span th:each="group : ${session.student.groups}">
+						<tr th:each="user : ${group.users}">
+
+							<div th:if="${user.accountType.id == 1}">
+
+								<td><span th:text="${user.firstName}"> </span></td>
+								<td><span th:text="${user.lastName}"> </span></td>
+								<td><span th:text="${user.email}"> </span></td>
+
+							</div>
+
+						</tr>
+					</span>
+
+                <br/>
+                <br/>
+
+
+            </table>
+
+            <br/>
+            <br/>
+
+            <span class="bigtitle">Mentors</span>
+
+            <div class="dottedline"></div>
+
+            <table id="group_mentors_table">
+
+                <tr>
+                    <td class="tableTitle">First name</td>
+                    <td class="tableTitle">Last name</td>
+                    <td class="tableTitle">Email</td>
+
+                </tr>
+
+                <span th:each="group : ${session.student.groups}">
+					<tr th:each="user : ${group.users}">
+
+						<div th:if="${user.accountType.id == 2}">
+
+							<td><span th:text="${user.firstName}"> </span></td>
+							<td><span th:text="${user.lastName}"> </span></td>
+							<td><span th:text="${user.email}"> </span></td>
+
+						</div>
+
+					</tr>
+				</span>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div th:insert="fragments/student-fragments :: footer"></div>
+
+</div>
+
 </body>
+
+
 </html>

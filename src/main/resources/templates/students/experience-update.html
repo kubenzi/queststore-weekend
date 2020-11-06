@@ -16,38 +16,37 @@
 </head>
 
 <body>
-	
-	<div id="container">
-		
-		<div id="bar">
 
-			<div th:insert="fragments/student-fragments :: mainBar"></div>
+<div id="container">
+	<div id="bar">
+		<!--------------- MAIN BAR --------------->
+		<div th:insert="fragments/student-fragments :: mainBar" ></div>
+		<!--------------- LOW MENU --------------->
+		<div th:insert="fragments/student-fragments :: lowMenu" ></div>
 
-			<div th:insert="fragments/student-fragments :: lowMenu"></div>
-
-			<div style="clear:both;"></div>	
-
-
-
-		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-graduation-cap"></i>
-			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
-            </div>
-			<div style="clear:both;"></div>
+	</div>
+	<!--------------- TOP BAR --------------->
+	<div id="topbar" class="flex-container">
+		<div id="topbarL" class="topbarL">
+			<i class="icon-graduation-cap"></i>
 		</div>
 
-		<div id="main_content">
+		<div id="topbarR" >
+			<span class="bigtitle">Welcome to Your Profile Side Details  </span>
+			<div style="height: 15px;"></div>
+			Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
+			You can choose action. Enjoy our app!
+		</div>
+	</div>
 
+
+	<!--------------- MAIN CONTENT --------------->
+	<div id="main-content" class="flex-container">
+
+		<!--------------- SIDEBAR --------------->
+		<div class="sidebar-div">
 			<div th:insert="fragments/student-fragments :: sidebar"></div>
-
+		</div>
 
 		<div id="content">
 
@@ -56,8 +55,6 @@
 			<div class="dottedline"></div>
 			<br/>
 			<table id = "group_members_table">
-
-
 
 				<form action="#" th:action="@{/student/update-level/{id}(id=${level.levelId})}" th:object="${level}" method="post">
 
@@ -77,19 +74,24 @@
 
 					<input type="hidden" th:field="*{iconName}" id="iconName" placeholder="iconName">
 
-					<input type="submit" value="Update Level">
+					<input type="submit" value="Update Level" onclick="levelCheck()">
+
 				</form>
 
 			</table>
 			<br/>
 			<br/>
 
-			</div>
 		</div>
 
-		<div th:insert="fragments/student-fragments :: footer"></div>
-
 	</div>
-	
+
+	<!-- FOOTER -->
+	<div th:insert="fragments/student-fragments :: footer"></div>
+
+</div>
+
 </body>
+
+
 </html>

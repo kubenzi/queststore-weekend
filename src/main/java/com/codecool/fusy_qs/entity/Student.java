@@ -1,55 +1,49 @@
 package com.codecool.fusy_qs.entity;
 
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Student extends User {
+    private int wallet;
+    private int totalCoinsEarned;
 
-    private Integer wallet;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "student_achievement_list", inverseJoinColumns = @JoinColumn(name = "achievement_id"))
+    private List<Achievement> achievementList;
 
-    private Integer totalCoinsEarned;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<Achievement> achievementList = new ArrayList<>();
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<Transaction> transactionList = new ArrayList<>();
-
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "student_transaction_details", inverseJoinColumns = @JoinColumn(name = "transaction_id"))
+    private List<Transaction> transactionList;
 
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String password, AccountType accountType, Integer wallet, Integer totalCoinsEarned) {
+    public Student(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   AccountType accountType,
+                   int wallet,
+                   int totalCoinsEarned) {
         super(firstName, lastName, email, password, accountType);
         this.wallet = wallet;
         this.totalCoinsEarned = totalCoinsEarned;
     }
 
-//    public Student(String firstName, String lastName, String email, String password, AccountType accountType) {
-//        super(firstName, lastName, email, password, accountType);
-//    }
-
-    public Integer getWallet() {
+    public int getWallet() {
         return wallet;
     }
 
-    public void setWallet(Integer wallet) {
+    public void setWallet(int wallet) {
         this.wallet = wallet;
     }
 
-    public Integer getTotalCoinsEarned() {
+    public int getTotalCoinsEarned() {
         return totalCoinsEarned;
     }
 
-    public void setTotalCoinsEarned(Integer totalCoinsEarned) {
+    public void setTotalCoinsEarned(int totalCoinsEarned) {
         this.totalCoinsEarned = totalCoinsEarned;
     }
 

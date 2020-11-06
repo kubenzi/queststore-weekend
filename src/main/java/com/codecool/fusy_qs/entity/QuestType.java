@@ -17,6 +17,15 @@ public class QuestType{
     public QuestType() {
     }
 
+    public boolean equals(Object object) {
+        QuestType questType = (QuestType) object;
+
+        if (questTypeId != questType.questTypeId)
+            return false;
+
+        return true;
+    }
+
     public QuestType(String questTypeName) {
         this.questTypeName = questTypeName;
     }

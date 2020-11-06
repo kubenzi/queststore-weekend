@@ -2,7 +2,7 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
-		<title> Quests </title>
+		<title> Shop - individual item </title>
 
 		<meta name="keywords" content="student, codecool, quest, coolcoins" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -27,11 +27,10 @@
 				</div>
 
 				<div id="topbarR" >
-					<span class="bigtitle"> List of quests </span>
+					<span class="bigtitle"> Individual item page </span>
 					<div style="height: 15px;"></div>
-					Here you can check what you can do to get some coins!
-					You can do some of the quests alone, while some of them are better to do with your group mates.
-					If you complete any of the tasks or have an idea for new ones, be sure to inform your mentor about it!
+					If you want to purchase an individual item, you can do so here.
+					You can use a purchased individual item in the 'Transactions' tab.
 				</div>
 			</div>
 
@@ -43,35 +42,15 @@
 				</div>
 
 				<div id="content">
-					<span class="bigtitle"> INDIVIDUAL QUESTS </span>
-					<div class="dottedline"></div> <br/>
-					<table id = "individual_quests_table">
-						<tr>
-							<td class="tableTitle"> Quest description </td>
-							<td class="tableTitle"> Value </td>
-						</tr>
-
-						<tr th:each="quest : ${individualQuests}">
-							<td><span th:text="${quest.questDescription}"> </span></td>
-							<td><span th:text="${quest.questValue}"> </span></td>
-						</tr>
-					</table>
-					<br/> <br/>
-
-					<span class="bigtitle"> GROUP QUESTS </span>
-					<div class="dottedline"></div> <br/>
-					<table id = "group_achievements_table">
-						<tr>
-							<td class="tableTitle"> Quest description </td>
-							<td class="tableTitle"> Value </td>
-						</tr>
-
-						<tr th:each="quest : ${groupQuests}">
-							<td><span th:text="${quest.questDescription}"> </span></td>
-							<td><span th:text="${quest.questValue}"> </span></td>
-						</tr>
-					</table>
-					<br/> <br/>
+					<h2> NAME: <span type="text" th:text="${item.itemName}" th:field="*{name}"></span> </h2>
+					<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
+					<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
+					<form action="#"
+						  th:action="@{/student/shop-individual/{id}(id=${item.itemId})}"
+						  th:object="${item}"
+						  method="post">
+						<input type="submit" value="BUY">
+					</form> <br/><br/>
 				</div>
 			</div>
 

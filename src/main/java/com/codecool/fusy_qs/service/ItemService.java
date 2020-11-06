@@ -7,12 +7,9 @@ import java.util.List;
 public interface ItemService {
 
     List<Item> getAllItems();
-
     List<Item> getAllIndividualItems();
-
     List<Item> getAllGroupItems();
-
     void addItem(Item item);
-
     Item getItemById(Long itemId);
+//    boolean checkContribution(Item item, int contribution);
 }

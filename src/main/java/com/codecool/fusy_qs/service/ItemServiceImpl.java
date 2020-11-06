@@ -41,4 +41,9 @@ public class ItemServiceImpl implements ItemService{
     public Item getItemById(Long itemId) {
         return itemRepository.findById(itemId).orElse(null);
     }
+
+//    @Override
+//    public boolean checkContribution(Item item, int contribution) {
+//        return contribution > 10 && contribution <= item.getItemCost() && contribution%10 == 0;
+//    }
 }

@@ -1,14 +1,14 @@
 package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Request {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name= "request_id_gen", initialValue = 10, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_id_gen")
     private Long id;
 
     private String itemName;
@@ -21,19 +21,22 @@ public class Request {
     @OneToOne
     private ItemType itemType;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
-    private List<RequestDetail> requestDetails = new ArrayList<>();
+    @OneToMany
+    @JoinTable(name = "request_request_details", inverseJoinColumns = @JoinColumn(name = "request_detail_id"))
+    private List<RequestDetail> requestDetails;
 
     public Request() {
     }
 
-    public Request(Item item, Student student) {
+    public Request(Item item,
+                   Student student,
+                   List<RequestDetail> requestDetails) {
         this.itemName = item.getItemName();
         this.itemDescription = item.getItemDescription();
         this.itemCost = item.getItemCost();
         this.itemType = item.getItemType();
         this.group = student.getGroups().get(0);
+        this.requestDetails = requestDetails;
     }
 
     public Long getId() {

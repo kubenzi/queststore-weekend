@@ -3,126 +3,98 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Student_main_view </title>
-	
+
 	<meta name="keywords" content="student, codecool, quest, coolcoins" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<!--	<script type="text/javascript" th:src="@{/time.js}"></script>-->
+<!--	<script type="text/javascript" th:src="@{/scripts.js}"></script>-->
 <!--	<link th:href="@{/student_template.css}" rel="stylesheet" />-->
 
 	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
-	
+
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 </head>
 
-<body onload="getDate(); myTest()">
-	
+<body>
+
 	<div id="container">
-		
+
 		<div id="bar">
+			<!--------------MAIN BAR--------------->
+			<div th:fragment="mainBar" id="mainBar" class="flex-container">
+<!--				<div class="logoL">QUEST</div>-->
 
-			<div th:fragment="mainBar" id="mainBar">
-				<div class="logoL">QUEST</div>
 				<div class="logoC">
-					<i class="icon-rocket"></i>
+					QUEST<i class="icon-rocket"></i>STORE
 				</div>
-				<div class="logoR">STORE</div>
-				<div style="clear:both;"></div>	
+
+<!--				<div class="logoR">STORE</div>-->
 			</div>
 
-			<div th:fragment="lowMenu" id="lowMenu">
-				
-				<div class="lowMenu1">
-					<div class="option">
-						<span th:text="${session.student.firstName}"/>
-						<span th:text="${session.student.lastName}"/>
+			<!--------------LOW BAR--------------->
+			<div th:fragment="lowMenu" id="lowMenu" class="flex-container">
+				<div class="option">
+					<span th:text="${session.student.firstName}"/>
+					<span th:text="${session.student.lastName}"/>
+				</div>
+
+				<div class="option">
+					<i class="icon-cc"></i> Your: <span th:text="${session.student.wallet}"/>
+				  Total coins:	<span th:text="${session.student.totalCoinsEarned}"/>
+				</div>
+
+				<div id="icons">
+					<div class="option"><i class="icon-star">
+						</i> <span th:text="${session.level.levelId}"/>
+					</div>
+
+					<div>
+						<a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
 					</div>
 				</div>
 
-				<div class="lowMenu2">
-					<div class="option"><i class="icon-cc"></i> Your: <span th:text="${session.student.wallet}"/>
-					  Total coins:	<span th:text="${session.student.totalCoinsEarned}"/>
-					</div>
-				</div>
-
-				<div class="lowMenu3">
-					<div class="option"><i class="icon-star"></i> <span th:text="${session.level.levelId}"/> </div>
-				</div>
-
-				<div id="demo">1</div>
-				<div th:onload="myTest()" id="demo">2</div>
-				<div id="actualtime">3</div>
-				<div th:onload="getDate()" id="actualtime">4</div>
-
-<!--				<div onload="getDate" id="demo">1</div>-->
-<!--				<div th:onload="myTest()" id="demo">2</div>-->
-<!--				<div onload="getDate()" id="actualtime">3</div>-->
-<!--				<div th:onload="getDate()" id="actualtime">4</div>-->
-
-				<div class="lowMenu4">
-<!--					<div class="option"><i class="icon-logout"></i> <a href="#" th:href="@{/logout}"></a> </div>-->
-<!--					<div class="option"><i class="icon-logout"> <a href="#" th:href="@{/logout}"></a></i> </div>-->
-					<a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
-				</div>
-				
 			</div>
-			<div style="clear:both;"></div>
-
-
-
 		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-graduation-cap"></i>
+
+		<!--------------TOP BAR--------------->
+		<!--		DEFINED  IN MASTER HTML-->
+
+		<!--------------DIV MAIN CONTENT--------------->
+		<!--		DEFINED  IN MASTER HTML-->
+
+			<!-------------- SIDE BAR--------------->
+			<div th:fragment="sidebar" id="sidebar" class="sidebar">
+
+				<div class="optionL"><a th:href="@{/student/profile}"> Your Profile </a></div>
+				<div class="optionL"><a th:href="@{/student/group}"> Group </a></div>
+				<div class="optionL"><a th:href="@{/student/achievements}"> Achievements </a></div>
+
+				<ul>
+					<li>
+					  <input type="checkbox" id="list-item-1">
+					  <label for="list-item-1" class="first">
+						<div class="optionL">Shop</div>
+					  </label>
+					  <ul>
+						<li><a th:href="@{/student/shop-individual}"> Individual items </a></li>
+						<li><a th:href="@{/student/shop-group}"> Group items </a></li>
+						<li><a th:href="@{/student/shop-group-shopping}"> Group shopping </a></li>
+					  </ul>
+				</ul>
+
+				<div class="optionL"><a th:href="@{/student/transactions}"> Transactions </a></div>
+				<div class="optionL"><a th:href="@{/student/quests}"> Quests </a></div>
+				<div class="optionL" title="level of experience"><a th:href="@{/student/experience}"> L.O.E. </a></div>
+
 			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
-            </div>
-			<div style="clear:both;"></div>
-		</div>
 
-		<div id="main_content">
-		<div th:fragment="sidebar" id="sidebar">
+		<!--------------CONTENT--------------->
+		<!--		DEFINDE  IN MASTER HTML-->
 
-			<div class="optionL"><a th:href="@{/student}"> Your Profile </a></div>
-
-			<div class="optionL"><a th:href="@{/group}"> Group </a></div>
-
-			<div class="optionL"><a th:href="@{/achievements}"> Achievements </a></div>
-
-			<ul>
-				<li>
-				  <input type="checkbox" id="list-item-1">
-				  <label for="list-item-1" class="first">
-				  	<div class="optionL">Shop</div>
-				  </label>
-				  <ul>	
-					<li><a th:href="@{/shop-individual}"> Individual </a></li>
-					<li><a th:href="@{/shop-group}"> Group </a></li>
-				  </ul>
-			</ul>
-
-            <div class="optionL"><a th:href="@{/transactions}"> Transactions </a></div>
-			<div class="optionL"><a th:href="@{/quests}"> Quests </a></div>
-			<div class="optionL" title="level of experience" ><a th:href="@{student/experience}"> L.O.E</a></div>
-
-		</div>
-		
-		<div id="content">
-			<span class="bigtitle">Title?</span>
-			
-			<div class="dottedline"></div>
-			
-			Content
-			
-		</div>
-		</div>
+		<!--------------FOOTER--------------->
 		<div th:fragment="footer" id="footer">
+			To contact responsible person sent mail to queststore@gmail.com  QUESTSTORE form 2020r. &copy;
 			QUEST <i class="icon-rocket"></i> STORE ©
 			<br>
 			<i class="icon-star"></i> Bartosz Jakimko <i class="icon-star"></i> Krzysztof Chromiec <i class="icon-star"></i> Jakub Chorążyk <i class="icon-star"></i> Andrzej Kiełbowicz
@@ -132,8 +104,8 @@
 			<br>
 			In case of any queries don't hesitate and contact us: support@queststore.com
 		</div>
-	
+
 	</div>
-	
+
 </body>
 </html>

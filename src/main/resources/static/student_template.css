@@ -302,6 +302,67 @@ a:active {
     text-transform: uppercase;
 }
 
+
+
+@media screen and (min-width: 700px) {
+    .flex-container {
+        display: flex;
+        /*border-radius: 40px/25px;*/
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    div.low-menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    div.sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    div.topbarL {
+        border-right: 2px dotted #cccccc;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    div.topbarL {
+        border-bottom: 2px dotted #cccccc;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    div.sidebar-div {
+        border-right: 2px dotted #000000;
+    }
+}
+
+#icons {
+    display: flex;
+    justify-content: center;
+}
+
+#main-content{
+    background-color: lightgrey;
+    /*height: 170px;*/
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 40px/25px;
+}
+
+.tableTitle{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 select {
     -webkit-appearance: button;
     -moz-appearance: button;
