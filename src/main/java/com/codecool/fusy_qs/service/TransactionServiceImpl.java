@@ -29,4 +29,14 @@ public class TransactionServiceImpl implements TransactionService {
 
         transactionRepository.save(newTransaction);
     }
+
+    @Override
+    public Transaction findTransactionById(Long id) {
+        return transactionRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void useBoughtIndividualItem(Transaction transaction) {
+        transactionRepository.save(transaction);
+    }
 }

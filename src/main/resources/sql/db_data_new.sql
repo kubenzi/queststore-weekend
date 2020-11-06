@@ -31,11 +31,11 @@ INSERT INTO group_class VALUES
     (2, '02.2020 Krk-weekend', 'Java-2');
 
 INSERT INTO user_data VALUES
-    ('Student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15', 1300, 250, 1),
-    ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123', 1050, 350, 1),
-    ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty', 1500, 200, 1),
-    ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej', 1550, 50, 1),
-    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123', null, null, 2);
+    ('Student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15!', 1300, 200, 1),
+    ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123!', 1050, 350, 1),
+    ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty123!', 1500, 200, 1),
+    ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej1!', 1550, 50, 1),
+    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123!', null, null, 2);
 
 INSERT INTO user_group VALUES
     (1, 1),
@@ -135,8 +135,9 @@ INSERT INTO transaction_details VALUES
     (3, true, 600, 'Mentor joins your team for a one hour', 'Boost', 2, 4),
     (4, true, 500, 'Extra material for the current topic', 'More materials', 2, 4),
     (5, false, 50, 'Private mentoring', 'Mentoring', 1, 1),
-    (6, true, 300, 'You can spend a day in home office', 'Home office', 1, 2),
-    (7, false, 500, 'Extend SI week assignment deadline by one day', 'Get more time', 1, 3);
+    (6, true, 50, 'Private mentoring', 'Mentoring', 1, 1),
+    (7, true, 300, 'You can spend a day in home office', 'Home office', 1, 2),
+    (8, false, 500, 'Extend SI week assignment deadline by one day', 'Get more time', 1, 3);
 
 INSERT INTO student_transaction_details VALUES
     (1, 0),
@@ -145,5 +146,6 @@ INSERT INTO student_transaction_details VALUES
     (4, 3),
     (4, 4),
     (1, 5),
-    (2, 6),
-    (3, 7)
+    (1, 6),
+    (2, 7),
+    (3, 8)

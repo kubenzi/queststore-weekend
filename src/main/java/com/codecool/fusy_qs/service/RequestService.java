@@ -8,4 +8,5 @@ public interface RequestService {
     List<Request> getCurrentGroupRequests(Long groupId);
     void saveNewRequest(Request newRequest);
     Request findRequestById(Long requestId);
+    int calculateTotalContribution(Request request);
 }

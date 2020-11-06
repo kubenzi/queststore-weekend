@@ -2,6 +2,8 @@ package com.codecool.fusy_qs.controller;
 
 
 import com.codecool.fusy_qs.dto.GroupPurchaseDto;
+import com.codecool.fusy_qs.dto.ItemStatusDto;
+import com.codecool.fusy_qs.dto.RequestDetailsDto;
 import com.codecool.fusy_qs.dto.StudentDataDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
@@ -85,6 +87,9 @@ public class StudentController {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
+        ItemStatusDto itemStatusDto = new ItemStatusDto();
+        model.addAttribute("itemStatusDto", itemStatusDto);
+
         List<Transaction> individualTransactions = studentService.findIndividualTransactions(student);
         List<Transaction> groupTransactions = studentService.findGroupTransactions(student);
 
@@ -92,6 +97,18 @@ public class StudentController {
         model.addAttribute("groupTransactions", groupTransactions);
 
         return "students/transactions";
+    }
+
+    @PostMapping("/student/transactions")
+    String useBoughtIndividualItem(@ModelAttribute("itemStatusDto") ItemStatusDto itemStatusDto,
+                                   HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        Student currentStudent = (Student) session.getAttribute("student");
+
+//        transaction.setIsUsed(true);
+//        transactionService.useBoughtIndividualItem(transaction);
+
+        return "students/profile";
     }
 
     @GetMapping("/student/edit-level/{id}")
@@ -219,6 +236,7 @@ public class StudentController {
         }
 
         currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
+        studentService.addStudent(currentStudent);
 
         RequestDetail newDetail = new RequestDetail(currentStudent, coolcoins);
         requestDetailService.saveRequestDetail(newDetail);
@@ -248,7 +266,43 @@ public class StudentController {
         Request request = requestService.findRequestById(id);
         model.addAttribute("currentRequest", request);
 
+        int totalContribution = requestService.calculateTotalContribution(request);
+        model.addAttribute("totalContribution", totalContribution);
+
+        int missingFunds = request.getItemCost() - totalContribution;
+        model.addAttribute("missingFunds", missingFunds);
+
+        RequestDetailsDto requestDetailsDto = new RequestDetailsDto();
+        model.addAttribute("requestDetailsDto", requestDetailsDto);
+
         return "students/shop-group-shopping-details";
     }
 
+    @PostMapping("/student/shop-group-shopping-details/{id}")
+    String manageRequestDetails(@PathVariable("id") Long requestId,
+                                @ModelAttribute("requestDetailsDto") RequestDetailsDto newDto,
+                                HttpServletRequest request) {
+        Request currentRequest = requestService.findRequestById(requestId);
+        HttpSession session = request.getSession(true);
+        Student currentStudent = (Student) session.getAttribute("student");
+        int coolcoins = newDto.getCoolcoins();
+
+        if (currentStudent.getWallet() < coolcoins) {
+            coolcoins = currentStudent.getWallet();
+        }
+
+        currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
+        studentService.addStudent(currentStudent);
+
+        RequestDetail newDetail = new RequestDetail(currentStudent, coolcoins);
+        requestDetailService.saveRequestDetail(newDetail);
+        List<RequestDetail> details = currentRequest.getRequestDetails();
+        details.add(newDetail);
+
+        requestService.saveNewRequest(currentRequest);
+        newDetail.setRequest(currentRequest);
+        requestDetailService.saveRequestDetail(newDetail);
+
+        return "redirect:/student/shop-group-shopping-details/{id}";
+    }
 }
