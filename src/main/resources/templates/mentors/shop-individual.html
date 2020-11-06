@@ -1,114 +1,100 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>Mentor_main_view</title>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title> Profile </title>
 
-	<meta name="keywords" content="mentor, student, codecool, quest, coolcoins" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="keywords" content="student, codecool, quest, coolcoins" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<link rel="stylesheet" th:href="@{/student_template.css}" >
-
-	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
-
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
-
-</head>
-
-<body>
-	
-	<div id="container">
-		
-		<div id="bar">
-
-
-			<div th:insert="fragments/mentor-fragments :: mainBar"></div>
-
-
-			<div th:insert="fragments/mentor-fragments :: lowMenu"></div>
-
-			<div style="clear:both;"></div>	
-
-
-
-		</div>
-		
-		<div id="topbar">
-			<div id="topbarL">
-				<i class="icon-user-secret"></i>
-			</div>
-			<div id="topbarR">
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu. 
-                You can choose action. Enjoy our app!
+        <link th:href="@{/student_template.css}" rel="stylesheet" />
+        <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id="container">
+            <div id="bar">
+                <!--------------- MAIN BAR --------------->
+                <div th:insert="fragments/mentor-fragments :: mainBar" ></div>
+                <!--------------- LOW MENU --------------->
+                <div th:insert="fragments/mentor-fragments :: lowMenu" ></div>
             </div>
-			<div style="clear:both;"></div>
-		</div>
+            <!--------------- TOP BAR --------------->
+            <div id="topbar" class="flex-container">
+                <div id="topbarL" class="topbarL">
+                    <i class="icon-user-secret"></i>
+                </div>
 
-		<div id="main_content">
+                <div id="topbarR" >
+                    <span class="bigtitle"> Mentor's profile </span>
+                    <div style="height: 15px;"></div>
+                    Here you can check your personal data or modify them if something went wrong during registration.
+                    On the left side you have option menu. Enjoy our app!
+                </div>
+            </div>
 
-			<div th:insert="fragments/mentor-fragments :: sidebar"></div>
+            <!--------------- MAIN CONTENT --------------->
+            <div id="main-content" class="flex-container">
+                <!--------------- SIDEBAR --------------->
+                <div class="sidebar-div">
+                    <div th:insert="fragments/mentor-fragments :: sidebar"></div>
+                </div>
 
+                <div id="content">
 
-		<div id="content">
+                    <span class="bigtitle">Individual items</span>
+                    <br>
+                    <br>
+                    <div class="content">You can use listed items only individually. </div>
+                    <div class="dottedline"></div>
+                    <br>
+                    <table id = "group_items_table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price &copy;</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            <td>VIP</td>
+                            <td>Private mentoring</td>
+                            <td>50</td>
+                            <td><div class="optionTable">EDIT ICON</div></td>
+                            <td><div class="optionTable">DELETE ICON</div></td>
 
-			<span class="bigtitle">Individual items</span>
-			<br>
-			<br>
-			<div class="content">You can use listed items only individually. </div>
-			<div class="dottedline"></div>
-			<br>
-			<table id = "group_items_table">
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price &copy;</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-				<tr>
-					<td>VIP</td>
-					<td>Private mentoring</td>
-					<td>50</td>
-					<td><div class="optionTable">EDIT ICON</div></td>
-					<td><div class="optionTable">DELETE ICON</div></td>
+                        </tr>
+                        <tr>
+                            <td>HOME OFFICE</td>
+                            <td>You can spend a day in home office</td>
+                            <td>300</td>
+                            <td><div class="optionTable">EDIT ICON</div></td>
+                            <td><div class="optionTable">DELETE ICON</div></td>
+                        </tr>
+                        <tr>
+                            <td>WANT MORE</td>
+                            <td>Extra material for the current topic</td>
+                            <td>500</td>
+                            <td><div class="optionTable">EDIT ICON</div></td>
+                            <td><div class="optionTable">DELETE ICON</div></td>
+                        </tr>
+                        <tr>
+                            <td>DELAY</td>
+                            <td>extend SI week assignment deadline by one day</td>
+                            <td>500</td>
+                            <td><div class="optionTable">EDIT ICON</div></td>
+                            <td><div class="optionTable">DELETE ICON</div></td>
+                        </tr>
 
-				</tr>
-				<tr>
-					<td>HOME OFFICE</td>
-					<td>You can spend a day in home office</td>
-					<td>300</td>
-					<td><div class="optionTable">EDIT ICON</div></td>
-					<td><div class="optionTable">DELETE ICON</div></td>
-				</tr>
-				<tr>
-					<td>WANT MORE</td>
-					<td>Extra material for the current topic</td>
-					<td>500</td>
-					<td><div class="optionTable">EDIT ICON</div></td>
-					<td><div class="optionTable">DELETE ICON</div></td>
-				</tr>
-				<tr>
-					<td>DELAY</td>
-					<td>extend SI week assignment deadline by one day</td>
-					<td>500</td>
-					<td><div class="optionTable">EDIT ICON</div></td>
-					<td><div class="optionTable">DELETE ICON</div></td>
-				</tr>
+                    </table>
+                    <input type="submit" value="Add">
+                    <br/>
+                    <br/>
 
-			</table>
-			<input type="submit" value="Add">
-			<br/>
-			<br/>
-
-			</div>
-		</div>
-
-		<div th:insert="fragments/mentor-fragments :: footer"></div>
-
-	</div>
-	
-</body>
+                </div>
+            </div>
+            <!-- FOOTER -->
+            <div th:insert="fragments/mentor-fragments :: footer"></div>
+        </div>
+    </body>
 </html>
