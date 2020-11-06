@@ -26,10 +26,12 @@
                 </div>
 
                 <div id="topbarR" >
-                    <span class="bigtitle"> Mentor's profile </span>
+                    <span class="bigtitle"> Quests list </span>
                     <div style="height: 15px;"></div>
-                    Here you can check your personal data or modify them if something went wrong during registration.
-                    On the left side you have option menu. Enjoy our app!
+                    XXXXXX
+                    XXXXXX
+                    XXXXXX
+                    XXXXXX
                 </div>
             </div>
 
@@ -41,35 +43,38 @@
                 </div>
 
                 <div id="content">
-                    <span class="bigtitle">Basic Quests</span>
+                    <span class="bigtitle"> INDIVIDUAL QUESTS </span>
+                    <div class="dottedline"></div> <br/>
+                    <table id = "individual_quests_table">
+                        <tr>
+                            <td class="tableTitle"> Quest description </td>
+                            <td class="tableTitle"> Value </td>
+                        </tr>
 
-                    <div class="dottedline"></div>
-                    <div class="questList">1. Finishing two-week assignment - 100 cc per person for the team and they decide on how to share it</div>
-                    </br>
-                    <div class="questList">2. Passing a Checkpoint - 500 cc</div>
-                    </br>
+                        <tr th:each="quest : ${individualQuests}">
+                            <td><span th:text="${quest.questDescription}"> </span></td>
+                            <td><span th:text="${quest.questValue}"> </span></td>
+                            <td><a th:href="@{/mentor/edit-quest/{id}(id=${quest.id})}" class="btn">Edit</a></td>
+                        </tr>
 
+                    </table>
+                    <br/> <br/>
 
-                    <span class="bigtitle">Extra Quests</span>
+                    <span class="bigtitle"> GROUP QUESTS </span>
+                    <div class="dottedline"></div> <br/>
+                    <table id = "group_achievements_table">
+                        <tr>
+                            <td class="tableTitle"> Quest description </td>
+                            <td class="tableTitle"> Value </td>
+                        </tr>
 
-                    <div class="dottedline"></div>
-
-                    <div class="questList">1. Spot a major mistake in the assignment - 50 cc</div>
-                    </br>
-                    <div class="questList">2. Doing a demo for the class (side project, new technology, ...) - 100 cc</div>
-                    </br>
-                    <div class="questList">3. Taking part in the student screening process - 100 cc</div>
-                    </br>
-                    <div class="questList">4. Organizing a workshop for other students - 400 ccc</div>
-                    </br>
-                    <div class="questList">5. Attend 1 months without being late - 300 cc</div>
-                    </br>
-                    <div class="questList">6. Set up a SMART goal accepted by a mentor, then achieve it - 500 - 1000 cc</div>
-                    </br>
-                    <div class="questList">7. Students choose the best project of the week. Selected team scores - 500 cc</div>
-                    </br>
-                    <div class="questList">8. Do a presentation on a meet-up - 500 cc</div>
-
+                        <tr th:each="quest : ${groupQuests}">
+                            <td><span th:text="${quest.questDescription}"> </span></td>
+                            <td><span th:text="${quest.questValue}"> </span></td>
+                            <td><a th:href="@{/mentor/edit-quest/{id}(id=${quest.id})}"  class="btn">Edit</a></td>
+                        </tr>
+                    </table>
+                    <br/> <br/>
                 </div>
             </div>
 

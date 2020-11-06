@@ -18,4 +18,6 @@ public interface QuestRepository extends CrudRepository<Quest, Long> {
 
     @Query(value = "select u from Quest u where u.questType.questTypeName = 'individual'")
     List<Quest> getAllIndividualQuests();
+
+    Quest findQuestById(Long id);
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title> Profile </title>
+
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/mentor-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/mentor-fragments :: lowMenu" ></div>
+			</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-user-secret"></i>
+				</div>
+
+				<div id="topbarR" >
+					<span class="bigtitle"> Quest update </span>
+					<div style="height: 15px;"></div>
+					XXXXXX
+					XXXXXX
+					XXXXXX
+					XXXXXX
+				</div>
+			</div>
+
+			<!--------------- MAIN CONTENT --------------->
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/mentor-fragments :: sidebar"></div>
+				</div>
+
+				<div id="content">
+
+					<p class="bigtitle">Quest: <span type="text" th:text="${quest.questDescription}"></span> </p>
+
+					<div class="dottedline"></div>
+					<br/>
+					<table id = "group_members_table">
+
+						<form action="#" th:action="@{/mentor/update-quest/{id}(id=${quest.id})}" th:object="${quest}" method="post">
+
+<!--							<p class="bigtitle">Quest: <span type="text" th:text="${quest.questDescription}"></span> </p>-->
+
+							<input type="hidden" th:value="${quest.id}" id="questId" name="questId">
+
+							</br>
+							<label for="name">Quest description </label>
+							<input type="text" th:field="*{questDescription}" id="questDescription" placeholder="Quest description">
+							</br>
+							</br>
+							<label for="name">Quest value </label>
+							<input type="text" th:field="*{questValue}" id="questValue" placeholder="Quest value">
+							</br>
+							</br>
+							<label for="name">Quest type </label>
+							<input type="text" th:field="*{questType.questTypeId}" id="questType" placeholder="Quest type">
+							</br>
+							</br>
+
+							<input type="submit" value="Update Quest">
+						</form>
+
+					</table>
+					<br/>
+					<br/>
+
+					</div>
+				</div>
+
+			<!-- FOOTER -->
+			<div th:insert="fragments/mentor-fragments :: footer"></div>
+		</div>
+	</body>
+</html>

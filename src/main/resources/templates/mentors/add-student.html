@@ -40,50 +40,44 @@
                 </div>
 
                 <div id="content">
-                    <br><br/>
                     <span class="bigtitle">Add new student</span>
                     <div class="dottedline"></div>
                     <div id="editData">
+                        <form action="#" th:action="@{/mentor/newstudent}" th:object="${student}" method="post">
 
-                        <span class="lowmenu">First name</span>
-                        <form id="add-student-form-first-name">
+                            <span class="lowmenu">First name</span>
+                            <input type="text" name="first-name" th:field="*{firstName}" placeholder="First name"> </br>
 
-                            <input type="first-name" name="first-name" id="first-name-field" class="email-form-field" placeholder="First name"> </br>
 
+
+                            <span class="lowmenu">Last name</span>
+                            <input type="text" name="last-name" th:field="*{lastName}"  placeholder="First name"> </br>
+
+
+
+                            <span class="lowmenu">E-mail</span>
+                            <input type="email" name="email" th:field="*{email}" placeholder="E-mail"> </br>
+
+
+
+                            <span class="lowmenu">Password</span>
+                            <input type="password" name="password" th:field="*{password}"  placeholder="Password">
+<!--                            <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat password" style="text-align: left;"></br>-->
+
+<!--                            <span class="lowmenu">Group</span>-->
+<!--                            <select>-->
+<!--                                    <tr th:each="group : ${session.mentor.groups}">-->
+<!--                                        <option th:value="${group.groupId}">-->
+<!--                                            <div th:text="${group.groupName}"></div>-->
+<!--                                            <input type="hidden" name="group" th:field="${group.groupId}" >-->
+<!--                                        </option>-->
+<!--                                    </tr>-->
+<!--                            </select>-->
+
+<!--                                <input type="submit" th:value="View">-->
+<!--                            </form>-->
+                            <input type="submit" name="Submit">
                         </form>
-
-                        <span class="lowmenu">Last name</span>
-                        <form id="add-student-form-last-name">
-
-                            <input type="last-name" name="last-name" id="last-name-field" class="email-form-field" placeholder="First name"> </br>
-
-                        </form>
-
-                        <span class="lowmenu">E-mail</span>
-                        <form id="add-student-form-mail">
-
-                            <input type="email" name="email" id="email-field" class="email-form-field" placeholder="E-mail"> </br>
-
-                        </form>
-
-                        <span class="lowmenu">Password</span>
-                        <form id="add-student-form-password">
-
-                            <input type="password" name="password" id="password-field" class="password-form-field" placeholder="Password">
-                            <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat password" style="text-align: left;"></br>
-
-                        </form>
-
-                        <span class="lowmenu">Group</span>
-                        <form id="group">
-
-                            <input type="group" name="group" id="group-field" class="email-form-field" placeholder="Group"> </br>
-
-                        </form>
-
-                        </br></br>
-
-                        <input type="submit" value="Submit" id="password-form-submit">
 
                     </div>
 

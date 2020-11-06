@@ -1,19 +1,14 @@
 package com.codecool.fusy_qs.controller;
 
-import com.codecool.fusy_qs.entity.GroupClass;
-import com.codecool.fusy_qs.entity.Level;
-import com.codecool.fusy_qs.entity.Student;
-import com.codecool.fusy_qs.entity.User;
+import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.GroupService;
 import com.codecool.fusy_qs.service.LevelService;
+import com.codecool.fusy_qs.service.QuestService;
 import com.codecool.fusy_qs.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +18,15 @@ public class MentorController {
     StudentService studentService;
     GroupService groupService;
     LevelService levelService;
+    QuestService questService;
 
     public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService,
-                            LevelService levelService) {
+                            LevelService levelService, QuestService questService) {
         this.userRepository = userRepository;
         this.studentService = studentService;
         this.groupService = groupService;
         this.levelService = levelService;
+        this.questService = questService;
     }
 
 
@@ -41,12 +38,6 @@ public class MentorController {
         return "mentors/profile";
     }
 
-
-    @GetMapping("/mentor/quests")
-    String showAllQuests(){
-
-        return "mentors/quests";
-    }
 
     @GetMapping("/mentor/shop/group")
     String showGroupShop(){
@@ -76,11 +67,24 @@ public class MentorController {
     }
 
     @GetMapping("/mentor/addstudent")
-    String showAddStudent(Student student, Model model){
-
-        studentService.addStudent(student);
+    String showAddStudentForm(Model model){
+        Student student = new Student();
+        model.addAttribute("student", student);
 
         return "mentors/add-student";
+    }
+
+    @PostMapping("/mentor/newstudent")
+    String addStudent(@ModelAttribute("student") Student student, Model model){
+
+        model.addAttribute("firstName", student.getFirstName());
+        model.addAttribute("lastName", student.getLastName());
+        model.addAttribute("email", student.getEmail());
+        model.addAttribute("password", student.getPassword());
+        model.addAttribute("group", student.getGroups().get(0));
+        studentService.addStudent(student);
+
+        return "redirect:/mentor/profile";
     }
 
     //Groups
@@ -134,5 +138,31 @@ public class MentorController {
         return "redirect:/mentor/experience";
     }
 
+    //Quests
 
+    @GetMapping("/mentor/quests")
+    String getQuests(Model model) {
+        List<Quest> individualQuests = questService.getAllIndividualQuests();
+        List<Quest> groupQuests = questService.getAllGroupQuests();
+
+        model.addAttribute("individualQuests", individualQuests);
+        model.addAttribute("groupQuests", groupQuests);
+
+        return "mentors/quests";
+    }
+
+    @GetMapping("/mentor/edit-quest/{id}")
+    String showUpdateQuestForm(@PathVariable("id") Long questId, Model model) {
+        Quest quest = questService.getQuestById(questId);
+        model.addAttribute(quest);
+        return "mentors/quest-update";
+    }
+
+    @PostMapping("/mentor/update-quest/{id}")
+    String updateLevel (@PathVariable("id") Integer questId, Quest quest,  Model model) {
+
+        questService.saveQuest(quest);
+
+        return "redirect:/mentor/quests";
+    }
 }

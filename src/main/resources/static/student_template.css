@@ -326,3 +326,17 @@ select {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+/*input[type="text"]{*/
+/*    background-color: #128870;*/
+/*    opacity: 0.8;*/
+/*    color: black;*/
+/*}*/
+
+input[type="submit"]{
+    background-color: gray;
+    color: black;
+    font-size: inherit;
+}
+
+

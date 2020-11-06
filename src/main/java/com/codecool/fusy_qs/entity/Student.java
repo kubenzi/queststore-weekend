@@ -33,6 +33,10 @@ public class Student extends User {
         this.totalCoinsEarned = totalCoinsEarned;
     }
 
+//    public Student(String firstName, String lastName, String email, String password, AccountType accountType) {
+//        super(firstName, lastName, email, password, accountType);
+//    }
+
     public Integer getWallet() {
         return wallet;
     }
