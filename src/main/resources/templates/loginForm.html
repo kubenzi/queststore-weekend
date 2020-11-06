@@ -57,10 +57,10 @@
           th:object="${maybeUser}"
           method="post">
       <label for="username">Email</label>
-      <input type="text" name="email" id="email" class="login-form-field" placeholder="E-mail" th:field="*{email}" required >
+      <input type="text" name="email" id="email" class="login-form-field" th:field="*{email}" required >
 
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="login-form-field" placeholder="Password" th:field="*{password}" required>
+      <input type="password" name="password" id="password" class="login-form-field" th:field="*{password}" required>
       <!--<input type="submit" value="SIGN IN!" class="login-form-submit">-->
       <input type="submit" value="Log in"/>
 <!--      <input type="button" class="login-form-submit" onclick="window.location='../student_html/main_view/student_main_viev.html';" value="SIGN IN!" />-->
@@ -68,7 +68,7 @@
     </form>
 
     <div id="login-msg-holder">
-      <p id="login-msg">Invalid username and/or password</p>
+      <p id="login-msg">Invalid e-mail and/or password</p>
     </div>
   </div>
 

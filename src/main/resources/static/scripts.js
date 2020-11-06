@@ -54,6 +54,8 @@ function changePassword(actualPassword)
 
 function passwordLegitimate(newPasswordFirst) {
 
+    alert(newPasswordFirst)
+
     let digits = /[1-9]/;
     let isDigit = newPasswordFirst.match(digits);
     if(!isDigit){alert("Password must have a Digit")

@@ -1,10 +1,14 @@
 package com.codecool.fusy_qs.entity;
 
-import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-@Embeddable
+@Entity(name = "transaction_details")
 public class Transaction {
+
+    @Id
+    @SequenceGenerator(name= "transaction_id_gen", initialValue = 10, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_id_gen")
+    private Long id;
 
     private String itemName;
 
@@ -17,15 +21,44 @@ public class Transaction {
 
     private boolean isUsed;
 
+    @ManyToOne
+    private Student student;
+
     public Transaction() {
     }
 
-    public Transaction(String itemName, String itemDescription, Integer itemCost, ItemType itemType, boolean isUsed) {
+    public Transaction(String itemName,
+                       String itemDescription,
+                       Integer itemCost,
+                       ItemType itemType,
+                       boolean isUsed,
+                       Student student) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemCost = itemCost;
         this.itemType = itemType;
         this.isUsed = isUsed;
+        this.student = student;
+    }
+
+    public Transaction(String itemName,
+                       String itemDescription,
+                       Integer itemCost,
+                       boolean isUsed,
+                       Student student) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.itemCost = itemCost;
+        this.isUsed = isUsed;
+        this.student = student;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     private boolean itemTypeValidator(Item item){
@@ -64,11 +97,19 @@ public class Transaction {
         this.itemType = itemType;
     }
 
-    public boolean isUsed() {
+    public boolean getIsUsed() {
         return isUsed;
     }
 
-    public void setUsed(boolean used) {
+    public void setIsUsed(boolean used) {
         isUsed = used;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

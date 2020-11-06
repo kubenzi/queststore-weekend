@@ -1,155 +1,94 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-	<meta charset="utf-8" />
-	<title>Student_main_view </title>
+	<head>
+		<meta charset="utf-8" />
+		<title> Profile </title>
 
-	<meta name="keywords" content="student, codecool, quest, coolcoins" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<link th:href="@{/student_template.css}" rel="stylesheet" />
-
-<!--	<script type="module" th:src="@{/scripts.js}" defer></script>-->
-<!--	<script type="module" th:src="@{/scripts.js}" defer></script>-->
-	<script type="text/javascript" th:src="@{/scripts.js}"></script>
-
-	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
-
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
-</head>
-
-<body>
-
-	<div id="container">
-
-
-		<div id="bar">
-
-			<!--------------- MAIN BAR --------------->
-			<div th:insert="fragments/student-fragments :: mainBar" ></div>
-
-			<!--------------- LOW MENU --------------->
-			<div th:insert="fragments/student-fragments :: lowMenu" ></div>
-
-		</div>
-			<!--------------- TOP BAR --------------->
-		<div id="topbar" class="flex-container">
-			<div id="topbarL" class="topbarL">
-				<i class="icon-graduation-cap"></i>
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<script type="text/javascript" th:src="@{/scripts.js}"></script>
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/student-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/student-fragments :: lowMenu" ></div>
 			</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-graduation-cap"></i>
+				</div>
 
-			<div id="topbarR" >
-				<span class="bigtitle">Welcome to Your Profile Side Details  </span>
-				<div style="height: 15px;"></div>
-                Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
-                You can choose action. Enjoy our app!
-            </div>
-		</div>
-
+				<div id="topbarR" >
+					<span class="bigtitle"> Student's profile </span>
+					<div style="height: 15px;"></div>
+					Here you can check your presonal data or modify them if something went wrong during registration.
+					On the lef side you have option menu. Enjoy our app!
+				</div>
+			</div>
 
 			<!--------------- MAIN CONTENT --------------->
-		<div id="main-content" class="flex-container">
-
-			<!--------------- SIDEBAR --------------->
-			<div class="sidebar-div">
-				<div th:insert="fragments/student-fragments :: sidebar"></div>
-			</div>
-
-			<div id="content">
-
-				<span class="bigtitle">Profile details</span>
-
-				<div class="dottedline"></div>
-
-				<div id="personalDetails">
-					<div id="firstname">
-						Firstname: <span th:text="${session.student.firstName}"/>
-					</div>
-
-					<div id="surname">
-						Surname: <span th:text="${session.student.lastName}"/>
-					</div>
-
-					<div id="mail">
-						Mail: <span th:text="${session.student.email}"/>
-
-					</div>
-
-					<div id="class">
-
-						<tr th:each="group : ${session.student.groups}">
-							Group:
-							<td><span th:text="${group.groupName}"> </span></td>
-								<td><span th:each="user: ${group.users[0].firstName}"> </span></td>
-<!--									<td><span th:text="${user.firstName}"> </span></td>-->
-						</tr>
-
-					</div>
-
-				</div>
-				<br><br/>
-
-				<span class="bigtitle">Edit personal data</span>
-
-				<div class="dottedline"></div>
-
-				<div id="editData">
-
-					<span class="lowmenu">Change password</span>
-
-
-					<form id="password-form" action="#" name="password-form" th:action="@{/student}" th:object="${student}" method="post">
-
-						<input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password"> </br>
-
-						<input type="password" name="password" id="first-password-field"  class="password-form-field" placeholder="New password">
-						<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
-
-
-
-						<input type="hidden" th:value="${session.student.userId}" id="userId" name="userId">
-						<input type="hidden" th:value="${session.student.firstName}" id="firstName" name="firstName">
-						<input type="hidden" th:value="${session.student.lastName}" id="lastName" name="lastName">
-						<input type="hidden" th:value="${session.student.password}" id="lastName" name="lastName">
-						<input type="hidden" th:value="${session.student.email}" id="email" name="email">
-						<input type="hidden" th:class="${session.student.accountType}" id="accountType" name="accountType">
-						<input type="hidden" th:value="${session.student.wallet}" id="wallet" name="wallet">
-						<input type="hidden" th:value="${session.student.totalCoinsEarned}" id="totalCoinsEarned" name="totalCoinsEarned">
-
-
-
-						<input type="hidden" id="password" name="password">
-
-
-						<button id="edit-password" type="button" th:onclick="changePassword([[${session.student.password}]])">Edit</button>
-
-
-					</form>
-
-
-
-					</br></br>
-					<span class="lowmenu">Change e-mail</span>
-					<form id="edit-form-mail">
-
-						<input type="password" name="password" id="first-email-field" class="email-form-field" placeholder="Old mail"> </br>
-
-						<input type="password" name="password" id="second-email-field" class="email-form-field" placeholder="New mail">
-						<input type="password" name="password" id="new-email-field" class="email-form-field" placeholder="New mail" style="text-align: left;"></br>
-						<input type="submit" value="Submit" id="email-form-submit">
-
-					</form>
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/student-fragments :: sidebar"></div>
 				</div>
 
+				<div id="content">
+					<span class="bigtitle">Profile details</span>
+					<div class="dottedline"></div>
+					<div id="personalDetails">
+						<div id="firstname"> Firstname: <span th:text="${session.student.firstName}"/> </div>
+						<div id="surname"> Surname: <span th:text="${session.student.lastName}"/> </div>
+						<div id="mail"> Mail: <span th:text="${session.student.email}"/> </div>
+					</div>
+
+					<br><br/>
+
+					<span class="bigtitle">Edit personal data</span>
+					<div class="dottedline"></div>
+					<div id="editData">
+						<span class="lowmenu">Change password</span>
+
+						<form id="password-form" action="#" name="password-form" th:action="@{/student}" th:object="${studentDataDto}" method="post">
+
+							<input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password"> </br>
+
+							<input type="password" name="password" th:field="*{newPassword}" id="first-password-field"  class="password-form-field" placeholder="New password">
+							<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
+
+
+
+							<input type="hidden" id="password" name="password">
+
+							<button id="edit-password" type="button" th:onclick="changePassword([[${session.student.password}]])">Edit</button>
+
+
+						</form>
+
+						</br></br>
+
+						<span class="lowmenu">Change e-mail</span>
+
+						<form id="edit-form-mail">
+							<input type="password" name="password" id="first-email-field" class="email-form-field" placeholder="Old mail"> </br>
+							<input type="password" name="password" id="second-email-field" class="email-form-field" placeholder="New mail">
+							<input type="password" name="password" id="new-email-field" class="email-form-field" placeholder="New mail" style="text-align: left;"></br>
+							<input type="submit" value="Submit" id="email-form-submit">
+						</form>
+					</div>
+				</div>
 			</div>
 
+			<!-- FOOTER -->
+			<div th:insert="fragments/student-fragments :: footer"></div>
 		</div>
-							
-							<!-- FOOTER -->
-		<div th:insert="fragments/student-fragments :: footer"></div>
-
-	</div>
-
-</body>
-<html>
+	</body>
+</html>
