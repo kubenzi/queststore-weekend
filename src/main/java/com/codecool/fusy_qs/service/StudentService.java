@@ -20,4 +20,6 @@ public interface StudentService {
     List<Transaction> findIndividualTransactions(Student student);
     boolean checkAccountBalance(Student currentStudent, int coolcoins);
     List<Student> findAllStudents();
+    void saveStudent(Student student);
+    void deleteStudent(Student student);
 }

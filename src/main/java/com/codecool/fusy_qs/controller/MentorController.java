@@ -6,6 +6,7 @@ import com.codecool.fusy_qs.dto.StudentGroupDataDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.repository.UserRepository;
 import com.codecool.fusy_qs.service.*;
+import com.codecool.fusy_qs.entity.GroupClass;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,11 @@ public class MentorController {
     QuestService questService;
     UserService userService;
     AccountTypeService accountTypeService;
+    AchievementService achievementService;
 
     public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService,
-                            LevelService levelService, QuestService questService, UserService userService, AccountTypeService accountTypeService) {
+                            LevelService levelService, QuestService questService, UserService userService,
+                            AccountTypeService accountTypeService, AchievementService achievementService) {
         this.userRepository = userRepository;
         this.studentService = studentService;
         this.groupService = groupService;
@@ -34,6 +37,7 @@ public class MentorController {
         this.questService = questService;
         this.userService = userService;
         this.accountTypeService = accountTypeService;
+        this.achievementService = achievementService;
     }
 
 
@@ -92,6 +96,10 @@ public class MentorController {
     String showStudentProfile(@PathVariable("id") String userId, Model model){
         Student student = studentService.findStudentById(Long.valueOf(userId));
         model.addAttribute(student);
+        Level studentLevel = levelService.getLevelByCcRequired(student.getTotalCoinsEarned());
+        model.addAttribute("studentLevel", studentLevel);
+        GroupClass studentGroup = student.getGroups().get(0);
+        model.addAttribute("studentGroup", studentGroup);
         return "mentors/one-student";
     }
 
@@ -101,8 +109,35 @@ public class MentorController {
         StudentGroupDataDto newStudent = new StudentGroupDataDto();
         model.addAttribute("studentGroupDataDto", newStudent);
 
+
         return "mentors/add-student";
     }
+
+    @GetMapping("/mentor/edit-student/{id}")
+    String showUpdateStudentForm(@PathVariable("id") Long userId, Model model) {
+        Student student = studentService.findStudentById(userId);
+        model.addAttribute(student);
+        return "mentors/student-update";
+    }
+
+    @PostMapping("/mentor/update-student/{id}")
+    String updateStudent(@PathVariable("id") Long userId, Student student, Model model) {
+        student.setPassword(studentService.findStudentById(userId).getPassword());
+        student.setTotalCoinsEarned(studentService.findStudentById(userId).getTotalCoinsEarned());
+        student.setWallet(studentService.findStudentById(userId).getWallet());
+        student.setAccountType(studentService.findStudentById(userId).getAccountType());
+        studentService.saveStudent(student);
+
+        return "redirect:/mentor/student";
+    }
+
+//    @PostMapping("/mentor/delete-student/{id}")
+//    String deleteStudent(@PathVariable("id") Long userId, Student student){
+////        Student student = studentService.findStudentById(userId);
+////        studentService.deleteStudent(student);
+////        achievementService.delete(student.getAchievementList().get(student.getAchievementList().size()));
+//        return "redirect:/mentor/student";
+//    }
 
     @PostMapping("/mentor/newstudent")
     String addStudent(@ModelAttribute("studentGroupDataDto") StudentGroupDataDto studentGroupDataDto, Model model){

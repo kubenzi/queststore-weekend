@@ -11,6 +11,6 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
 
     Student findByEmail(String email);
 
-    @Query(value = "SELECT * FROM user_data", nativeQuery = true)
+    @Query(value = "SELECT * FROM user_data WHERE account_type_id = 1 ORDER BY user_id  ", nativeQuery = true)
     List<Student> findAllStudents();
 }

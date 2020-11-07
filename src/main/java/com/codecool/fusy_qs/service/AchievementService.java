@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AchievementService {
     Integer calculateTotalValueOfAchievementsList(List<Achievement> achievements);
+
+    void delete(Achievement achievement);
 }

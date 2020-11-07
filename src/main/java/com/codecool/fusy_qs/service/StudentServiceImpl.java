@@ -99,7 +99,15 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAllStudents();
     }
 
+    @Override
+    public void saveStudent(Student student) {
+        studentRepository.save(student);
+    }
 
+    @Override
+    public void deleteStudent(Student student) {
+        studentRepository.delete(student);
+    }
 
 
     @Override
