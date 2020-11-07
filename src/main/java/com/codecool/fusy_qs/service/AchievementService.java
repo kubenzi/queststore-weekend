@@ -8,5 +8,5 @@ import java.util.List;
 public interface AchievementService {
     Integer calculateTotalValueOfAchievementsList(List<Achievement> achievements);
 
-    void deleteByStudentId(Achievement achievement);
+    void delete(Achievement achievement);
 }

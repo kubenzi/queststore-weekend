@@ -27,7 +27,7 @@ public class AchievementServiceImpl implements AchievementService {
     }
 
     @Override
-    public void deleteByStudentId(Achievement achievement) {
+    public void delete(Achievement achievement) {
         achievementRepository.delete(achievement);
     }
 }

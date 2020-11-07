@@ -33,10 +33,7 @@
                 <div id="topbarR" >
                     <span class="bigtitle"> Student personal details </span>
                     <div style="height: 15px;"></div>
-                    XXXXXX
-                    XXXXXX
-                    XXXXXX
-                    XXXXXX
+                    Here you can check personal details of
                 </div>
             </div>
 
@@ -89,9 +86,8 @@
                             <span th:text="${studentGroup.groupName}"></span>
 
                         </div>
-                        <button onclick="goBack()">Go Back</button>
+                        <input type="submit" onclick="goBack()"></input>
                     </div>
-                    <a th:href="@{/mentor/edit-student/{studentId}(studentId=${student.userId})}" class="btn">Edit</a>
 
                 </div>
             </div>

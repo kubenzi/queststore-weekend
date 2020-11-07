@@ -44,6 +44,11 @@ public class QuestServiceImpl implements QuestService {
     }
 
     @Override
+    public void deleteQuest(Quest quest) {
+        questRepository.delete(quest);
+    }
+
+    @Override
     public Quest getQuestById(Long id) {
         return questRepository.findQuestById(id);
     }

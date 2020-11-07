@@ -61,7 +61,9 @@
 							<!--                            <td ><span th:text="${student.firstName}"> </span></td>-->
 							<!--                            <td><span th:text="${student.lastName}"> </span></td>-->
 
+							<td><a th:href="@{/mentor/one-group/{id}(id=${group.groupId})}" class="btn">View</a></td>
 							<td><a th:href="@{/mentor/edit-group/{id}(id=${group.groupId})}" class="btn">Edit</a></td>
+
 							<!--                        </tr>-->
 						</tr>
 

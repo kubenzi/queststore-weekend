@@ -11,5 +11,6 @@ public interface QuestService {
     Quest getQuestById(Long id);
     void addQuest(Quest quest);
     void saveQuest(Quest quest);
+    void deleteQuest(Quest quest);
 
 }

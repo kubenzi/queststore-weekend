@@ -55,6 +55,7 @@
                             <td><span th:text="${quest.questDescription}"> </span></td>
                             <td><span th:text="${quest.questValue}"> </span></td>
                             <td><a th:href="@{/mentor/edit-quest/{id}(id=${quest.id})}" class="btn">Edit</a></td>
+                            <td><a th:href="@{/mentor/delete-quest/{id}(id=${quest.id})}" class="btn">Delete</a></td>
                         </tr>
 
                     </table>
@@ -72,6 +73,7 @@
                             <td><span th:text="${quest.questDescription}"> </span></td>
                             <td><span th:text="${quest.questValue}"> </span></td>
                             <td><a th:href="@{/mentor/edit-quest/{id}(id=${quest.id})}"  class="btn">Edit</a></td>
+                            <td><a th:href="@{/mentor/delete-quest/{id}(id=${quest.id})}" class="btn">Delete</a></td>
                         </tr>
                     </table>
                     <br/> <br/>

@@ -133,13 +133,35 @@ public class MentorController {
         return "redirect:/mentor/student";
     }
 
-//    @PostMapping("/mentor/delete-student/{id}")
-//    String deleteStudent(@PathVariable("id") Long userId, Student student){
-////        Student student = studentService.findStudentById(userId);
-////        studentService.deleteStudent(student);
-////        achievementService.delete(student.getAchievementList().get(student.getAchievementList().size()));
-//        return "redirect:/mentor/student";
-//    }
+    @GetMapping("/mentor/delete-student/{id}")
+    String deleteStudent(@PathVariable("id") Long userId){
+        Student student = studentService.findStudentById(userId);
+//        for (Achievement achievement : student.getAchievementList()
+//        )
+//            achievementService.delete(achievement); {
+//        }
+//        for (int i = 0; i < student.getAchievementList().size(); i++) {
+//            student.getAchievementList().set(i, null);
+//        }
+//        for (int i = 0; i < student.getAchievementList().size(); i++) {
+//            student.getTransactionList().set(i, null);
+//        }
+//
+////        student.getTransactionList().clear();
+////        achievementService.delete(student.getAchievementList().);
+//        studentService.saveStudent(student);
+//        studentService.deleteStudent(student);
+
+        return "redirect:/mentor/student";
+    }
+
+    @GetMapping("/mentor/delete-quest/{id}")
+    String deleteQuest(@PathVariable("id") Long id){
+        Quest quest = questService.getQuestById(id);
+        questService.deleteQuest(quest);
+
+        return "redirect:/mentor/quests";
+    }
 
     @PostMapping("/mentor/newstudent")
     String addStudent(@ModelAttribute("studentGroupDataDto") StudentGroupDataDto studentGroupDataDto, Model model){

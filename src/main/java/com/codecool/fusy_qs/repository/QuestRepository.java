@@ -20,4 +20,5 @@ public interface QuestRepository extends CrudRepository<Quest, Long> {
     List<Quest> getAllIndividualQuests();
 
     Quest findQuestById(Long id);
+
 }
