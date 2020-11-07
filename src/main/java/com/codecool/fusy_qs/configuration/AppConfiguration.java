@@ -22,6 +22,7 @@ public class AppConfiguration {
 //        registrationBean.addUrlPatterns("/students/shop-group");
 //        registrationBean.addUrlPatterns("/students/shop-individual");
         registrationBean.addUrlPatterns("/students/student");
+//        registrationBean.addUrlPatterns("/student/experience");
 //        registrationBean.addUrlPatterns("/students/transactions");
         return registrationBean;
     }
