@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title> Profile </title>
+
+        <meta name="keywords" content="student, codecool, quest, coolcoins" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+        <link th:href="@{/student_template.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{/scripts.js}"></script>
+        <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div id="container">
+            <div id="bar">
+                <!--------------- MAIN BAR --------------->
+                <div th:insert="fragments/mentor-fragments :: mainBar" ></div>
+                <!--------------- LOW MENU --------------->
+                <div th:insert="fragments/mentor-fragments :: lowMenu" ></div>
+            </div>
+            <!--------------- TOP BAR --------------->
+            <div id="topbar" class="flex-container">
+                <div id="topbarL" class="topbarL">
+                    <i class="icon-user-secret"></i>
+                </div>
+
+                <div id="topbarR" >
+                    <span class="bigtitle"> New quest form </span>
+                    <div style="height: 15px;"></div>
+                    Here you can create new quest for your students. Please provide all required data.
+                </div>
+            </div>
+
+            <!--------------- MAIN CONTENT --------------->
+            <div id="main-content" class="flex-container">
+                <!--------------- SIDEBAR --------------->
+                <div class="sidebar-div">
+                    <div th:insert="fragments/mentor-fragments :: sidebar"></div>
+                </div>
+
+                <div id="content">
+                    <span class="bigtitle">Add new student</span>
+                    <div class="dottedline"></div>
+                    <div id="editData">
+                        <form action="#" th:action="@{/mentor/newquest}" th:object="${questDataDto}" method="post">
+
+                            <span class="lowmenu">Quest description</span>
+                            <input type="text" name="first-name" th:field="*{questDescription}" placeholder="Quest description"> </br>
+
+
+                            <span class="lowmenu">Quest value</span>
+                            <input type="text" name="last-name" th:field="*{questValue}"  placeholder="Quest value"> </br>
+
+
+                            <span class="lowmenu">Quest type</span>
+
+<!--                            <select th:field="*{questTypeId}">-->
+<!--                                -->
+<!--                                <option th:value="1">-->
+<!--                                    <div th:text="Individual"></div>-->
+<!--                                </option>-->
+<!--                                <option th:value="2">-->
+<!--                                    <div th:text="Group"></div>-->
+<!--                                </option>-->
+<!--                               -->
+<!--                                <input type="hidden" name="questType" th:field="*{questTypeId}">-->
+<!--                            </select></br>-->
+
+                            <select th:field="*{questType.questTypeId}">
+                                    <tr th:each="questType : ${questTypeList}">
+                                        <option th:value="${questType.questTypeId}">
+                                            <div th:text="${questType.questTypeName}"></div>
+                                        </option>
+                                    </tr>
+<!--                              <input type="hidden" name="questType" th:field="*{questTypeId}">-->
+                            </select></br>
+
+
+                            <input type="submit" th:onclick="addQuest()" name="Submit">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div th:insert="fragments/mentor-fragments :: footer"></div>
+        </div>
+    </body>
+</html>

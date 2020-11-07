@@ -133,3 +133,11 @@ function addStudent(){
 function updateStudent(){
     alert("Student updated!")
 }
+
+function updateQuest(){
+    alert("Quest updated!")
+}
+
+function addQuest(){
+    alert("Quest added!")
+}

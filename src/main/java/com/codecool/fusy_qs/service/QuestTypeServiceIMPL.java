@@ -5,6 +5,8 @@ import com.codecool.fusy_qs.repository.QuestTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuestTypeServiceIMPL implements QuestTypeService {
     QuestTypeRepository questTypeRepository;
@@ -22,5 +24,10 @@ public class QuestTypeServiceIMPL implements QuestTypeService {
     public QuestType findQuestTypeById(Long id){
         return questTypeRepository.findById(id).orElse(null);
 // dać orElse null albo optional?
+    }
+
+    @Override
+    public List<QuestType> findAllQuestTypes(){
+        return questTypeRepository.findAllQuestTypes();
     }
 }

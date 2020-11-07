@@ -1,7 +1,7 @@
 package com.codecool.fusy_qs.controller;
 
 import com.codecool.fusy_qs.dto.MentorDataDto;
-import com.codecool.fusy_qs.dto.StudentDataDto;
+import com.codecool.fusy_qs.dto.QuestDataDto;
 import com.codecool.fusy_qs.dto.StudentGroupDataDto;
 import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.repository.UserRepository;
@@ -26,10 +26,11 @@ public class MentorController {
     UserService userService;
     AccountTypeService accountTypeService;
     AchievementService achievementService;
+    QuestTypeService questTypeService;
 
     public MentorController(UserRepository userRepository, StudentService studentService, GroupService groupService,
                             LevelService levelService, QuestService questService, UserService userService,
-                            AccountTypeService accountTypeService, AchievementService achievementService) {
+                            AccountTypeService accountTypeService, AchievementService achievementService, QuestTypeService questTypeService) {
         this.userRepository = userRepository;
         this.studentService = studentService;
         this.groupService = groupService;
@@ -38,6 +39,7 @@ public class MentorController {
         this.userService = userService;
         this.accountTypeService = accountTypeService;
         this.achievementService = achievementService;
+        this.questTypeService = questTypeService;
     }
 
 
@@ -172,6 +174,38 @@ public class MentorController {
         newStudent.setTotalCoinsEarned(100);
 
         studentService.addStudent(newStudent);
+
+        return "redirect:/mentor/profile";
+    }
+
+    @GetMapping("/mentor/addquest")
+    String showAddQuestForm(Model model){
+        QuestDataDto questDataDto = new QuestDataDto();
+        model.addAttribute("questDataDto", questDataDto);
+        List<QuestType> questTypeList = questTypeService.findAllQuestTypes();
+        model.addAttribute("questTypeList", questTypeList);
+
+        return "mentors/add-quest";
+    }
+
+    @PostMapping("/mentor/newquest")
+    String addQuest(@ModelAttribute("questDataDto") QuestDataDto questDataDto, Model model){
+
+        Quest newQuest = new Quest();
+
+        if(questDataDto.getQuestDescription() != null){
+            newQuest.setQuestDescription(questDataDto.getQuestDescription());
+        }
+
+        if(questDataDto.getQuestValue() != 0){
+            newQuest.setQuestValue(questDataDto.getQuestValue());
+        }
+
+        if(questDataDto.getQuestType() != null){
+            newQuest.setQuestType(questTypeService.findQuestTypeById(questDataDto.getQuestType().getQuestTypeId()));
+        }
+
+        questService.saveQuest(newQuest);
 
         return "redirect:/mentor/profile";
     }
