@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Achievement;
+import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.AchievementRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class AchievementServiceImpl implements AchievementService {
     }
 
     @Override
-    public void delete(Achievement achievement) {
+    public void deleteByStudentId(Achievement achievement) {
         achievementRepository.delete(achievement);
     }
 }

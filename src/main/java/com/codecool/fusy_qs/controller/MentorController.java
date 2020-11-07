@@ -166,10 +166,6 @@ public class MentorController {
             newStudent.setGroups(groupsList);
         }
 
-//        if(studentGroupDataDto.getAccountType() != null){
-//            newStudent.setAccountType(accountTypeService.findAccountTypeById(1L));
-//        }
-
         //Static values
         newStudent.setAccountType(accountTypeService.findAccountTypeById(1L));
         newStudent.setWallet(100);
@@ -200,7 +196,7 @@ public class MentorController {
 
         groupService.saveGroup(group);
 
-        return "redirect:/mentors/groups";
+        return "redirect:/mentor/groups";
     }
 
     //Level

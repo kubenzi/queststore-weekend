@@ -126,3 +126,10 @@ function changeEmail(actualEmail){
     return true
 }
 
+function addStudent(){
+    alert("Student added! 100 Coolcoins added to the student's wallet")
+}
+
+function updateStudent(){
+    alert("Student updated!")
+}
