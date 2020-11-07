@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,6 +55,23 @@ public class StudentController {
         HttpSession session = request.getSession(true);
         StudentDataDto studentDataDto = new StudentDataDto();
         model.addAttribute("studentDataDto", studentDataDto);
+
+        return "students/student";
+    }
+
+    @PostMapping("/student/profile")
+    String updateStudent(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(true);
+        Student currentStudent = (Student) session.getAttribute("student");
+
+        if (studentDataDto.getNewPassword() != null) {
+            currentStudent.setPassword(studentDataDto.getNewPassword());
+        }
+        if (studentDataDto.getNewEmail() != null) {
+            currentStudent.setEmail(studentDataDto.getNewEmail());
+        }
+        studentService.addStudent(currentStudent);
 
         return "students/student";
     }
@@ -117,6 +135,15 @@ public class StudentController {
 
     @GetMapping("/student/edit-level/{id}")
     String showUpdateForm(@PathVariable("id") Long levelId, Model model) {
+        List<Level> levelslist = levelService.getAllLevels();
+        List<Integer> coolcoinsReqList = new ArrayList<>();
+
+        for(Level level : levelslist){
+            coolcoinsReqList.add(level.getCoolcoinsRequired());
+        }
+
+        model.addAttribute("coolcoinsReqList", coolcoinsReqList);
+
         Level level = levelService.getLevelById(levelId);
         model.addAttribute(level);
         return "students/experience-update";
@@ -128,25 +155,6 @@ public class StudentController {
         levelService.saveLevel(level);
 
         return "redirect:/student/experience";
-    }
-
-    @PostMapping("/student")
-        String updateStudent(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
-
-        HttpSession session = request.getSession(true);
-        Student currentStudent = (Student) session.getAttribute("student");
-
-        if (studentDataDto.getNewPassword() != null) {
-            currentStudent.setPassword(studentDataDto.getNewPassword());
-        }
-
-        if (studentDataDto.getNewEmail() != null) {
-            currentStudent.setEmail(studentDataDto.getNewEmail());
-        }
-
-        studentService.addStudent(currentStudent);
-
-        return "students/student";
     }
 
     @GetMapping("/login")
