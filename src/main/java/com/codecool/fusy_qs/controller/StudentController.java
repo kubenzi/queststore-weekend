@@ -87,8 +87,8 @@ public class StudentController {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
-        ItemStatusDto itemStatusDto = new ItemStatusDto();
-        model.addAttribute("itemStatusDto", itemStatusDto);
+//        ItemStatusDto itemStatusDto = new ItemStatusDto();
+//        model.addAttribute("itemStatusDto", itemStatusDto);
 
         List<Transaction> individualTransactions = studentService.findIndividualTransactions(student);
         List<Transaction> groupTransactions = studentService.findGroupTransactions(student);
@@ -100,15 +100,19 @@ public class StudentController {
     }
 
     @PostMapping("/student/transactions")
-    String useBoughtIndividualItem(@ModelAttribute("itemStatusDto") ItemStatusDto itemStatusDto,
+    String useBoughtIndividualItem(@ModelAttribute("transactionToUpdate") Transaction transactionWithId,
                                    HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
 
-//        transaction.setIsUsed(true);
-//        transactionService.useBoughtIndividualItem(transaction);
+        Transaction transactionToUpdate = transactionService.findTransactionById(transactionWithId.getId());
 
-        return "students/profile";
+        transactionToUpdate.setIsUsed(true);
+        transactionService.useBoughtIndividualItem(transactionToUpdate);
+
+        studentService.addStudent(currentStudent);
+
+        return "students/quests";
     }
 
     @GetMapping("/student/edit-level/{id}")
@@ -301,6 +305,11 @@ public class StudentController {
         requestService.saveNewRequest(currentRequest);
         newDetail.setRequest(currentRequest);
         requestDetailService.saveRequestDetail(newDetail);
+
+        if (requestService.isCompleted(currentRequest) == true) {
+
+            return "redirect:/student/transactions";
+        }
 
         return "redirect:/student/shop-group-shopping-details/{id}";
     }

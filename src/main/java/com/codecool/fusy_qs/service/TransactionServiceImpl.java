@@ -1,10 +1,15 @@
 package com.codecool.fusy_qs.service;
 
+import com.codecool.fusy_qs.entity.Request;
+import com.codecool.fusy_qs.entity.RequestDetail;
+import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.Transaction;
 import com.codecool.fusy_qs.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -38,5 +43,10 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void useBoughtIndividualItem(Transaction transaction) {
         transactionRepository.save(transaction);
+    }
+
+    @Override
+    public void saveNewGroupTransaction(Request completedRequest) {
+
     }
 }

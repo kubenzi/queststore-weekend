@@ -10,6 +10,17 @@
 	<link th:href="@{/student_template.css}" rel="stylesheet" />
 	<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+	<script>
+		function setMaxInputValue() {
+			let wallet = [[${session.student.wallet}]];
+			let price = [[${item.itemCost}]];
+			const lowerValue = Math.min(wallet, price);
+			const lowerValueString = lowerValue.toString();
+
+			document.getElementById("coolcoinsInput").setAttribute("name", lowerValueString);
+		}
+	</script>
 </head>
 
 <body>
@@ -47,16 +58,7 @@
 				<p> DESCRIPTION: <span type="text" th:text="${item.itemDescription}" th:field="*{description}"></span> </p>
 				<p> PRICE: <span type="text" th:text="${item.itemCost}" th:field="*{price}"></span> coolcoins </p>
 
-<!--				<script>-->
-<!--					function setMaxInputValue() {-->
-<!--						let wallet = [[${session.student.wallet}]];-->
-<!--						let price = [[${item.itemCost}]];-->
-<!--						const lowerValue = Math.min(wallet, price);-->
-<!--						const lowerValueString = lowerValue.toString();-->
 
-<!--						document.getElementById("coolcoinsInput").setAttribute("name", lowerValueString);-->
-<!--					}-->
-<!--				</script>-->
 
 				<form action="post"
 					  th:action="@{/student/shop-group/{id}(id=${item.itemId})}"

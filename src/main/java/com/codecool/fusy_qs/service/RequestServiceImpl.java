@@ -2,11 +2,14 @@ package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Request;
 import com.codecool.fusy_qs.entity.RequestDetail;
+import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RequestServiceImpl implements RequestService {
@@ -41,6 +44,25 @@ public class RequestServiceImpl implements RequestService {
         }
 
         return totalContribution;
+    }
+
+    @Override
+    public boolean isCompleted(Request request) {
+        return calculateTotalContribution(request) == request.getItemCost();
+    }
+
+    @Override
+    public Map<Student, Integer> createGroupPurchaseMap(Request groupRequest) {
+        Map<Student, Integer> requestStudents = new HashMap<>();
+
+        for(RequestDetail requestDetail : groupRequest.getRequestDetails()) {
+            if(!requestStudents.containsKey(requestDetail.getStudent())) {
+                requestStudents.put(requestDetail.getStudent(), requestDetail.getCoolcoins());
+            } else {
+
+            }
+        }
+        return requestStudents;
     }
 
 }
