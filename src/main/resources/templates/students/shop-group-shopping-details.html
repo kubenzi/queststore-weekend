@@ -57,12 +57,27 @@
 						</tr>
 
 						<tr th:each="detail : ${currentRequest.requestDetails}">
-							<td><span th:text="${detail.student.firstName}"> </span></td>
+							<td><span th:text="${detail.student.firstName} + ' ' + ${detail.student.lastName}"> </span></td>
 							<td><span th:text="${detail.coolcoins}"> </span></td>
 							<td><span> WITHDRAW </span></td>
 						</tr>
 					</table>
-					<br/><br/>
+					<h4> STATUS: <span th:text="${totalContribution} + '/' + ${currentRequest.itemCost}"></span></h4>
+					<br/>
+
+					<form action="post"
+						  th:action="@{/student/shop-group-shopping-details/{id}(id=${currentRequest.id})}"
+						  th:object="${requestDetailsDto}"
+						  method="post">
+						<input id="contribution"
+							   type="number"
+							   step="10" min="10"
+							   th:max="${missingFunds}"
+							   th:field="*{coolcoins}" required>
+						<input type="submit" value="SEND COOLCOINS"/>
+					</form> <br/>
+					<a th:href="@{/student/shop-group}"> Back to requests list </a>
+
 				</div>
 			</div>
 

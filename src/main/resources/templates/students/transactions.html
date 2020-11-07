@@ -53,15 +53,39 @@
 							<td class="tableTitle"> Status </td>
 						</tr>
 
-						<tr th:each="item : ${individualTransactions}">
+						<tr th:each="item, stat: ${individualTransactions}">
 							<td><span th:text="${item.itemName}"> </span></td>
 							<td><span th:text="${item.itemDescription}"> </span></td>
 							<td><span th:text="${item.itemCost}"> </span></td>
 							<td>
-								<div th:switch="${item.isUsed}">
-									<p th:case="true"> USED </p>
-									<p th:case="false"> USE </p>
-								</div>
+
+								<span th:if="${item.isUsed} == false">
+									<p>USED</p>
+								</span>
+								<span th:if="${item.isUsed} == true">
+									<form action="#"
+										  th:action="@{/student/transactions}"
+										  th:object="${individualTransactions[__${stat.index}__]}"/>
+										<input type="submit" value="USE ITEM"/>
+									</form>
+
+
+<!--									<form action="post"-->
+<!--										th:action="@{/student/transactions}"-->
+<!--										th:object="${itemStatusDto}"-->
+<!--										method="post">-->
+<!--										<input type="text" th:field="${item.id}" style="display: none"/>-->
+<!--										<input type="submit" value="USE ITEM"/>-->
+<!--									</form>-->
+								</span>
+
+
+<!--								<div th:switch="${item.isUsed}">-->
+<!--									<span th:case="true"> USED </span>-->
+<!--									<span th:case="false">-->
+
+<!--									</span>-->
+<!--								</div>-->
 							</td>
 						</tr>
 					</table>
