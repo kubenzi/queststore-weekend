@@ -112,7 +112,7 @@ body {
     border: 1px solid #8a0000; /*grubość, styl i kolor obrysu*/
     background-color: #e58f8f;
     text-decoration: line-through;
-    opacity: 20%; /*poziom przeźroczystości; ustawiony na pełną przeźroczystość - JS zmieni ten poziom przy błędnych danych logowania*/
+    opacity: 100%; /*poziom przeźroczystości; ustawiony na pełną przeźroczystość - JS zmieni ten poziom przy błędnych danych logowania*/
 }
 
 footer {

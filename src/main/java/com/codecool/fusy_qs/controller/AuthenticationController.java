@@ -1,5 +1,6 @@
 package com.codecool.fusy_qs.controller;
 
+import com.codecool.fusy_qs.dto.LoginDto;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.User;
 import com.codecool.fusy_qs.service.LevelService;
@@ -32,12 +33,13 @@ public class AuthenticationController {
         this.userService = userService;
         this.studentService = studentService;
         this.levelService = levelService;
+
     }
 
     @GetMapping("/loginForm")
-    public String getLoginForm(Model model) {
+    public String getLoginForm(Model model, LoginDto loginDto) {
         model.addAttribute("maybeUser", new User());
-
+        model.addAttribute("loginDto", new LoginDto());
         return "loginForm";
     }
 
@@ -45,7 +47,8 @@ public class AuthenticationController {
     public void processLoginAttempt(HttpServletRequest request,
                                     HttpServletResponse response,
                                     Model model,
-                                    @ModelAttribute("maybeUser") User user) throws IOException {
+                                    @ModelAttribute("maybeUser") User user,
+                                    @ModelAttribute("isLogged") LoginDto loginDto) throws IOException {
         Optional<User> maybeUser = userService.login(user);
         //co robi ten get()?
         if (maybeUser.isPresent()) {
@@ -53,21 +56,22 @@ public class AuthenticationController {
             HttpSession session = request.getSession(true);
             switch (accountType) {
                 case "student":
+                    loginDto.setLogged(true);
                     Student student = studentService.findStudentByEmail(maybeUser.get().getEmail());
                     session.setAttribute("student", student);
                     session.setAttribute("level", levelService.getLevelByCcRequired(student.getTotalCoinsEarned()));
                     response.sendRedirect(request.getContextPath() + "/student/profile");
                     break;
                 case "mentor":
+                    loginDto.setLogged(true);
                     User mentor = userService.findUserByEmail(maybeUser.get().getEmail());
                     session.setAttribute("mentor", mentor);
                     response.sendRedirect(request.getContextPath() + "/mentor/profile");
                     break;
             }
         } else {
-            model.addAttribute("isSuccessfullLogin", false);
+            loginDto.setLogged(false);
             response.sendRedirect(request.getContextPath() + "/loginForm");
-
         }
     }
 
