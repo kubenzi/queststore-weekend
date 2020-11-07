@@ -28,10 +28,7 @@
                 <div id="topbarR" >
                     <span class="bigtitle"> Group edit</span>
                     <div style="height: 15px;"></div>
-                    XXXXXX
-                    XXXXXX
-                    XXXXXX
-                    XXXXXX
+                    Here you can edit group details!
                 </div>
             </div>
 
@@ -44,15 +41,13 @@
 
                 <div id="content">
 
-                    <span class="bigtitle">Group</span>
+                    <span class="bigtitle">Group <span type="text" th:text="${group.groupId}"></span> </span>
 
                     <div class="dottedline"></div>
                     <br/>
                     <table id = "group_members_table">
 
                         <form action="#" th:action="@{/mentor/update-group/{id}(id=${group.groupId})}" th:object="${group}" method="post">
-
-                            <p>Group <span type="text" th:text="${group.groupId}"></span> </p>
 
                             <input type="hidden" th:value="${group.groupId}" id="groupId" name="groupId">
 

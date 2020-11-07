@@ -400,4 +400,10 @@ input[type="submit"]{
     font-size: inherit;
 }
 
+.button {
+    background-color: gray;
+    color: black;
+    font-size: inherit;
+}
+
 

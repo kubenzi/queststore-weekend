@@ -30,7 +30,7 @@
                     <span class="bigtitle"> Mentor's profile </span>
                     <div style="height: 15px;"></div>
                     Here you can check your personal data or modify them if something went wrong during registration.
-                    On the left side you have option menu. Enjoy our app!
+                    On the left side you have option menu. Let's start your mentor's journey!
                 </div>
             </div>
 
@@ -56,30 +56,32 @@
                         </div>
                     </div>
 
-                    <br><br/>
+                    <br>
 
                     <span class="bigtitle">Edit personal data</span>
                     <div class="dottedline"></div>
                     <div id="editData">
 
                     <span class="lowmenu">Change password</span>
-
+                        <br>
                     <form id="password-form" action="#" name="password-form" th:action="@{/mentor/profile}" th:object="${mentorDataDto}" method="post">
 
                         <input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password"> </br>
                         <input type="password" name="password" th:field="*{newPassword}" id="first-password-field"  class="password-form-field" placeholder="New password">
                         <input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
+                        <br>
                         <button id="edit-password" type="button" th:onclick="changePassword([[${session.mentor.password}]])">Submit password</button>
 
                     </form>
-
+                        <br>
                     <span class="lowmenu">Change e-mail</span>
-
+                        <br>
                     <form id="email-form" action="#" name="email-form" th:action="@{/mentor/profile}" th:object="${mentorDataDto}" method="post">
 
                         <input type="email" name="email" id="old-email-field" class="old-email-field" placeholder="Old mail"> </br>
                         <input type="email" name="email" th:field="*{newEmail}" id="first-email-field"  class="first-email-field" placeholder="New mail">
                         <input type="email" name="email" id="second-email-field" class="second-email-field" placeholder="New mail confirm" style="text-align: left;"></br>
+                        <br>
                         <button id="edit-email" type="button" th:onclick="changeEmail([[${session.mentor.email}]])">Submit email</button>
 
                     </form>
