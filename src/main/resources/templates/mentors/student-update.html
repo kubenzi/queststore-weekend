@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title> Profile </title>
+
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<script type="text/javascript" th:src="@{/scripts.js}"></script>
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/mentor-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/mentor-fragments :: lowMenu" ></div>
+			</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-user-secret"></i>
+				</div>
+
+				<div id="topbarR" >
+					<span class="bigtitle"> Level of experience update </span>
+					<div style="height: 15px;"></div>
+					Edit data carefully, make sure that every level requirements are possible to achieve by students.
+				</div>
+			</div>
+
+			<!--------------- MAIN CONTENT --------------->
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/mentor-fragments :: sidebar"></div>
+				</div>
+
+				<div id="content">
+
+					<span class="bigtitle">Student: <span type="text" th:text="${student.firstName}" ></span><span type="text" th:text=" ${student.lastName}" ></span></span>
+
+					<div class="dottedline"></div>
+					<br/>
+					<table id = "group_members_table">
+
+						<form action="#" th:action="@{/mentor/update-student/{id}(id=${student.userId})}" th:object="${student}" method="post">
+
+							<input type="hidden" th:value="${student.userId}" id="userId" name="userId">
+
+							</br>
+							<label for="firstName">First name </label>
+							<input type="text" th:field="*{firstName}" id="firstName" placeholder="First name">
+							</br>
+							</br>
+							<label for="lastName">Last name </label>
+							<input type="text" th:field="*{lastName}" id="lastName" placeholder="Last name">
+							</br>
+							</br>
+							<label for="email">E-mail </label>
+							<input type="email" th:field="*{email}" id="email" placeholder="E-mail">
+							</br>
+							</br>
+<!--							<label for="group">Group </label>-->
+<!--							<select th:field="*{groupId}">-->
+<!--								<tr th:each="group : ${session.mentor.groups}">-->
+<!--									<option th:value="${group.groupId}">-->
+<!--										<div th:text="${group.groupName}"></div>-->
+<!--									</option>-->
+<!--								</tr>-->
+<!--							</select>-->
+<!--							</br>-->
+<!--							</br>-->
+
+							<input type="submit" th:onclick="updateStudent()" value="Update student">
+						</form>
+
+					</table>
+					<br/>
+					<br/>
+
+					</div>
+				</div>
+
+			<!-- FOOTER -->
+			<div th:insert="fragments/mentor-fragments :: footer"></div>
+		</div>
+	</body>
+</html>

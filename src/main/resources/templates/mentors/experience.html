@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title> Profile </title>
+
+		<meta name="keywords" content="student, codecool, quest, coolcoins" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<link th:href="@{/student_template.css}" rel="stylesheet" />
+		<link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="container">
+			<div id="bar">
+				<!--------------- MAIN BAR --------------->
+				<div th:insert="fragments/mentor-fragments :: mainBar" ></div>
+				<!--------------- LOW MENU --------------->
+				<div th:insert="fragments/mentor-fragments :: lowMenu" ></div>
+			</div>
+			<!--------------- TOP BAR --------------->
+			<div id="topbar" class="flex-container">
+				<div id="topbarL" class="topbarL">
+					<i class="icon-user-secret"></i>
+				</div>
+
+				<div id="topbarR" >
+					<span class="bigtitle"> Levels of experience </span>
+					<div style="height: 15px;"></div>
+					Here you can see what types of leves are avaliable in QUEST STORE.
+					If you would like to turn the heat up for some competition, you can edit level parameters.
+				</div>
+			</div>
+
+			<!--------------- MAIN CONTENT --------------->
+			<div id="main-content" class="flex-container">
+				<!--------------- SIDEBAR --------------->
+				<div class="sidebar-div">
+					<div th:insert="fragments/mentor-fragments :: sidebar"></div>
+				</div>
+
+				<div id="content">
+
+					<span class="bigtitle">Levels of Experience</span>
+
+					<div class="dottedline"></div>
+					<br/>
+					<table id = "group_members_table">
+
+
+						<tr>
+							<td class="tableTitle">Level no.</td>
+							<td class="tableTitle">Level icon</td>
+							<td class="tableTitle">Level name</td>
+							<td class="tableTitle">Coolcoins Required</td>
+						</tr>
+						<tr th:each="level : ${levelslist}">
+
+							<td><span th:text="${level.levelId}"> </span></td>
+							<td><span th:class="${level.iconName}"> </span></td>
+							<td ><span th:text="${level.levelName}"> </span></td>
+							<td><span th:text="${level.coolcoinsRequired}"> </span></td>
+
+
+							<td><a th:href="@{/mentor/edit-level/{levelId}(levelId=${level.levelId})}" class="btn">Edit</a></td>
+
+						</tr>
+
+					</table>
+					<br/>
+					<br/>
+
+					</div>
+				</div>
+
+			<!-- FOOTER -->
+			<div th:insert="fragments/mentor-fragments :: footer"></div>
+		</div>
+	</body>
+</html>

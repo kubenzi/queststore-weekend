@@ -37,4 +37,19 @@ public class QuestServiceImpl implements QuestService {
     public void addQuest(Quest quest) {
         questRepository.save(quest);
     }
+
+    @Override
+    public void saveQuest(Quest quest) {
+        questRepository.save(quest);
+    }
+
+    @Override
+    public void deleteQuest(Quest quest) {
+        questRepository.delete(quest);
+    }
+
+    @Override
+    public Quest getQuestById(Long id) {
+        return questRepository.findQuestById(id);
+    }
 }

@@ -6,8 +6,8 @@ import java.util.Objects;
 
 @Entity
 public class Student extends User {
-    private int wallet;
-    private int totalCoinsEarned;
+    private Integer wallet;
+    private Integer totalCoinsEarned;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "student_achievement_list", inverseJoinColumns = @JoinColumn(name = "achievement_id"))
@@ -25,26 +25,26 @@ public class Student extends User {
                    String email,
                    String password,
                    AccountType accountType,
-                   int wallet,
-                   int totalCoinsEarned) {
+                   Integer wallet,
+                   Integer totalCoinsEarned) {
         super(firstName, lastName, email, password, accountType);
         this.wallet = wallet;
         this.totalCoinsEarned = totalCoinsEarned;
     }
 
-    public int getWallet() {
+    public Integer getWallet() {
         return wallet;
     }
 
-    public void setWallet(int wallet) {
+    public void setWallet(Integer wallet) {
         this.wallet = wallet;
     }
 
-    public int getTotalCoinsEarned() {
+    public Integer getTotalCoinsEarned() {
         return totalCoinsEarned;
     }
 
-    public void setTotalCoinsEarned(int totalCoinsEarned) {
+    public void setTotalCoinsEarned(Integer totalCoinsEarned) {
         this.totalCoinsEarned = totalCoinsEarned;
     }
 

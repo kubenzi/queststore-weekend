@@ -1,25 +1,21 @@
-function toOnload(){
-    getDate();
-    loggingChecking();
-}
-
 function getDate() {
     let today = new Date();
 
-    let day = today.getDate() < 10 ? "0" + today.getDay() : today.getDay();
-    let month = today.getMonth() + 1 < 10 ? "0" + today.getMonth() : today.getMonth();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
     let year = today.getFullYear();
 
-    let hours = today.getHours() < 10 ?  "0" + today.getHours() : today.getHours();
-    let minutes = today.getMinutes() <10 ? "0" + today.getMinutes() : today.getMinutes();
-    let seconds = today.getSeconds() <10 ? "0" + today.getSeconds() : today.getSeconds();
+    let hours = today.getHours();
+    let minutes = today.getMinutes();
+    let seconds = today.getSeconds();
+
 
     document.getElementById('actualtime').innerText = day + "/" + month + "/" + year + "|" + hours + "/" + minutes + "/" + seconds;
 
     setTimeout("getDate()", 1000);
 }
 
-window.onload = toOnload();
+window.onload = getDate();
 
 function changePassword(actualPassword) {
     let provideOldPassword = document.getElementById("old-password-field").value
@@ -130,66 +126,18 @@ function changeEmail(actualEmail){
     return true
 }
 
-function checkLevel(levelList, levelId) {
-
-    let providedCoolcoins = document.getElementById("coolcoins-required").value
-
-    if (providedCoolcoins < 0) {
-        alert("Coolcoins required must be bigger than 0")
-        return
-    }
-
-    const levelIdToSting = levelId + "";
-    switch (levelIdToSting) {
-        case "1":
-            if (providedCoolcoins > 0) {
-                alert("Level 1 must be 0.")
-                return
-            }
-            break;
-
-        case "2":
-            if (providedCoolcoins >= levelList[2]) {
-                alert("Level must be lower then: " + levelList[2])
-                return
-            }
-            if (providedCoolcoins <= levelList[0]) {
-                alert("Level must be bigger then: " + levelList[0])
-                return
-            }
-            break;
-
-        case "3":
-            if (providedCoolcoins >= levelList[3]) {
-                alert("Level must be lower then: " + levelList[3])
-                return
-            }
-            if (providedCoolcoins <= levelList[1]) {
-                alert("Level must be bigger then: " + levelList[1])
-                return
-            }
-            break;
-
-        case "4":
-            if (providedCoolcoins >= levelList[4]) {
-                alert("Level must be lower then: " + levelList[4])
-                return
-            }
-            if (providedCoolcoins <= levelList[2]) {
-                alert("Level must be bigger then: " + levelList[2])
-                return
-            }
-            break;
-
-        case "5":
-            if (providedCoolcoins <= levelList[3]) {
-                alert("Level must be bigger then: " + levelList[3])
-                return
-            }
-            break;
-
-        }
-    document.getElementById('level-update').submit();
-
+function addStudent(){
+    alert("Student added! 100 Coolcoins added to the student's wallet")
 }
 
+function updateStudent(){
+    alert("Student updated!")
+}
+
+function updateQuest(){
+    alert("Quest updated!")
+}
+
+function addQuest(){
+    alert("Quest added!")
+}

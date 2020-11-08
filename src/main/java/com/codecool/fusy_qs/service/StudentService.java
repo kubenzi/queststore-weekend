@@ -7,6 +7,8 @@ import com.codecool.fusy_qs.entity.Transaction;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface StudentService {
 
     Student findStudentById(Long id);
@@ -17,4 +19,7 @@ public interface StudentService {
     List<Transaction> findGroupTransactions(Student student);
     List<Transaction> findIndividualTransactions(Student student);
     boolean checkAccountBalance(Student currentStudent, int coolcoins);
+    List<Student> findAllStudents();
+    void saveStudent(Student student);
+    void deleteStudent(Student student);
 }

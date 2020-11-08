@@ -1,38 +1,20 @@
-package com.codecool.fusy_qs.entity;
+package com.codecool.fusy_qs.dto;
 
-import javax.persistence.*;
+import com.codecool.fusy_qs.entity.QuestType;
 
-@Entity
-@SequenceGenerator(name= "id_gen", initialValue = 10, allocationSize = 1)
-public class Quest {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_gen")
-    private Long id;
+public class QuestDataDto {
 
-    @OneToOne
     private QuestType questType;
-
     private String questDescription;
-
     private int questValue;
 
-    public Quest() {
-    }
-
-    public Quest(QuestType questType,
-                 String questDescription,
-                 int questValue) {
+    public QuestDataDto(QuestType questType, String questDescription, int questValue) {
         this.questType = questType;
         this.questDescription = questDescription;
         this.questValue = questValue;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public QuestDataDto() {
     }
 
     public QuestType getQuestType() {
@@ -57,10 +39,5 @@ public class Quest {
 
     public void setQuestValue(int questValue) {
         this.questValue = questValue;
-    }
-
-    @Override
-    public String toString() {
-        return id + '.' + questDescription;
     }
 }

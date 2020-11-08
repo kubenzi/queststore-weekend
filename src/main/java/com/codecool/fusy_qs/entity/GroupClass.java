@@ -13,7 +13,7 @@ public class GroupClass {
 
     private String groupName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<User> users= new ArrayList<>();
 
     @Embedded
@@ -58,4 +58,5 @@ public class GroupClass {
     public void setGroupClass(Class groupClass) {
         this.groupClass = groupClass;
     }
+
 }

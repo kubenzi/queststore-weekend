@@ -303,3 +303,107 @@ a:active {
 }
 
 
+
+@media screen and (min-width: 700px) {
+    .flex-container {
+        display: flex;
+        /*border-radius: 40px/25px;*/
+    }
+}
+
+
+@media screen and (min-width: 700px) {
+    div.low-menu {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    div.sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    div.topbarL {
+        border-right: 2px dotted #cccccc;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    div.topbarL {
+        border-bottom: 2px dotted #cccccc;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    div.sidebar-div {
+        border-right: 2px dotted #000000;
+    }
+}
+
+#icons {
+    display: flex;
+    justify-content: center;
+}
+
+#main-content{
+    background-color: lightgrey;
+    /*height: 170px;*/
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 40px/25px;
+}
+
+.tableTitle{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #128870;
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*input[type="text"]{*/
+/*    background-color: #128870;*/
+/*    opacity: 0.8;*/
+/*    color: black;*/
+/*}*/
+
+input[type="submit"]{
+    background-color: gray;
+    color: black;
+    font-size: inherit;
+}
+
+.button {
+    background-color: gray;
+    color: black;
+    font-size: inherit;
+}
+
+
