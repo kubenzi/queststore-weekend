@@ -1,21 +1,25 @@
+function toOnload(){
+    getDate();
+    loggingChecking();
+}
+
 function getDate() {
     let today = new Date();
 
-    let day = today.getDate();
-    let month = today.getMonth() + 1;
+    let day = today.getDate() < 10 ? "0" + today.getDay() : today.getDay();
+    let month = today.getMonth() + 1 < 10 ? "0" + today.getMonth() : today.getMonth();
     let year = today.getFullYear();
 
-    let hours = today.getHours();
-    let minutes = today.getMinutes();
-    let seconds = today.getSeconds();
-
+    let hours = today.getHours() < 10 ?  "0" + today.getHours() : today.getHours();
+    let minutes = today.getMinutes() <10 ? "0" + today.getMinutes() : today.getMinutes();
+    let seconds = today.getSeconds() <10 ? "0" + today.getSeconds() : today.getSeconds();
 
     document.getElementById('actualtime').innerText = day + "/" + month + "/" + year + "|" + hours + "/" + minutes + "/" + seconds;
 
     setTimeout("getDate()", 1000);
 }
 
-window.onload = getDate();
+window.onload = toOnload();
 
 function changePassword(actualPassword) {
     let provideOldPassword = document.getElementById("old-password-field").value

@@ -7,7 +7,7 @@
 	<meta name="keywords" content="student, codecool, quest, coolcoins" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<!--	<script type="text/javascript" th:src="@{/scripts.js}"></script>-->
+	<script type="text/javascript" th:src="@{/scripts.js}" defer></script>
 <!--	<link th:href="@{/student_template.css}" rel="stylesheet" />-->
 
 	<link rel="stylesheet" href="fontello-2038ce78/css/fontello.css" type="text/css" />
@@ -34,6 +34,9 @@
 
 			<!--------------LOW BAR--------------->
 			<div th:fragment="lowMenu" id="lowMenu" class="flex-container">
+				<div id="actualtime" class="option">
+
+				</div>
 				<div class="option">
 					<span th:text="${session.student.firstName}"/>
 					<span th:text="${session.student.lastName}"/>

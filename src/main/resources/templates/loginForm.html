@@ -7,6 +7,7 @@
   <title>QS LOGIN PAGE</title>
 
 <!--  <link th:href="@{/login.css}" rel="stylesheet" />-->
+  <script type="text/javascript" th:src="@{/scripts.js}" defer></script>
   <link th:href="@{/login.css}" rel="stylesheet" />
 <!--  <link th:href="@{/student_template.css}" rel="stylesheet" />-->
   <link rel="stylesheet" th:href="@{/fontello-2038ce78/css/fontello.css}" type="text/css" />
@@ -63,31 +64,23 @@
       <input type="password" name="password" id="password" class="login-form-field" th:field="*{password}" required>
       <!--<input type="submit" value="SIGN IN!" class="login-form-submit">-->
       <input type="submit" value="Log in"/>
-<!--      <input type="button" class="login-form-submit" onclick="window.location='../student_html/main_view/student_main_viev.html';" value="SIGN IN!" />-->
 
     </form>
 
-    <div id="login-msg-holder">
-      <p id="login-msg">Invalid e-mail and/or password</p>
+    <div th:if="${loginDto.logged == true and loginDto.logged != null}">
+
+      <div id="login-msg-holder">
+        <p id="login-msg">Invalid e-mail and/or password</p>
+      </div>
+
     </div>
+
+
   </div>
 
   <footer>
     <p>CONTACT: <a href="mailto:fusy-queststore@fusy.com">fusy-queststore@fusy.com</a></p>
   </footer>
 </body>
-
-<!-- FORM ATTRIBUTES:
-    type - inputu, 
-    name - nazwa elementu formularza, 
-    id - unikalne ID elementu, 
-    class - nazwa klasy, do której przynależy element, 
-    placeholder - wiadomość, która wyświetli się w polu (wygaszona informacja przed wpisaniem danych),
-    value - napis, który wyświetli się na przycisku 
--->
-
-<!--
-    span - tag stosowany wewnątrz linii do wydzielenia jej fragmentu (np do pokolorowania tylko części tekstu)
--->
 
 </html>
