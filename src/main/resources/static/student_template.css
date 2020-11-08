@@ -406,4 +406,8 @@ input[type="submit"]{
     font-size: inherit;
 }
 
+#logout-button {
+    color: white;
+}
+
 

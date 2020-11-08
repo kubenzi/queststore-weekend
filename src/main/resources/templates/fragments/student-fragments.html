@@ -48,12 +48,13 @@
 				</div>
 
 				<div id="icons">
-					<div class="option"><i class="icon-star">
-						</i> <span th:text="${session.level.levelId}"/>
+					<div class="option">
+						<i class="icon-star"></i>
+						<span th:text="${session.level.levelId}"/>
 					</div>
 
-					<div>
-						<a class="option" href="#" th:href="@{/logout}"><i class="icon-logout"></i></a>
+					<div class="option">
+						<a id="logout-button" class="icon-logout" th:href="@{/logout}"></a>
 					</div>
 				</div>
 
@@ -104,7 +105,7 @@
 			Codecool 2020
 			<br>
 			<br>
-			In case of any queries don't hesitate and contact us: support@queststore.com
+			In case broken query contact us: fusy@queststore.com
 		</div>
 
 	</div>
