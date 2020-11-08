@@ -36,10 +36,11 @@
 		</div>
 
 		<div id="topbarR" >
-			<span class="bigtitle">Welcome to Your Profile Side Details  </span>
+			<span class="bigtitle"> Levels of experience  </span>
 			<div style="height: 15px;"></div>
-			Here you can check your presonal data or modify them if something went wrong. On the lef side you have option menu.
-			You can choose action. Enjoy our app!
+			Information about the levels that you can achieve along with your codecool adventure.
+			The scheme is simple: you complete quests for which you receive coolcoins -
+			the sum of coins you earned determines your current level.
 		</div>
 	</div>
 
@@ -54,7 +55,7 @@
 
 		<div id="content">
 
-			<span class="bigtitle">Levels of Experience</span>
+			<span class="bigtitle">Levels of experience</span>
 
 			<div class="dottedline"></div>
 			<br/>
@@ -65,7 +66,7 @@
 					<td class="tableTitle">Level no.</td>
 					<td class="tableTitle">Level icon</td>
 					<td class="tableTitle">Level name</td>
-					<td class="tableTitle">Coolcoins Required</td>
+					<td class="tableTitle">Coolcoins required</td>
 				</tr>
 				<tr th:each="level : ${levelslist}">
 
@@ -74,7 +75,7 @@
 					<td ><span th:text="${level.levelName}"> </span></td>
 					<td><span th:text="${level.coolcoinsRequired}"> </span></td>
 
-					<td><a th:href="@{/student/edit-level/{levelId}(levelId=${level.levelId})}" class="btn">Edit</a></td>
+<!--					<td><a th:href="@{/student/edit-level/{levelId}(levelId=${level.levelId})}" class="btn">Edit</a></td>-->
 
 				</tr>
 

@@ -53,13 +53,17 @@
 						<tr>
 							<td class="tableTitle"> Student's name </td>
 							<td class="tableTitle"> Contribution </td>
-							<td class="tableTitle"> </td>
+							<td class="tableTitle"> Withdraw funds </td>
 						</tr>
 
 						<tr th:each="detail : ${currentRequest.requestDetails}">
 							<td><span th:text="${detail.student.firstName} + ' ' + ${detail.student.lastName}"> </span></td>
 							<td><span th:text="${detail.coolcoins}"> </span></td>
-							<td><span> WITHDRAW </span></td>
+							<td>
+								<span th:if="${detail.student.userId} == ${session.student.userId}">
+									<button> WITHDRAW </button>
+								</span>
+							</td>
 						</tr>
 					</table>
 					<h4> STATUS: <span th:text="${totalContribution} + '/' + ${currentRequest.itemCost}"></span></h4>

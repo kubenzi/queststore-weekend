@@ -44,7 +44,6 @@ public class AuthenticationController {
     @PostMapping("/loginForm")
     public void processLoginAttempt(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    Model model,
                                     @ModelAttribute("maybeUser") User user) throws IOException {
         Optional<User> maybeUser = userService.login(user);
         //co robi ten get()?
@@ -65,9 +64,7 @@ public class AuthenticationController {
                     break;
             }
         } else {
-            model.addAttribute("isSuccessfullLogin", false);
             response.sendRedirect(request.getContextPath() + "/loginForm");
-
         }
     }
 

@@ -1,6 +1,7 @@
 package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Request;
+import com.codecool.fusy_qs.entity.RequestDetail;
 import com.codecool.fusy_qs.entity.Student;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface RequestService {
     Request findRequestById(Long requestId);
     int calculateTotalContribution(Request request);
     boolean isCompleted(Request request);
-    Map<Student, Integer> createGroupPurchaseMap(Request groupRequest);
+    Map<Long, Integer> createGroupPurchaseMap(Request groupRequest);
+    void deleteRequestWithDetails(Request request);
 }

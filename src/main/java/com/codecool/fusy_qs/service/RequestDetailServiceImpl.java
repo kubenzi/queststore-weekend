@@ -4,6 +4,8 @@ import com.codecool.fusy_qs.entity.RequestDetail;
 import com.codecool.fusy_qs.repository.RequestDetailRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RequestDetailServiceImpl implements RequestDetailService {
         RequestDetailRepository requestDetailRepository;
@@ -15,5 +17,10 @@ public class RequestDetailServiceImpl implements RequestDetailService {
     @Override
     public void saveRequestDetail(RequestDetail newRequestDetail) {
         requestDetailRepository.save(newRequestDetail);
+    }
+
+    @Override
+    public void deleteRequestDetail(RequestDetail requestDetail) {
+        requestDetailRepository.delete(requestDetail);
     }
 }

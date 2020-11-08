@@ -3,6 +3,7 @@ package com.codecool.fusy_qs.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "USER_DATA")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

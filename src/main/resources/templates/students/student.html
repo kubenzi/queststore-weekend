@@ -29,8 +29,9 @@
 				<div id="topbarR" >
 					<span class="bigtitle"> Student's profile </span>
 					<div style="height: 15px;"></div>
-					Here you can check your presonal data or modify them if something went wrong during registration.
-					On the lef side you have option menu. Enjoy our app!
+					Here you can check the basic data about your account or update some of them
+					(for example, if something went wrong during registration or you want to update your email / password).
+					The menu on the left side gives you access to other website functionalities. Enjoy using our app! :)
 				</div>
 			</div>
 
@@ -45,42 +46,36 @@
 					<span class="bigtitle">Profile details</span>
 					<div class="dottedline"></div>
 					<div id="personalDetails">
-						<div id="firstname"> Firstname: <span th:text="${session.student.firstName}"/> </div>
-						<div id="surname"> Surname: <span th:text="${session.student.lastName}"/> </div>
-						<div id="mail"> Mail: <span th:text="${session.student.email}"/> </div>
+						<div id="firstname"> FIRST NAME: <span th:text="${session.student.firstName}"/> </div>
+						<div id="surname"> LAST NAME: <span th:text="${session.student.lastName}"/> </div>
+<!--						<div id="mail"> Mail: <span th:text="${session.student.email}"/> </div>-->
+						<div id="account-balance"> ACCOUNT BALANCE: <span th:text="${session.student.wallet}"/> </div>
+						<div id="total-coins"> TOTAL COOLCOINS EARNED: <span th:text="${session.student.totalCoinsEarned}"/> </div>
+						<div id="total-coins"> ACCOUNT TYPE: student </div>
 					</div>
 
-					<br><br/>
+					<br>
 
 					<span class="bigtitle">Edit personal data</span>
 					<div class="dottedline"></div>
 					<div id="editData">
-
-						<span class="lowmenu">Change password</span>
-
+						<span class="lowmenu">CHANGE PASSWORD</span>
 						<form id="password-form" action="#" name="password-form" th:action="@{/student/profile}" th:object="${studentDataDto}" method="post">
-
-							<input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password"> </br>
+							<input type="password" name="password" id="old-password-field" class="password-form-field" placeholder="Old password">
 							<input type="password" name="password" th:field="*{newPassword}" id="first-password-field"  class="password-form-field" placeholder="New password">
-							<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="New password" style="text-align: left;"></br>
+							<input type="password" name="password" id="second-password-field" class="password-form-field" placeholder="Repeat new password" style="text-align: left;">
 							<button id="edit-password" type="button" th:onclick="changePassword([[${session.student.password}]])">Submit</button>
-
 						</form>
 
 						</br></br>
-						<span class="lowmenu">Change e-mail</span>
 
+						<span class="lowmenu">CHANGE E-MAIL ADDRESS</span>
 						<form id="email-form" action="#" name="email-form" th:action="@{/student/profile}" th:object="${studentDataDto}" method="post">
-
-							<input type="email" name="email" id="old-email-field" class="old-email-field" placeholder="Old mail"> </br>
-							<input type="email" name="email" th:field="*{newEmail}" id="first-email-field"  class="first-email-field" placeholder="New mail">
-							<input type="email" name="email" id="second-email-field" class="second-email-field" placeholder="New mail confirm" style="text-align: left;"></br>
+							<input type="email" name="email" id="old-email-field" class="old-email-field" placeholder="Old e-mail">
+							<input type="email" name="email" th:field="*{newEmail}" id="first-email-field"  class="first-email-field" placeholder="New e-mail">
+							<input type="email" name="email" id="second-email-field" class="second-email-field" placeholder="Repeat new e-mail" style="text-align: left;">
 							<button id="edit-email" type="button" th:onclick="changeEmail([[${session.student.email}]])">Submit</button>
-
 						</form>
-
-						</br></br>
-
 					</div>
 				</div>
 			</div>

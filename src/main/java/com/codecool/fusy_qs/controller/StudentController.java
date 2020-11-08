@@ -105,9 +105,6 @@ public class StudentController {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
-//        ItemStatusDto itemStatusDto = new ItemStatusDto();
-//        model.addAttribute("itemStatusDto", itemStatusDto);
-
         List<Transaction> individualTransactions = studentService.findIndividualTransactions(student);
         List<Transaction> groupTransactions = studentService.findGroupTransactions(student);
 
@@ -127,7 +124,6 @@ public class StudentController {
 
         transactionToUpdate.setIsUsed(true);
         transactionService.useBoughtIndividualItem(transactionToUpdate);
-
         studentService.addStudent(currentStudent);
 
         return "students/quests";
@@ -296,6 +292,7 @@ public class StudentController {
         Request currentRequest = requestService.findRequestById(requestId);
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
+
         int coolcoins = newDto.getCoolcoins();
 
         if (currentStudent.getWallet() < coolcoins) {
@@ -315,7 +312,7 @@ public class StudentController {
         requestDetailService.saveRequestDetail(newDetail);
 
         if (requestService.isCompleted(currentRequest) == true) {
-
+            transactionService.saveNewGroupTransaction(currentRequest);
             return "redirect:/student/transactions";
         }
 

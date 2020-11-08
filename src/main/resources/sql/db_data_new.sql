@@ -31,11 +31,11 @@ INSERT INTO group_class VALUES
     (2, '02.2020 Krk-weekend', 'Java-2');
 
 INSERT INTO user_data VALUES
-    ('Student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15!', 1300, 200, 1),
+    ('Student', 1, 'krzys@gmail.com', 'Krzysztof', 'Chromiec', 'Niemce15!', 1550, 450, 1),
     ('Student', 2, 'bartek.jakimko@gmail.com', 'Bartosz', 'Jakimko', 'Barti123!', 1050, 350, 1),
     ('Student', 3, 'kubus@gmail.com', 'Jakub', 'Chorazyk', 'Kubusqwerty123!', 1500, 200, 1),
-    ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'ondrejondrej1!', 1550, 50, 1),
-    ('USER_DATA', 5, 'przemekjestgosc@onet.pl', 'Przemyslaw', 'Raczkowski', 'master123!', null, null, 2);
+    ('Student', 4, 'ondrej@gmail.com', 'Andrzej', 'Kielbowicz', 'Ondrejondrej1!', 1550, 50, 1),
+    ('USER_DATA', 5, 'pshemekr@mentor.com', 'Przemyslaw', 'Raczkowski', 'Master123!', null, null, 2);
 
 INSERT INTO user_group VALUES
     (1, 1),
@@ -105,7 +105,8 @@ INSERT INTO achievement VALUES
     (15, 'Attending 1 months without being late', 250, 1, 3),
     (16, 'Doing a demo for the class (side project, new technology, ...)', 200, 2, 3),
     (17, 'Doing a demo for the class (side project, new technology, ...)', 200, 2, 4),
-    (18, 'Attending 1 months without being late', 250, 1, 4);
+    (18, 'Attending 1 months without being late', 250, 1, 4),
+    (19, 'Attending 1 months without being late', 250, 1, 1);
 
 INSERT INTO student_achievement_list VALUES
     (1, 0),
@@ -126,7 +127,8 @@ INSERT INTO student_achievement_list VALUES
     (3, 15),
     (3, 16),
     (4, 17),
-    (4, 18);
+    (4, 18),
+    (1, 19);
 
 INSERT INTO transaction_details VALUES
     (0, true, 600, '60 min workshop by a mentor(s) of the chosen topic', 'Workshop', 2, 1),

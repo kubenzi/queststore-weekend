@@ -69,8 +69,8 @@
 										th:object="${transactionDto}"
 										th:name="transactionDto"
 										method="post">
-									<input type="text" th:value="${transaction.id}" id="id" name="id" />
-										<input type="submit"/>
+									<input type="hidden" th:value="${transaction.id}" id="id" name="id" />
+										<input type="submit" value="SEND COOLCOINS"/>
 									</form>
 								</span>
 

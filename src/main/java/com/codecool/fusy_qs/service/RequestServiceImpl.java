@@ -14,10 +14,13 @@ import java.util.Map;
 @Service
 public class RequestServiceImpl implements RequestService {
     RequestRepository requestRepository;
+    RequestDetailService requestDetailService;
 
     @Autowired
-    public RequestServiceImpl(RequestRepository requestRepository) {
+    public RequestServiceImpl(RequestRepository requestRepository,
+                              RequestDetailService requestDetailService) {
         this.requestRepository = requestRepository;
+        this.requestDetailService = requestDetailService;
     }
 
     @Override
@@ -52,17 +55,49 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public Map<Student, Integer> createGroupPurchaseMap(Request groupRequest) {
-        Map<Student, Integer> requestStudents = new HashMap<>();
+    public Map<Long, Integer> createGroupPurchaseMap(Request groupRequest) {
+        Map<Long, Integer> requestStudents = new HashMap<>();
 
         for(RequestDetail requestDetail : groupRequest.getRequestDetails()) {
-            if(!requestStudents.containsKey(requestDetail.getStudent())) {
-                requestStudents.put(requestDetail.getStudent(), requestDetail.getCoolcoins());
+            if(!requestStudents.containsKey(requestDetail.getStudent().getUserId())) {
+                requestStudents.put(requestDetail.getStudent().getUserId(), requestDetail.getCoolcoins());
             } else {
-
+                requestStudents.put(requestDetail.getStudent().getUserId(),
+                        requestStudents.get(requestDetail.getStudent().getUserId()) + requestDetail.getCoolcoins());
             }
         }
         return requestStudents;
     }
 
+    @Override
+    public void deleteRequestWithDetails(Request request) {
+        List<RequestDetail> detailsList = request.getRequestDetails();
+
+        for(RequestDetail requestDetail : request.getRequestDetails()) {
+            requestDetail.setRequest(null);
+            requestDetail.setStudent(null);
+            requestDetailService.saveRequestDetail(requestDetail);
+        }
+
+        request.setGroup(null);
+        request.setItemType(null);
+        request.setRequestDetails(null);
+        saveNewRequest(request);
+        requestRepository.delete(request);
+
+        for(RequestDetail requestDetail : detailsList) {
+            requestDetailService.deleteRequestDetail(requestDetail);
+        }
+    }
+
+
+//    @Override
+//    public void deleteRecordsFromRequestDetailsList(List<RequestDetail> requestDetails) {
+//        for(RequestDetail requestDetail : requestDetails) {
+//            requestDetail.setRequest(null);
+//            requestDetail.setStudent(null);
+//            saveRequestDetail(requestDetail);
+//            requestDetailRepository.delete(requestDetail);
+//        }
+//    }
 }

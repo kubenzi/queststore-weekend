@@ -4,6 +4,7 @@ import com.codecool.fusy_qs.entity.Achievement;
 import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.entity.Transaction;
 import com.codecool.fusy_qs.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,12 +19,19 @@ public class StudentServiceImpl implements StudentService {
 
     public StudentServiceImpl(StudentRepository studentRepository,
                               QuestTypeService questTypeService,
-                              ItemTypeService itemTypeService,
-                              TransactionService transactionService) {
-        this.questTypeService = questTypeService;
+                              ItemTypeService itemTypeService) {
         this.studentRepository = studentRepository;
+        this.questTypeService = questTypeService;
         this.itemTypeService = itemTypeService;
+    }
+
+    @Autowired
+    public void setTransactionService(TransactionService transactionService) {
         this.transactionService = transactionService;
+    }
+
+    public TransactionService getTransactionService() {
+        return transactionService;
     }
 
     @Override
