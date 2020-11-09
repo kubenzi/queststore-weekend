@@ -2,7 +2,6 @@ package com.codecool.fusy_qs.service;
 
 import com.codecool.fusy_qs.entity.Request;
 import com.codecool.fusy_qs.entity.RequestDetail;
-import com.codecool.fusy_qs.entity.Student;
 import com.codecool.fusy_qs.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void saveNewRequest(Request newRequest) {
+    public void saveRequest(Request newRequest) {
         requestRepository.save(newRequest);
     }
 
@@ -71,33 +70,6 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public void deleteRequestWithDetails(Request request) {
-        List<RequestDetail> detailsList = request.getRequestDetails();
-
-        for(RequestDetail requestDetail : request.getRequestDetails()) {
-            requestDetail.setRequest(null);
-            requestDetail.setStudent(null);
-            requestDetailService.saveRequestDetail(requestDetail);
-        }
-
-        request.setGroup(null);
-        request.setItemType(null);
-        request.setRequestDetails(null);
-        saveNewRequest(request);
         requestRepository.delete(request);
-
-        for(RequestDetail requestDetail : detailsList) {
-            requestDetailService.deleteRequestDetail(requestDetail);
-        }
     }
-
-
-//    @Override
-//    public void deleteRecordsFromRequestDetailsList(List<RequestDetail> requestDetails) {
-//        for(RequestDetail requestDetail : requestDetails) {
-//            requestDetail.setRequest(null);
-//            requestDetail.setStudent(null);
-//            saveRequestDetail(requestDetail);
-//            requestDetailRepository.delete(requestDetail);
-//        }
-//    }
 }

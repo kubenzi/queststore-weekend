@@ -15,9 +15,6 @@ public class RequestDetail {
 
     Integer coolcoins;
 
-    @ManyToOne
-    private Request request;
-
     public RequestDetail() {
     }
 
@@ -49,13 +46,5 @@ public class RequestDetail {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
     }
 }

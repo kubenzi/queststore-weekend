@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface RequestService {
     List<Request> getCurrentGroupRequests(Long groupId);
-    void saveNewRequest(Request newRequest);
+    void saveRequest(Request newRequest);
     Request findRequestById(Long requestId);
     int calculateTotalContribution(Request request);
     boolean isCompleted(Request request);

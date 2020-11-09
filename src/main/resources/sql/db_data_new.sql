@@ -74,17 +74,10 @@ INSERT INTO request VALUES
 
 INSERT INTO request_detail VALUES
     (0, 300, 1, 1),
-    (1, 400, 1, 2),
-    (2, 100, 2, 1),
+    (1, 400, 2, 1),
+    (2, 100, 1, 2),
     (3, 400, 3, 3),
-    (4, 400, 3, 4);
-
-INSERT INTO request_request_details VALUES
-    (1, 0),
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (3, 4);
+    (4, 400, 4, 3);
 
 INSERT INTO achievement VALUES
     (0, 'Finishing two-week self-assignment', 100, 1, 1),

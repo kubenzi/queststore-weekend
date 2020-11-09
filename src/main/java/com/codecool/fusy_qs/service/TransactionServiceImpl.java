@@ -63,6 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void useBoughtIndividualItem(Transaction transaction) {
+        transaction.setIsUsed(true);
         transactionRepository.save(transaction);
     }
 

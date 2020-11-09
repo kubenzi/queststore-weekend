@@ -2,7 +2,6 @@ package com.codecool.fusy_qs.controller;
 
 
 import com.codecool.fusy_qs.dto.GroupPurchaseDto;
-import com.codecool.fusy_qs.dto.ItemStatusDto;
 import com.codecool.fusy_qs.dto.RequestDetailsDto;
 import com.codecool.fusy_qs.dto.StudentDataDto;
 import com.codecool.fusy_qs.entity.*;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -51,7 +49,7 @@ public class StudentController {
 
 
     @GetMapping("/student/profile")
-    String getStudentProfile(Model model, HttpServletRequest request) {
+    String currentStudentProfile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         StudentDataDto studentDataDto = new StudentDataDto();
         model.addAttribute("studentDataDto", studentDataDto);
@@ -60,7 +58,7 @@ public class StudentController {
     }
 
     @PostMapping("/student/profile")
-    String updateStudent(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
+    String updateStudentData(StudentDataDto studentDataDto, Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
@@ -77,7 +75,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/experience")
-    String getLevels(Model model) {
+    String levelsOfExperienceList(Model model) {
         List<Level> levelslist = levelService.getAllLevels();
         model.addAttribute("levelslist", levelslist);
 
@@ -85,7 +83,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/achievements")
-    String getAchievements(Model model, HttpServletRequest request) {
+    String achievementsList(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
@@ -101,7 +99,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/transactions")
-    String getTransactions(Model model, HttpServletRequest request) {
+    String transactionsList(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
@@ -117,20 +115,15 @@ public class StudentController {
     @PostMapping("/student/transactions")
     String useBoughtIndividualItem(@ModelAttribute("transactionToUpdate") Transaction transactionWithId,
                                    HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
-        Student currentStudent = (Student) session.getAttribute("student");
 
         Transaction transactionToUpdate = transactionService.findTransactionById(transactionWithId.getId());
-
-        transactionToUpdate.setIsUsed(true);
         transactionService.useBoughtIndividualItem(transactionToUpdate);
-        studentService.addStudent(currentStudent);
 
-        return "students/quests";
+        return "redirect:/student/transactions";
     }
 
     @GetMapping("/student/edit-level/{id}")
-    String showUpdateForm(@PathVariable("id") Long levelId, Model model) {
+    String updateLevelForm(@PathVariable("id") Long levelId, Model model) {
         List<Level> levelslist = levelService.getAllLevels();
         List<Integer> coolcoinsReqList = new ArrayList<>();
 
@@ -147,7 +140,6 @@ public class StudentController {
 
     @PostMapping("/student/update-level/{id}")
     String updateLevel(@PathVariable("id") Integer levelId, Level level, Model model) {
-
         levelService.saveLevel(level);
 
         return "redirect:/student/experience";
@@ -160,7 +152,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/group")
-    String getGroup(Model model) {
+    String groupDetails(Model model) {
 
         List<Level> levelslist = levelService.getAllLevels();
         model.addAttribute("levelslist", levelslist);
@@ -169,7 +161,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/quests")
-    String getQuests(Model model) {
+    String questsList(Model model) {
         List<Quest> individualQuests = questService.getAllIndividualQuests();
         List<Quest> groupQuests = questService.getAllGroupQuests();
 
@@ -180,7 +172,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/shop-individual")
-    String getIndividualItems(Model model) {
+    String shopIndividualItems(Model model) {
         List<Item> individualItems = itemService.getAllIndividualItems();
         model.addAttribute("individualItems", individualItems);
 
@@ -188,14 +180,15 @@ public class StudentController {
     }
 
     @GetMapping("/student/shop-individual/{id}")
-    String showIndividualItemPage(@PathVariable("id") Long itemId, Model model) {
+    String singleIndividualItemPage(@PathVariable("id") Long itemId, Model model) {
         Item item = itemService.getItemById(itemId);
         model.addAttribute("item", item);
         return "students/shop-individual-item";
     }
 
     @PostMapping("/student/shop-individual/{id}")
-    String buyIndividualItem(@PathVariable("id") Long itemId, HttpServletRequest request) {
+    String confirmPurchaseOfIndividualItem(@PathVariable("id") Long itemId, HttpServletRequest request) {
+
         Item boughtItem = itemService.getItemById(itemId);
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
@@ -203,17 +196,13 @@ public class StudentController {
         if (!studentService.checkAccountBalance(currentStudent, boughtItem.getItemCost()))
             return "redirect:/student/shop-individual";
 
-        currentStudent.setWallet(currentStudent.getWallet() - boughtItem.getItemCost());
-        Transaction newTransaction = new Transaction(boughtItem.getItemName(), boughtItem.getItemDescription(),
-                boughtItem.getItemCost(), false, currentStudent);
-
-        transactionService.saveNewIndividualTransaction(newTransaction);
+        studentService.handleIndividualItemPurchase(currentStudent, boughtItem);
 
         return "redirect:/student/shop-individual";
     }
 
     @GetMapping("/student/shop-group")
-    String getGroupItems(Model model) {
+    String shopGroupItems(Model model) {
         List<Item> groupItems = itemService.getAllGroupItems();
         model.addAttribute("groupItems", groupItems);
 
@@ -230,34 +219,21 @@ public class StudentController {
     }
 
     @PostMapping("/student/shop-group/{id}")
-    String buyGroupItemPage(@PathVariable("id") Long itemId,
+    String confirmStartGroupItemPurchase(@PathVariable("id") Long itemId,
                             @ModelAttribute("coolcoinsSent") GroupPurchaseDto coolcoinsSent,
                             HttpServletRequest request) {
-        Item item = itemService.getItemById(itemId);
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
-        int coolcoins = coolcoinsSent.getCoolcoins();
+        Item item = itemService.getItemById(itemId);
+        int studentsContribution = coolcoinsSent.getCoolcoins();
 
-        if (currentStudent.getWallet() < coolcoins) {
-            coolcoins = currentStudent.getWallet();
-        }
-
-        currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
-        studentService.addStudent(currentStudent);
-
-        RequestDetail newDetail = new RequestDetail(currentStudent, coolcoins);
-        requestDetailService.saveRequestDetail(newDetail);
-        List<RequestDetail> details = Arrays.asList(newDetail);
-        Request newRequest = new Request(item, currentStudent, details);
-        requestService.saveNewRequest(newRequest);
-        newDetail.setRequest(newRequest);
-        requestDetailService.saveRequestDetail(newDetail);
+        studentService.handleStartOfGroupPurchase(currentStudent, studentsContribution, item);
 
         return "redirect:/student/shop-group-shopping";
     }
 
     @GetMapping("/student/shop-group-shopping")
-    String getGroupShopping(Model model, HttpServletRequest request) {
+    String groupRequestsList(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Student student = (Student) session.getAttribute("student");
 
@@ -268,7 +244,7 @@ public class StudentController {
     }
 
     @GetMapping("/student/shop-group-shopping-details/{id}")
-    String showGroupRequestDetails(@PathVariable("id") Long id,
+    String groupRequestDetails(@PathVariable("id") Long id,
                                    Model model) {
         Request request = requestService.findRequestById(id);
         model.addAttribute("currentRequest", request);
@@ -286,32 +262,18 @@ public class StudentController {
     }
 
     @PostMapping("/student/shop-group-shopping-details/{id}")
-    String manageRequestDetails(@PathVariable("id") Long requestId,
-                                @ModelAttribute("requestDetailsDto") RequestDetailsDto newDto,
+    String groupRequestManagement(@PathVariable("id") Long requestId,
+                                @ModelAttribute("requestDetailsDto") RequestDetailsDto requestDetailsDto,
                                 HttpServletRequest request) {
+
         Request currentRequest = requestService.findRequestById(requestId);
         HttpSession session = request.getSession(true);
         Student currentStudent = (Student) session.getAttribute("student");
+        int studentsContribution = requestDetailsDto.getCoolcoins();
 
-        int coolcoins = newDto.getCoolcoins();
+        studentService.handleExistingGroupPurchase(currentStudent, studentsContribution, currentRequest);
 
-        if (currentStudent.getWallet() < coolcoins) {
-            coolcoins = currentStudent.getWallet();
-        }
-
-        currentStudent.setWallet(currentStudent.getWallet() - coolcoins);
-        studentService.addStudent(currentStudent);
-
-        RequestDetail newDetail = new RequestDetail(currentStudent, coolcoins);
-        requestDetailService.saveRequestDetail(newDetail);
-        List<RequestDetail> details = currentRequest.getRequestDetails();
-        details.add(newDetail);
-
-        requestService.saveNewRequest(currentRequest);
-        newDetail.setRequest(currentRequest);
-        requestDetailService.saveRequestDetail(newDetail);
-
-        if (requestService.isCompleted(currentRequest) == true) {
+        if (requestService.isCompleted(currentRequest)) {
             transactionService.saveNewGroupTransaction(currentRequest);
             return "redirect:/student/transactions";
         }

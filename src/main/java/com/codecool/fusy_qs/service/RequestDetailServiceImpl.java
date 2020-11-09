@@ -4,8 +4,6 @@ import com.codecool.fusy_qs.entity.RequestDetail;
 import com.codecool.fusy_qs.repository.RequestDetailRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class RequestDetailServiceImpl implements RequestDetailService {
         RequestDetailRepository requestDetailRepository;

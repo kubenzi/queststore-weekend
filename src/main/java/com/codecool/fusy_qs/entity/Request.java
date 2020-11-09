@@ -21,8 +21,9 @@ public class Request {
     @OneToOne
     private ItemType itemType;
 
-    @OneToMany
-    @JoinTable(name = "request_request_details", inverseJoinColumns = @JoinColumn(name = "request_detail_id"))
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JoinColumn(name = "request_id")
     private List<RequestDetail> requestDetails;
 
     public Request() {
