@@ -2,15 +2,14 @@ package com.codecool.fusy_qs.entity;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Student extends User {
     private Integer wallet;
     private Integer totalCoinsEarned;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "student_achievement_list", inverseJoinColumns = @JoinColumn(name = "achievement_id"))
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "student_id")
     private List<Achievement> achievementList;
 
     @OneToMany(fetch = FetchType.EAGER)

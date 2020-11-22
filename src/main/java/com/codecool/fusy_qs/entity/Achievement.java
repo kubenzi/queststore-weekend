@@ -17,9 +17,6 @@ public class Achievement {
 
     private int questValue;
 
-    @ManyToOne
-    private Student student;
-
     public Achievement() {
     }
 
@@ -28,7 +25,6 @@ public class Achievement {
         this.questType = quest.getQuestType();
         this.questDescription = quest.getQuestDescription();
         this.questValue = quest.getQuestValue();
-        this.student = student;
     }
 
     public Long getId() {
@@ -61,14 +57,6 @@ public class Achievement {
 
     public void setQuestValue(int questValue) {
         this.questValue = questValue;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
     }
 
     @Override

@@ -8,10 +8,7 @@ import com.codecool.fusy_qs.entity.*;
 import com.codecool.fusy_qs.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -47,12 +44,9 @@ public class StudentController {
         this.requestDetailService = requestDetailService;
     }
 
-
     @GetMapping("/student/profile")
-    String currentStudentProfile(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
-        StudentDataDto studentDataDto = new StudentDataDto();
-        model.addAttribute("studentDataDto", studentDataDto);
+    String currentStudentProfile(Model model) {
+        model.addAttribute("studentDataDto", new StudentDataDto());
 
         return "students/student";
     }
